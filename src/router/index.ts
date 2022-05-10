@@ -24,7 +24,7 @@ export const routes: RouteRecordRaw[] = [
       } else if (roles == "user2") {
         return "/applicationHome/home";
       }
-      return "/";
+      return "/login";
     },
     children: [
       {
