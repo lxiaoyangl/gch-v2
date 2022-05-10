@@ -1,0 +1,996 @@
+[
+  {
+    "position": {
+      "x": -560,
+      "y": -80
+    },
+    "size": {
+      "width": 200,
+      "height": 80
+    },
+    "attrs": {
+      "body": {
+        "fill": "#ECF4FB",
+        "stroke": "#ABD0FB",
+        "strokeWidth": 2,
+        "rx": 4,
+        "ry": 4
+      },
+      "label": {
+        "text": "XXX-流程1",
+        "fill": "#333333",
+        "fontSize": 14,
+        "textWrap": {
+          "width": -10,
+          "height": -10,
+          "ellipsis": true
+        }
+      },
+      "root": {
+        "magnet": false
+      }
+    },
+    "shape": "rect",
+    "id": "2b12026a-a0eb-4185-806e-441e921efcda",
+    "portMarkup": [
+      {
+        "tagName": "circle",
+        "selector": "portBody"
+      }
+    ],
+    "ports": {
+      "items": [
+        {
+          "id": "T-1",
+          "group": "top"
+        },
+        {
+          "id": "T-2",
+          "group": "top"
+        },
+        {
+          "id": "T-3",
+          "group": "top"
+        },
+        {
+          "id": "B-1",
+          "group": "bottom"
+        },
+        {
+          "id": "B-2",
+          "group": "bottom"
+        },
+        {
+          "id": "B-3",
+          "group": "bottom"
+        },
+        {
+          "id": "L-1",
+          "group": "left"
+        },
+        {
+          "id": "L-2",
+          "group": "left"
+        },
+        {
+          "id": "L-3",
+          "group": "left"
+        },
+        {
+          "id": "R-1",
+          "group": "right"
+        },
+        {
+          "id": "R-2",
+          "group": "right"
+        },
+        {
+          "id": "R-3",
+          "group": "right"
+        },
+        {
+          "group": "in",
+          "id": "66f64781-4707-4520-b6f1-4cd0a75ad47f"
+        },
+        {
+          "group": "in",
+          "id": "00fd0928-4f40-4100-8409-1022fd4af059"
+        }
+      ],
+      "groups": {
+        "top": {
+          "position": {
+            "name": "top"
+          },
+          "attrs": {
+            "portBody": {
+              "magnet": true,
+              "r": 4,
+              "stroke": "#3199FF",
+              "fill": "#fff",
+              "strokeWidth": 2
+            }
+          }
+        },
+        "bottom": {
+          "position": {
+            "name": "bottom"
+          },
+          "attrs": {
+            "portBody": {
+              "magnet": true,
+              "r": 4,
+              "fill": "#fff",
+              "stroke": "#3199FF",
+              "strokeWidth": 2
+            }
+          }
+        },
+        "left": {
+          "position": {
+            "name": "left"
+          },
+          "attrs": {
+            "portBody": {
+              "magnet": true,
+              "r": 4,
+              "fill": "#fff",
+              "stroke": "#3199FF",
+              "strokeWidth": 2
+            }
+          }
+        },
+        "right": {
+          "position": {
+            "name": "right"
+          },
+          "attrs": {
+            "portBody": {
+              "magnet": true,
+              "r": 4,
+              "fill": "#fff",
+              "stroke": "#3199FF",
+              "strokeWidth": 2
+            }
+          }
+        }
+      }
+    },
+    "zIndex": 1
+  },
+  {
+    "position": {
+      "x": -160,
+      "y": -80
+    },
+    "size": {
+      "width": 200,
+      "height": 80
+    },
+    "attrs": {
+      "body": {
+        "fill": "#ECF4FB",
+        "stroke": "#ABD0FB",
+        "strokeWidth": 2,
+        "rx": 4,
+        "ry": 4
+      },
+      "label": {
+        "text": "XXX-流程2",
+        "fill": "#333333",
+        "fontSize": 14,
+        "textWrap": {
+          "width": -10,
+          "height": -10,
+          "ellipsis": true
+        }
+      },
+      "root": {
+        "magnet": false
+      }
+    },
+    "shape": "rect",
+    "id": "aff9a76f-cf92-4c5b-b256-2274ed433d30",
+    "portMarkup": [
+      {
+        "tagName": "circle",
+        "selector": "portBody"
+      }
+    ],
+    "ports": {
+      "items": [
+        {
+          "id": "T-1",
+          "group": "top"
+        },
+        {
+          "id": "T-2",
+          "group": "top"
+        },
+        {
+          "id": "T-3",
+          "group": "top"
+        },
+        {
+          "id": "B-1",
+          "group": "bottom"
+        },
+        {
+          "id": "B-2",
+          "group": "bottom"
+        },
+        {
+          "id": "B-3",
+          "group": "bottom"
+        },
+        {
+          "id": "L-1",
+          "group": "left"
+        },
+        {
+          "id": "L-2",
+          "group": "left"
+        },
+        {
+          "id": "L-3",
+          "group": "left"
+        },
+        {
+          "id": "R-1",
+          "group": "right"
+        },
+        {
+          "id": "R-2",
+          "group": "right"
+        },
+        {
+          "id": "R-3",
+          "group": "right"
+        },
+        {
+          "group": "in",
+          "id": "c9dd665b-bfc3-4207-8951-ca6332292fd7"
+        },
+        {
+          "group": "in",
+          "id": "5c098727-d008-4009-a33f-c2dca824de80"
+        }
+      ],
+      "groups": {
+        "top": {
+          "position": {
+            "name": "top"
+          },
+          "attrs": {
+            "portBody": {
+              "magnet": true,
+              "r": 4,
+              "stroke": "#3199FF",
+              "fill": "#fff",
+              "strokeWidth": 2
+            }
+          }
+        },
+        "bottom": {
+          "position": {
+            "name": "bottom"
+          },
+          "attrs": {
+            "portBody": {
+              "magnet": true,
+              "r": 4,
+              "fill": "#fff",
+              "stroke": "#3199FF",
+              "strokeWidth": 2
+            }
+          }
+        },
+        "left": {
+          "position": {
+            "name": "left"
+          },
+          "attrs": {
+            "portBody": {
+              "magnet": true,
+              "r": 4,
+              "fill": "#fff",
+              "stroke": "#3199FF",
+              "strokeWidth": 2
+            }
+          }
+        },
+        "right": {
+          "position": {
+            "name": "right"
+          },
+          "attrs": {
+            "portBody": {
+              "magnet": true,
+              "r": 4,
+              "fill": "#fff",
+              "stroke": "#3199FF",
+              "strokeWidth": 2
+            }
+          }
+        }
+      }
+    },
+    "zIndex": 2
+  },
+  {
+    "position": {
+      "x": -360,
+      "y": 200
+    },
+    "size": {
+      "width": 200,
+      "height": 80
+    },
+    "attrs": {
+      "body": {
+        "fill": "#ECF4FB",
+        "stroke": "#ABD0FB",
+        "strokeWidth": 2,
+        "rx": 4,
+        "ry": 4
+      },
+      "label": {
+        "text": "XXX-信号处理1",
+        "fill": "#333333",
+        "fontSize": 14,
+        "textWrap": {
+          "width": -10,
+          "height": -10,
+          "ellipsis": true
+        }
+      },
+      "root": {
+        "magnet": false
+      }
+    },
+    "shape": "rect",
+    "id": "3330ac99-841a-47b6-bb58-0853e2ffd21a",
+    "portMarkup": [
+      {
+        "tagName": "circle",
+        "selector": "portBody"
+      }
+    ],
+    "ports": {
+      "items": [
+        {
+          "id": "T-1",
+          "group": "top"
+        },
+        {
+          "id": "T-2",
+          "group": "top"
+        },
+        {
+          "id": "T-3",
+          "group": "top"
+        },
+        {
+          "id": "B-1",
+          "group": "bottom"
+        },
+        {
+          "id": "B-2",
+          "group": "bottom"
+        },
+        {
+          "id": "B-3",
+          "group": "bottom"
+        },
+        {
+          "id": "L-1",
+          "group": "left"
+        },
+        {
+          "id": "L-2",
+          "group": "left"
+        },
+        {
+          "id": "L-3",
+          "group": "left"
+        },
+        {
+          "id": "R-1",
+          "group": "right"
+        },
+        {
+          "id": "R-2",
+          "group": "right"
+        },
+        {
+          "id": "R-3",
+          "group": "right"
+        },
+        {
+          "group": "in",
+          "id": "857de545-23b8-44c6-9912-c398fa0fe71b"
+        },
+        {
+          "group": "in",
+          "id": "e742aa48-cbbb-4a78-8a02-1f6d89d4cc7c"
+        },
+        {
+          "group": "in",
+          "id": "fac86b3c-d45d-4286-a6af-ddc3fddbbc65"
+        },
+        {
+          "group": "in",
+          "id": "1542691e-e868-479e-a911-adaa254961d8"
+        }
+      ],
+      "groups": {
+        "top": {
+          "position": {
+            "name": "top"
+          },
+          "attrs": {
+            "portBody": {
+              "magnet": true,
+              "r": 4,
+              "stroke": "#3199FF",
+              "fill": "#fff",
+              "strokeWidth": 2
+            }
+          }
+        },
+        "bottom": {
+          "position": {
+            "name": "bottom"
+          },
+          "attrs": {
+            "portBody": {
+              "magnet": true,
+              "r": 4,
+              "fill": "#fff",
+              "stroke": "#3199FF",
+              "strokeWidth": 2
+            }
+          }
+        },
+        "left": {
+          "position": {
+            "name": "left"
+          },
+          "attrs": {
+            "portBody": {
+              "magnet": true,
+              "r": 4,
+              "fill": "#fff",
+              "stroke": "#3199FF",
+              "strokeWidth": 2
+            }
+          }
+        },
+        "right": {
+          "position": {
+            "name": "right"
+          },
+          "attrs": {
+            "portBody": {
+              "magnet": true,
+              "r": 4,
+              "fill": "#fff",
+              "stroke": "#3199FF",
+              "strokeWidth": 2
+            }
+          }
+        }
+      }
+    },
+    "zIndex": 3
+  },
+  {
+    "position": {
+      "x": -360,
+      "y": 40
+    },
+    "size": {
+      "width": 200,
+      "height": 80
+    },
+    "attrs": {
+      "body": {
+        "fill": "#ECF4FB",
+        "stroke": "#ABD0FB",
+        "strokeWidth": 2,
+        "rx": 4,
+        "ry": 4
+      },
+      "label": {
+        "text": "数据接收1",
+        "fill": "#333333",
+        "fontSize": 14,
+        "textWrap": {
+          "width": -10,
+          "height": -10,
+          "ellipsis": true
+        }
+      },
+      "root": {
+        "magnet": false
+      }
+    },
+    "shape": "rect",
+    "id": "591f8ece-9910-4ee8-ac61-9af6dbfd08d1",
+    "portMarkup": [
+      {
+        "tagName": "circle",
+        "selector": "portBody"
+      }
+    ],
+    "ports": {
+      "items": [
+        {
+          "id": "T-1",
+          "group": "top"
+        },
+        {
+          "id": "T-2",
+          "group": "top"
+        },
+        {
+          "id": "T-3",
+          "group": "top"
+        },
+        {
+          "id": "B-1",
+          "group": "bottom"
+        },
+        {
+          "id": "B-2",
+          "group": "bottom"
+        },
+        {
+          "id": "B-3",
+          "group": "bottom"
+        },
+        {
+          "id": "L-1",
+          "group": "left"
+        },
+        {
+          "id": "L-2",
+          "group": "left"
+        },
+        {
+          "id": "L-3",
+          "group": "left"
+        },
+        {
+          "id": "R-1",
+          "group": "right"
+        },
+        {
+          "id": "R-2",
+          "group": "right"
+        },
+        {
+          "id": "R-3",
+          "group": "right"
+        },
+        {
+          "group": "in",
+          "id": "5f4d0f03-95ef-40a9-920a-dfbb43bacfcd"
+        },
+        {
+          "group": "in",
+          "id": "e5b5a33f-5bff-4369-87bb-56a6819695be"
+        },
+        {
+          "group": "in",
+          "id": "fbed3a5d-adf7-42dc-a332-ca9f099a2746"
+        }
+      ],
+      "groups": {
+        "top": {
+          "position": {
+            "name": "top"
+          },
+          "attrs": {
+            "portBody": {
+              "magnet": true,
+              "r": 4,
+              "stroke": "#3199FF",
+              "fill": "#fff",
+              "strokeWidth": 2
+            }
+          }
+        },
+        "bottom": {
+          "position": {
+            "name": "bottom"
+          },
+          "attrs": {
+            "portBody": {
+              "magnet": true,
+              "r": 4,
+              "fill": "#fff",
+              "stroke": "#3199FF",
+              "strokeWidth": 2
+            }
+          }
+        },
+        "left": {
+          "position": {
+            "name": "left"
+          },
+          "attrs": {
+            "portBody": {
+              "magnet": true,
+              "r": 4,
+              "fill": "#fff",
+              "stroke": "#3199FF",
+              "strokeWidth": 2
+            }
+          }
+        },
+        "right": {
+          "position": {
+            "name": "right"
+          },
+          "attrs": {
+            "portBody": {
+              "magnet": true,
+              "r": 4,
+              "fill": "#fff",
+              "stroke": "#3199FF",
+              "strokeWidth": 2
+            }
+          }
+        }
+      }
+    },
+    "zIndex": 4
+  },
+  {
+    "position": {
+      "x": -44,
+      "y": 120
+    },
+    "size": {
+      "width": 200,
+      "height": 80
+    },
+    "attrs": {
+      "body": {
+        "fill": "#ECF4FB",
+        "stroke": "#ABD0FB",
+        "strokeWidth": 2,
+        "rx": 4,
+        "ry": 4
+      },
+      "label": {
+        "text": "信号解析",
+        "fill": "#333333",
+        "fontSize": 14,
+        "textWrap": {
+          "width": -10,
+          "height": -10,
+          "ellipsis": true
+        }
+      },
+      "root": {
+        "magnet": false
+      }
+    },
+    "shape": "rect",
+    "id": "139ed5d0-af80-4642-abb6-a90bc5da7f8d",
+    "portMarkup": [
+      {
+        "tagName": "circle",
+        "selector": "portBody"
+      }
+    ],
+    "ports": {
+      "groups": {
+        "top": {
+          "position": {
+            "name": "top"
+          },
+          "attrs": {
+            "portBody": {
+              "magnet": true,
+              "r": 4,
+              "stroke": "#3199FF",
+              "fill": "#fff",
+              "strokeWidth": 2
+            }
+          }
+        },
+        "bottom": {
+          "position": {
+            "name": "bottom"
+          },
+          "attrs": {
+            "portBody": {
+              "magnet": true,
+              "r": 4,
+              "fill": "#fff",
+              "stroke": "#3199FF",
+              "strokeWidth": 2
+            }
+          }
+        },
+        "left": {
+          "position": {
+            "name": "left"
+          },
+          "attrs": {
+            "portBody": {
+              "magnet": true,
+              "r": 4,
+              "fill": "#fff",
+              "stroke": "#3199FF",
+              "strokeWidth": 2
+            }
+          }
+        },
+        "right": {
+          "position": {
+            "name": "right"
+          },
+          "attrs": {
+            "portBody": {
+              "magnet": true,
+              "r": 4,
+              "fill": "#fff",
+              "stroke": "#3199FF",
+              "strokeWidth": 2
+            }
+          }
+        }
+      },
+      "items": [
+        {
+          "id": "L-2",
+          "group": "left"
+        },
+        {
+          "id": "B-1",
+          "group": "bottom"
+        },
+        {
+          "group": "in",
+          "id": "8132008d-4a92-41a4-93dd-4a5b4ec25da9"
+        }
+      ]
+    },
+    "zIndex": 5
+  },
+  {
+    "shape": "edge",
+    "attrs": {
+      "line": {
+        "stroke": "#267FF7",
+        "targetMarker": {
+          "name": "classic",
+          "size": 12
+        }
+      }
+    },
+    "id": "60141fb3-9e40-4ede-b09a-6ff0c7054d5f",
+    "router": {
+      "name": "manhattan",
+      "args": {
+        "startDirections": [
+          "bottom"
+        ],
+        "endDirections": [
+          "top"
+        ]
+      }
+    },
+    "source": {
+      "cell": "2b12026a-a0eb-4185-806e-441e921efcda",
+      "port": "B-2"
+    },
+    "target": {
+      "cell": "591f8ece-9910-4ee8-ac61-9af6dbfd08d1",
+      "port": "T-1"
+    },
+    "zIndex": 6
+  },
+  {
+    "shape": "edge",
+    "attrs": {
+      "line": {
+        "stroke": "#267ff7",
+        "targetMarker": {
+          "name": "classic",
+          "size": 12
+        }
+      }
+    },
+    "id": "6728e8cc-ff6a-49d9-80b4-34c72deef93f",
+    "router": {
+      "name": "manhattan",
+      "args": {
+        "startDirections": [
+          "bottom"
+        ],
+        "endDirections": [
+          "top"
+        ]
+      }
+    },
+    "source": {
+      "cell": "aff9a76f-cf92-4c5b-b256-2274ed433d30",
+      "port": "B-2"
+    },
+    "target": {
+      "cell": "591f8ece-9910-4ee8-ac61-9af6dbfd08d1",
+      "port": "T-3"
+    },
+    "zIndex": 7
+  },
+  {
+    "shape": "edge",
+    "attrs": {
+      "line": {
+        "stroke": "#45d9bf",
+        "targetMarker": {
+          "name": "classic",
+          "size": 12
+        }
+      }
+    },
+    "id": "ad5491d3-eeb0-4c66-9b9d-a2bd280fedd1",
+    "router": {
+      "name": "manhattan",
+      "args": {
+        "startDirections": [
+          "bottom"
+        ],
+        "endDirections": [
+          "top"
+        ]
+      }
+    },
+    "source": {
+      "cell": "591f8ece-9910-4ee8-ac61-9af6dbfd08d1",
+      "port": "R-2"
+    },
+    "target": {
+      "cell": "139ed5d0-af80-4642-abb6-a90bc5da7f8d",
+      "port": "L-2"
+    },
+    "zIndex": 8
+  },
+  {
+    "shape": "edge",
+    "attrs": {
+      "line": {
+        "stroke": "#267ff7",
+        "targetMarker": {
+          "name": "classic",
+          "size": 12
+        }
+      }
+    },
+    "id": "d97ca6e7-29f9-4017-850f-4a5dc409b54a",
+    "router": {
+      "name": "manhattan",
+      "args": {
+        "startDirections": [
+          "bottom"
+        ],
+        "endDirections": [
+          "top"
+        ]
+      }
+    },
+    "source": {
+      "cell": "591f8ece-9910-4ee8-ac61-9af6dbfd08d1",
+      "port": "B-1"
+    },
+    "target": {
+      "cell": "3330ac99-841a-47b6-bb58-0853e2ffd21a",
+      "port": "T-1"
+    },
+    "zIndex": 9
+  },
+  {
+    "shape": "edge",
+    "attrs": {
+      "line": {
+        "stroke": "#45d9bf",
+        "targetMarker": {
+          "name": "classic",
+          "size": 12
+        }
+      }
+    },
+    "id": "74c6f670-6b51-47e1-a82a-2f129d3fd3a2",
+    "router": {
+      "name": "manhattan",
+      "args": {
+        "startDirections": [
+          "bottom"
+        ],
+        "endDirections": [
+          "top"
+        ]
+      }
+    },
+    "source": {
+      "cell": "591f8ece-9910-4ee8-ac61-9af6dbfd08d1",
+      "port": "B-2"
+    },
+    "target": {
+      "cell": "3330ac99-841a-47b6-bb58-0853e2ffd21a",
+      "port": "T-2"
+    },
+    "zIndex": 10
+  },
+  {
+    "shape": "edge",
+    "attrs": {
+      "line": {
+        "stroke": "#fd9f6c",
+        "targetMarker": {
+          "name": "classic",
+          "size": 12
+        }
+      }
+    },
+    "id": "97797a7a-666d-47a0-bb1e-26852d928520",
+    "router": {
+      "name": "manhattan",
+      "args": {
+        "startDirections": [
+          "bottom"
+        ],
+        "endDirections": [
+          "top"
+        ]
+      }
+    },
+    "source": {
+      "cell": "591f8ece-9910-4ee8-ac61-9af6dbfd08d1",
+      "port": "B-3"
+    },
+    "target": {
+      "cell": "3330ac99-841a-47b6-bb58-0853e2ffd21a",
+      "port": "T-3"
+    },
+    "zIndex": 11
+  },
+  {
+    "shape": "edge",
+    "attrs": {
+      "line": {
+        "stroke": "#267ff7",
+        "targetMarker": {
+          "name": "classic",
+          "size": 12
+        }
+      }
+    },
+    "id": "23fd1fde-f73f-4362-9984-1b82bf975351",
+    "router": {
+      "name": "manhattan",
+      "args": {
+        "startDirections": [
+          "bottom"
+        ],
+        "endDirections": [
+          "top"
+        ]
+      }
+    },
+    "source": {
+      "cell": "3330ac99-841a-47b6-bb58-0853e2ffd21a",
+      "port": "R-2"
+    },
+    "target": {
+      "cell": "139ed5d0-af80-4642-abb6-a90bc5da7f8d",
+      "port": "B-1"
+    },
+    "zIndex": 12
+  }
+]
