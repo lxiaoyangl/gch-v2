@@ -43,7 +43,6 @@
 </template>
 
 <script lang="ts" setup>
-import { defineProps } from "vue";
 import ysj from "../../../assets/img/已上架.png";
 import ysjyc from "../../../assets/img/已上架异常.png";
 interface PropsItem {

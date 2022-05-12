@@ -35,7 +35,6 @@
 </template>
 
 <script lang="ts" setup>
-import { defineEmits, defineProps } from "vue";
 const { tableData, tableHeader } = defineProps({
   tableData: Array,
   tableHeader: Array,

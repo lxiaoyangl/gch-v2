@@ -42,7 +42,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { defineEmits, defineProps, ref } from "vue";
+import { ref } from "vue";
 import { TableData, TableHeader } from "./types";
 
 interface TableProps {

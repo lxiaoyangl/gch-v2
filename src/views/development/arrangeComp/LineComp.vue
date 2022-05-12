@@ -118,9 +118,11 @@
 
 <script lang="ts" setup>
 import { CirclePlus, Download, Upload } from "@element-plus/icons-vue";
-import { reactive, defineProps } from "vue";
-let { dataLineDatas } = defineProps({ dataLineDatas: {} });
-// props: ["dataLineDatas"]
+import { reactive } from "vue";
+
+let { dataLineDatas } = withDefaults(defineProps(), {
+  dataLineDatas: reactive({}),
+});
 let dataMappingList = reactive([
   {
     compName: "组件1",
@@ -138,25 +140,8 @@ let dataMappingList = reactive([
             argumentIn: "",
             argumentOut: "",
           },
-          // {
-          //   argumentName: "参数2",
-          //   argumentIn: "",
-          //   argumentOut: "",
-          // },
         ],
       },
-      // {
-      //   interfaceName: "接口2",
-      //   interfaceIn: "",
-      //   interfaceOut: "",
-      //   children: [
-      //     {
-      //       argumentName: "参数1",
-      //       argumentIn: "",
-      //       argumentOut: "",
-      //     },
-      //   ],
-      // },
     ],
   },
 ]);

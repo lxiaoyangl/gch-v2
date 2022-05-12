@@ -64,9 +64,9 @@
 
 <script setup lang="ts">
 import { Graph, Shape, Addon, NodeView } from "@antv/x6";
-import { defineProps, onMounted, onUnmounted } from "vue";
+import { onMounted, onUnmounted } from "vue";
 const { debugData } = defineProps(["debugData"]);
-let graph = null;
+let graph = null as unknown as Graph;
 let formData = { r: "" };
 let logs = "asdfadfafa";
 onMounted(() => {
@@ -109,7 +109,7 @@ const initAntvX6 = () => {
       },
     },
     highlighting: {
-      magnetAvailable: magnetAvailabilityHighlighter,
+      // magnetAvailable: magnetAvailabilityHighlighter,
       magnetAdsorbed: {
         name: "stroke",
         args: {

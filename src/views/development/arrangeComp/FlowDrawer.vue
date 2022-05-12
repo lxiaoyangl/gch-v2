@@ -63,10 +63,10 @@
 
 <script setup lang="ts">
 import { Graph, Shape, Addon, NodeView } from "@antv/x6";
-import { onMounted, ref, computed, defineProps } from "vue";
-const { flowDrawerData, flowDrawer } = defineProps({
-  flowDrawer: Boolean,
-  flowDrawerData: Object,
+import { onMounted, ref, computed } from "vue";
+const { flowDrawerData, flowDrawer } = withDefaults(defineProps(), {
+  flowDrawer: false,
+  flowDrawerData: {},
 });
 
 let activeNames = ref(["1", "2"]);
@@ -80,7 +80,7 @@ const init = () => {
   const containerRef = document.getElementById("containers");
   // const miniMapContainerRef = document.getElementById("miniMap");
   let graph = new Graph({
-    container: containerRef,
+    container: containerRef as HTMLElement,
     width: 520,
     height: 200,
     // autoResize: true, //自动画布大小
@@ -112,7 +112,7 @@ const init = () => {
 };
 
 const compNum = computed(() => {
-  let comp = flowDrawerData.datas.comp.filter((item) => item.position);
+  let comp = flowDrawerData.datas.comp.filter((item: any) => item.position);
   return comp;
 });
 </script>
