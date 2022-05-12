@@ -2,8 +2,8 @@
   <el-carousel :interval="4000" indicator-position="outside" arrow="never" :autoplay="false" height="170px">
     <el-carousel-item v-for="item in list" :key="item.appName">
       <div class="top">
-        <component :is="img(item)" />
-        <!-- <img :src="img(item)" alt="" /> -->
+        <!-- <component :is="img(item)" /> -->
+        <img :src="item.status == 1 ? ysj : ysjyc" alt="" />
         <div class="cont">
           <p>
             <span class="name">
@@ -42,24 +42,24 @@
   </el-carousel>
 </template>
 
-<script lang="tsx">
-import { computed, defineComponent } from "vue";
+<script lang="ts" setup>
+import { defineProps } from "vue";
 import ysj from "../../../assets/img/已上架.png";
 import ysjyc from "../../../assets/img/已上架异常.png";
-export default defineComponent({
-  props: ["list"],
-  setup(props) {
-    let img = (item: any) => {
-      if (item.status == 1) {
-        return <img src={ysj} />;
-      } else {
-        return <img src={ysjyc} />;
-      }
-    };
-    return {
-      img,
-    };
-  },
+interface PropsItem {
+  list: ListItem[];
+}
+interface ListItem {
+  appName: string;
+  appType: string;
+  desc: string;
+  date: string;
+  status: 0 | 1; //0未完成 1完成
+  developer: string;
+  appNum: number | string;
+}
+const { list } = withDefaults(defineProps<PropsItem>(), {
+  list: (): ListItem[] => [],
 });
 </script>
 

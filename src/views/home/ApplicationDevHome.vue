@@ -247,6 +247,7 @@
   </div>
 </template>
 <script lang="ts" setup>
+import { ref, reactive } from "vue";
 import ContentChart from "./comp/ContentChart.vue";
 import AppCarousel from "./comp/AppCarousel.vue";
 import CompCarousel from "./comp/CompCarousel.vue";
@@ -255,7 +256,17 @@ import yxzImg from "../../assets/img/开发-运行中.png";
 import cgImg from "../../assets/img/开发-成功.png";
 import sbImg from "../../assets/img/开发-失败.png";
 
-const applicationData = [
+interface ListItem {
+  appName: string;
+  appType: string;
+  desc: string;
+  date: string;
+  status: 0 | 1; //0未完成 1完成
+  developer: string;
+  appNum: number | string;
+}
+
+const applicationData = reactive([
   {
     appName: "应用名称",
     targetMonitor: "目标监视",
@@ -292,8 +303,8 @@ const applicationData = [
     runStatus: 2,
     checkInfo: false,
   },
-];
-const list1 = [
+]);
+const list1: ListItem[] = reactive([
   {
     appName: "应用名称1",
     appType: "应用类型",
@@ -330,8 +341,8 @@ const list1 = [
     developer: "开发者",
     appNum: 4,
   },
-];
-const list2 = [
+]);
+const list2: ListItem[] = reactive([
   {
     appName: "组件名称1",
     appType: "组件类型",
@@ -368,7 +379,7 @@ const list2 = [
     developer: "开发者",
     appNum: "信号处理",
   },
-];
+]);
 
 const appDataMouseleave = (index: number) => {
   applicationData[index].checkInfo = false;
