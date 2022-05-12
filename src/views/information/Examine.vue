@@ -376,15 +376,6 @@ const handleDownload = (data: TableData) => {
 };
 const handleDetail = (data: TableData) => {
   zjxxDialogVisible.value = true;
-  nextTick(() => {
-    // rows.id = data.id;
-    // rows.mc = data.mc;
-    // rows.type = data.type;
-    // rows.sqsj = data.sqsj;
-    // rows.zt = data.zt;
-    // rows.spr = data.spr;
-    // rows.spsj = data.spsj;
-  });
   rows = data;
   console.log(rows);
 };

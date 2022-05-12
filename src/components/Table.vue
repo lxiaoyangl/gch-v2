@@ -15,7 +15,7 @@
         :prop="item.prop"
         :label="item.name"
         :sortable="item.sortable ? item.sortable : false"
-        :width="parseString(item?.width)"
+        :width="parseString(item.width)"
       >
         <template #="{ row }">
           <span :class="{ show: row.isHover, hidden: !row.isHover }">
@@ -44,9 +44,6 @@
 <script lang="ts" setup>
 import { defineEmits, defineProps, ref } from "vue";
 import { TableData, TableHeader } from "./types";
-import type { ElTable } from "element-plus";
-
-// const tableRef = ref<InstanceType<typeof ElTable>>();
 
 interface TableProps {
   tableData: TableData[];

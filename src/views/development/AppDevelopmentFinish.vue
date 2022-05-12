@@ -70,7 +70,6 @@
               <el-button type="primary" @click="submitPackage(formRef)">确 定</el-button>
             </div>
           </el-form>
-
           <el-button slot="reference">立即打包</el-button>
         </el-popover>
         <el-button type="primary" @click="confirmFinish">确认完成</el-button>
@@ -82,17 +81,17 @@
 <script lang="ts" setup>
 import { FormInstance } from "element-plus";
 import { useRouter } from "vue-router";
-import { ref } from "vue";
+import { reactive, ref } from "vue";
 
 const formRef = ref<FormInstance>();
 const router = useRouter();
-let form = {
+let form = reactive({
   serverName: "",
-  packageType: "1",
+  packageType: 1,
   serverAddress: "",
   serverPort: "",
   savePath: "",
-};
+});
 let rules = {
   serverName: [{ required: true, message: "请输入服务器名称", trigger: "blur" }],
   packageType: [{ required: true, message: "请选择打包方式", trigger: "change" }],
