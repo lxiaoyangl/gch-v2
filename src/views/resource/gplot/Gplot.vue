@@ -4,12 +4,7 @@
       <el-tab-pane label="业务拓扑" name="business">
         <div class="chart-container">
           <template v-for="(item, i) in businessChartsDatas">
-            <BusinessChart
-              v-if="activeName == 'business'"
-              :chartData="item"
-              :key="i"
-              class="chart"
-            />
+            <BusinessChart v-if="activeName == 'business'" :chartData="item" :key="i" class="chart" />
           </template>
           <ul class="bg">
             <li class="item" v-for="i in 4" :key="i"></li>
@@ -17,19 +12,15 @@
         </div>
       </el-tab-pane>
       <el-tab-pane label="物理拓扑" name="physics">
-        <PhysicsChart
-          v-if="activeName == 'physics'"
-          :chartData="physicsChartData"
-          class="chart"
-        />
+        <PhysicsChart v-if="activeName == 'physics'" :chartData="physicsChartData" class="chart" />
       </el-tab-pane>
     </el-tabs>
   </div>
 </template>
 
 <script>
-import BusinessChart from "./comp/BusinessChart";
-import PhysicsChart from "./comp/PhysicsChart";
+import BusinessChart from "./comp/BusinessChart.vue";
+import PhysicsChart from "./comp/PhysicsChart.vue";
 import zzImg from "../../../assets/img/zz.png";
 import fwqImg from "../../../assets/img/fwq.png";
 import xbpImg from "../../../assets/img/xbp.png";

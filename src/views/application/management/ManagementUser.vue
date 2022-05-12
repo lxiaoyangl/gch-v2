@@ -435,7 +435,7 @@
 </template>
 
 <script>
-import Table from "./comp/Table";
+import Table from "./comp/Table.vue";
 import Pagination from "../../../components/Pagination.vue";
 import { Graph, Shape, Addon, NodeView } from "@antv/x6";
 export default {

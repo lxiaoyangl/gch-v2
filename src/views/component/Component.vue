@@ -448,7 +448,7 @@
                         <span>{{ item.desc }}</span>
                       </div>
                       <div>
-                        <img class="del" src="../../assets/img/关闭，错误 拷贝.png" />
+                        <img class="del" src="../../assets/img/关闭错误.png" />
                       </div>
                     </div>
                   </li>

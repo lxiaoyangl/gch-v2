@@ -3,12 +3,7 @@
     <div class="header">
       <div class="title">
         <span>资源组</span>
-        <el-button
-          class="addBtton"
-          size="small"
-          @click="addResourceGroup()"
-          type="primary"
-        >
+        <el-button class="addBtton" size="small" @click="addResourceGroup()" type="primary">
           <i class="el-icon-plus"></i> 新 建
         </el-button>
       </div>
@@ -24,64 +19,56 @@
       </div>
       <div class="r-content">
         <div class="top">
-          <div class="title">{{resourceInfo}}</div>
+          <div class="title">{{ resourceInfo }}</div>
         </div>
         <div class="r-content-body">
-          <div class="top" style="padding:10px;display: flex;">
-            <div style="display:flex;line-height: 40px;width:53%;">
-              <span style="width:90px">资源组名称：</span><el-input size="mini" v-model="formInline.user" placeholder="目标解析资源组"></el-input>
+          <div class="top" style="padding: 10px; display: flex">
+            <div style="display: flex; line-height: 40px; width: 53%">
+              <span style="width: 90px">资源组名称：</span
+              ><el-input size="mini" v-model="formInline.user" placeholder="目标解析资源组"></el-input>
             </div>
-            <div style="display:flex;line-height: 40px;width:40%;margin-left:10px;">
-              <span style="width:90px">可分配应用：</span><el-input size="mini" v-model="formInline.user" placeholder="输入可分配应用数"></el-input>
+            <div style="display: flex; line-height: 40px; width: 40%; margin-left: 10px">
+              <span style="width: 90px">可分配应用：</span
+              ><el-input size="mini" v-model="formInline.user" placeholder="输入可分配应用数"></el-input>
             </div>
           </div>
           <!-- <el-divider content-position="right">阿里云</el-divider> -->
-          <el-divider style="margin: 15px 0;"></el-divider>
-          <div class="serch" style="padding:10px 10px 0 10px;display:block;">
-            <div class="serchHeader" style="height: 15px;display: flex;justify-content: space-between;">
-              <span style="margin-left:1%;">筛选条件</span>
-              <span style="cursor: pointer;margin-right:5%;">收起&nbsp;&nbsp;&nbsp;<i class="el-icon-arrow-up"></i></span>
+          <el-divider style="margin: 15px 0"></el-divider>
+          <div class="serch" style="padding: 10px 10px 0 10px; display: block">
+            <div class="serchHeader" style="height: 15px; display: flex; justify-content: space-between">
+              <span style="margin-left: 1%">筛选条件</span>
+              <span style="cursor: pointer; margin-right: 5%"
+                >收起&nbsp;&nbsp;&nbsp;<i class="el-icon-arrow-up"></i
+              ></span>
             </div>
-            <div class="body" style="display: block;">
+            <div class="body" style="display: block">
               <div>
                 <el-select size="mini" v-model="value" placeholder="请选择">
-                  <el-option
-                    v-for="item in options"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value">
+                  <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
                   </el-option>
                 </el-select>
                 <el-select size="mini" v-model="value" placeholder="请选择">
-                  <el-option
-                    v-for="item in options"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value">
+                  <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
                   </el-option>
                 </el-select>
                 <el-select size="mini" v-model="value" placeholder="请选择">
-                  <el-option
-                    v-for="item in options"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value">
+                  <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
                   </el-option>
                 </el-select>
               </div>
-              <div style="margin-left: 1%;">
+              <div style="margin-left: 1%">
                 <el-checkbox v-model="checked">运算优先</el-checkbox>
                 <el-checkbox v-model="checked">存储优先</el-checkbox>
                 <el-checkbox v-model="checked">网络优先</el-checkbox>
                 <el-checkbox v-model="checked">未分配</el-checkbox>
               </div>
-              <div style="display:flex;">
-                <el-slider label='CPU' v-model="value1"></el-slider>
-                <el-slider label='磁盘' v-model="value1"></el-slider>\
+              <div style="display: flex">
+                <el-slider label="CPU" v-model="value1"></el-slider>
+                <el-slider label="磁盘" v-model="value1"></el-slider>\
               </div>
             </div>
           </div>
-          <el-divider style="margin: 15px 0;"></el-divider>
+          <el-divider style="margin: 15px 0"></el-divider>
           <div class="resources">
             <div class="deploy-main">
               <div class="bs">
@@ -115,18 +102,11 @@
                     </div>
                     <div class="list-box">
                       <ul>
-                        <li
-                          v-for="(item, index) in ip"
-                          :key="index"
-                          class="line-h"
-                        >
+                        <li v-for="(item, index) in ip" :key="index" class="line-h">
                           <template>
                             <div class="row-l">
                               <div class="dfc">
-                                <img
-                                  class="mr5 ml5"
-                                  src="../../../assets/img/校准.png"
-                                />
+                                <img class="mr5 ml5" src="../../../assets/img/校准.png" />
                                 <span>
                                   <span>【{{ item.type }}】</span>
                                   <span>{{ item.name }}</span>
@@ -161,28 +141,17 @@
                     ></el-input>
                     <div class="list-box">
                       <ul>
-                        <li
-                          v-for="(item, index) in ip"
-                          :key="index"
-                          class="line-h"
-                          @mouseenter="xs(index)"
-                        >
+                        <li v-for="(item, index) in ip" :key="index" class="line-h" @mouseenter="xs(index)">
                           <div class="row-l">
                             <div class="dfc">
-                              <img
-                                class="mr5 ml5"
-                                src="../../../assets/img/完成.png"
-                              />
+                              <img class="mr5 ml5" src="../../../assets/img/完成.png" />
                               <span>
                                 <span>【{{ item.type }}】</span>
                                 <span>{{ item.name }}</span>
                               </span>
                             </div>
                             <div>
-                              <img
-                                class="del"
-                                src="../../../assets/img/关闭，错误 拷贝.png"
-                              />
+                              <img class="del" src="../../../assets/img/关闭错误.png" />
                             </div>
                           </div>
                         </li>
@@ -191,7 +160,7 @@
                   </div>
                 </div>
               </div>
-              <div style="text-align: center;margin-top: 1%;">
+              <div style="text-align: center; margin-top: 1%">
                 <el-button size="mini" type="info" @click="saveBasicInformation()">取消</el-button>
                 <el-button size="mini" type="primary" @click="saveBasicInformation()">确定</el-button>
               </div>
@@ -213,12 +182,7 @@
       <div class="d-content">
         <div class="top">
           <span>资源组名称：</span>
-          <el-input
-            style="width: 400px"
-            size="medium"
-            v-model="addName"
-            placeholder="资源组名称"
-          ></el-input>
+          <el-input style="width: 400px" size="medium" v-model="addName" placeholder="资源组名称"></el-input>
         </div>
         <div class="list">
           <div class="deploy-main">
@@ -253,18 +217,11 @@
                   </div>
                   <div class="list-box">
                     <ul>
-                      <li
-                        v-for="(item, index) in ip"
-                        :key="index"
-                        class="line-h"
-                      >
+                      <li v-for="(item, index) in ip" :key="index" class="line-h">
                         <template>
                           <div class="row-l">
                             <div class="dfc">
-                              <img
-                                class="mr5 ml5"
-                                src="../../../assets/img/校准.png"
-                              />
+                              <img class="mr5 ml5" src="../../../assets/img/校准.png" />
                               <span>
                                 <span>【{{ item.type }}】</span>
                                 <span>{{ item.name }}</span>
@@ -299,28 +256,17 @@
                   ></el-input>
                   <div class="list-box">
                     <ul>
-                      <li
-                        v-for="(item, index) in ip"
-                        :key="index"
-                        class="line-h"
-                        @mouseenter="xs(index)"
-                      >
+                      <li v-for="(item, index) in ip" :key="index" class="line-h" @mouseenter="xs(index)">
                         <div class="row-l">
                           <div class="dfc">
-                            <img
-                              class="mr5 ml5"
-                              src="../../../assets/img/完成.png"
-                            />
+                            <img class="mr5 ml5" src="../../../assets/img/完成.png" />
                             <span>
                               <span>【{{ item.type }}】</span>
                               <span>{{ item.name }}</span>
                             </span>
                           </div>
                           <div>
-                            <img
-                              class="del"
-                              src="../../../assets/img/关闭，错误 拷贝.png"
-                            />
+                            <img class="del" src="../../../assets/img/关闭错误.png" />
                           </div>
                         </div>
                       </li>
@@ -348,20 +294,14 @@
     >
       <div class="box basic-information">
         <div class="title">基本信息</div>
-        <el-form
-          size="medium"
-          class="mtb10"
-          label-width="100px"
-          :model="basicInformation"
-        >
+        <el-form size="medium" class="mtb10" label-width="100px" :model="basicInformation">
           <el-form-item prop="name" label="资源名称"> </el-form-item>
           <el-form-item prop="type" label="资源类型"> </el-form-item>
           <el-form-item prop="status" label="状 态">
             <i
               class="dot mr5"
               :style="{
-                backgroundColor:
-                  basicInformation.status == 1 ? '#2aef8a' : '#8b8989',
+                backgroundColor: basicInformation.status == 1 ? '#2aef8a' : '#8b8989',
               }"
             ></i>
             <span>{{ basicInformation.status == 1 ? "在线" : "离线" }}</span>
@@ -385,30 +325,13 @@
       </div>
       <div class="box parameter-information">
         <div class="title">参数信息</div>
-        <el-form
-          size="medium"
-          class="mtb10"
-          label-width="100px"
-          :model="parameterInformation"
-        >
-          <el-form-item prop="xhlx" label="信号类型">
-            {{ parameterInformation.xhlx }}</el-form-item
-          >
-          <el-form-item prop="tzfs" label="调制方式">
-            {{ parameterInformation.tzfs }}</el-form-item
-          >
-          <el-form-item prop="zblx" label="载波类型">
-            {{ parameterInformation.zblx }}</el-form-item
-          >
-          <el-form-item prop="zbpl" label="载波频率">
-            {{ parameterInformation.zbpl }}</el-form-item
-          >
-          <el-form-item prop="jds" label="阶段数">
-            {{ parameterInformation.jds }}</el-form-item
-          >
-          <el-form-item prop="tzsl" label="调制速率">
-            {{ parameterInformation.tzsl }}</el-form-item
-          >
+        <el-form size="medium" class="mtb10" label-width="100px" :model="parameterInformation">
+          <el-form-item prop="xhlx" label="信号类型"> {{ parameterInformation.xhlx }}</el-form-item>
+          <el-form-item prop="tzfs" label="调制方式"> {{ parameterInformation.tzfs }}</el-form-item>
+          <el-form-item prop="zblx" label="载波类型"> {{ parameterInformation.zblx }}</el-form-item>
+          <el-form-item prop="zbpl" label="载波频率"> {{ parameterInformation.zbpl }}</el-form-item>
+          <el-form-item prop="jds" label="阶段数"> {{ parameterInformation.jds }}</el-form-item>
+          <el-form-item prop="tzsl" label="调制速率"> {{ parameterInformation.tzsl }}</el-form-item>
         </el-form>
       </div>
       <span slot="footer">
@@ -430,24 +353,30 @@ export default {
       addGroupDialogVisible: false,
       addName: "",
       formInline: {},
-      resourceInfo: '查看详情',
-      options: [{
-          value: '选项1',
-          label: '黄金糕'
-        }, {
-          value: '选项2',
-          label: '双皮奶'
-        }, {
-          value: '选项3',
-          label: '蚵仔煎'
-        }, {
-          value: '选项4',
-          label: '龙须面'
-        }, {
-          value: '选项5',
-          label: '北京烤鸭'
-        }],
-        value: '',
+      resourceInfo: "查看详情",
+      options: [
+        {
+          value: "选项1",
+          label: "黄金糕",
+        },
+        {
+          value: "选项2",
+          label: "双皮奶",
+        },
+        {
+          value: "选项3",
+          label: "蚵仔煎",
+        },
+        {
+          value: "选项4",
+          label: "龙须面",
+        },
+        {
+          value: "选项5",
+          label: "北京烤鸭",
+        },
+      ],
+      value: "",
       // 基本信息表单
       basicInformation: {},
       dialogSearch: {
@@ -581,56 +510,56 @@ export default {
           num: 6,
           date: "2021-06-04 09:51:27",
           isHover: false,
-          status: '1',
-          appliNum: '4'
+          status: "1",
+          appliNum: "4",
         },
         {
           name: "目标解析资源组",
           num: 6,
           date: "2021-06-04 09:51:27",
           isHover: false,
-          status: '1',
-          appliNum: '4'
+          status: "1",
+          appliNum: "4",
         },
         {
           name: "目标解析资源组",
           num: 6,
           date: "2021-06-04 09:51:27",
           isHover: false,
-          status: '1',
-          appliNum: '4'
+          status: "1",
+          appliNum: "4",
         },
         {
           name: "目标解析资源组",
           num: 6,
           date: "2021-06-04 09:51:27",
           isHover: false,
-          status: '2',
-          appliNum: '4'
+          status: "2",
+          appliNum: "4",
         },
         {
           name: "目标解析资源组",
           num: 6,
           date: "2021-06-04 09:51:27",
           isHover: false,
-          status: '2',
-          appliNum: '4'
+          status: "2",
+          appliNum: "4",
         },
         {
           name: "目标解析资源组",
           num: 6,
           date: "2021-06-04 09:51:27",
           isHover: false,
-          status: '1',
-          appliNum: '4'
+          status: "1",
+          appliNum: "4",
         },
         {
           name: "目标解析资源组",
           num: 6,
           date: "2021-06-04 09:51:27",
           isHover: false,
-          status: '1',
-          appliNum: '4'
+          status: "1",
+          appliNum: "4",
         },
       ],
       resourceTableData: [
@@ -766,11 +695,11 @@ export default {
     },
     saveBasicInformation() {
       // this.resourceDialogVisible = false;
-      this.resourceInfo = '资源分组详情';
+      this.resourceInfo = "资源分组详情";
     },
-    addResourceGroup(){
-      this.resourceInfo = '新建资源分组';
-    }
+    addResourceGroup() {
+      this.resourceInfo = "新建资源分组";
+    },
   },
 };
 </script>
@@ -779,14 +708,14 @@ export default {
   padding: 0 0 20px 20px;
   height: 100%;
   width: 100%;
-  .header{
+  .header {
     height: 50px;
     line-height: 50px;
-    .addBtton{
+    .addBtton {
       margin-left: 10px;
     }
   }
-  .body{
+  .body {
     display: flex;
     .list {
       height: 100%;
@@ -802,8 +731,8 @@ export default {
         font-size: 15px;
         font-weight: 700;
       }
-      .groupTable{
-        /deep/.el-table{
+      .groupTable {
+        /deep/.el-table {
           border-top-left-radius: 10px;
           border-bottom-left-radius: 10px;
         }
@@ -851,29 +780,29 @@ export default {
           display: flex;
           align-items: center;
           color: #868686;
-          /deep/.el-input{
+          /deep/.el-input {
             width: 65%;
           }
         }
-        /deep/.el-divider--horizontal{
+        /deep/.el-divider--horizontal {
           margin: 5px 0;
         }
-        .serch{
+        .serch {
           padding: 0 10px 10px 10px;
-          .serchHeader{
+          .serchHeader {
             height: 30px;
             display: flex;
             justify-content: space-between;
           }
-          .body{
-            /deep/.el-select{
+          .body {
+            /deep/.el-select {
               margin: 1%;
               width: 30%;
             }
-            /deep/.el-checkbox:not(:first-child){
+            /deep/.el-checkbox:not(:first-child) {
               margin-left: 5%;
             }
-            /deep/.el-slider{
+            /deep/.el-slider {
               width: 50%;
               margin: 0 5%;
             }
