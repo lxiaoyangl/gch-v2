@@ -108,7 +108,7 @@ const register = () => {
       justify-content: space-between;
       flex-direction: row;
 
-      /deep/.el-input__inner {
+      :deep(.el-input__inner) {
         background: #f8f9fb !important;
         border-radius: 20px;
         height: 34px;
@@ -223,17 +223,17 @@ const register = () => {
       padding-right: 20px;
     }
 
-    /deep/.el-step__icon.is-text {
+    :deep(.el-step__icon.is-text) {
       background: #e4efff;
       color: #2e84fb;
       border-radius: 4px;
       border: none;
     }
-    /deep/.el-step__line {
+    :deep(.el-step__line) {
       background: #fff;
       border-left: 4px dashed #a9c4db;
     }
-    /deep/.el-step__description {
+    :deep(.el-step__description) {
       color: #6a6a6a;
       font-size: 14px;
       font-family: MicrosoftYaHei;
@@ -241,7 +241,7 @@ const register = () => {
       padding-right: 0px;
     }
 
-    /deep/.el-step__title.is-process {
+    :deep(.el-step__title.is-process) {
       font-size: 14px;
     }
 

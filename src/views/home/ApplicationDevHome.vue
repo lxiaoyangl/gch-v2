@@ -651,7 +651,7 @@ const getRunImage = (status: number) => {
         height: calc(410px);
         width: calc(100%);
         background-color: #fff;
-        /deep/.el-divider--horizontal {
+        :deep(.el-divider--horizontal) {
           margin: 10px 0;
         }
         .shenpi {
@@ -677,7 +677,7 @@ const getRunImage = (status: number) => {
             -webkit-writing-mode: vertical-rl;
             writing-mode: vertical-rl;
           }
-          /deep/.el-divider--vertical {
+          :deep(.el-divider--vertical) {
             height: calc(100%);
             margin: 0px 8px;
           }
@@ -711,7 +711,7 @@ const getRunImage = (status: number) => {
           height: calc(47%);
           width: calc(100%);
           display: flex;
-          /deep/.el-divider--vertical {
+          :deep(.el-divider--vertical) {
             height: calc(100%);
             margin: 0px 8px;
           }
@@ -840,7 +840,7 @@ const getRunImage = (status: number) => {
               height: calc(50%);
               align-items: center;
             }
-            /deep/.el-divider--horizontal {
+            :deep(.el-divider--horizontal) {
               margin: 0px;
             }
             .dataContentItemBottom {

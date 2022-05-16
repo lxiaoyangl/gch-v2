@@ -181,7 +181,7 @@ onUnmounted(() => {
     flex: 0 0 18%;
     .el-form-item {
       margin-top: 14px;
-      /deep/.el-input {
+      :deep(.el-input) {
         width: 160px;
       }
     }

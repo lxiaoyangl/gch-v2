@@ -213,7 +213,7 @@ export default {
         font-size: 24px;
         margin: 0 20px;
         margin-right: 30px;
-        /deep/.el-badge__content {
+        :deep(.el-badge__content) {
           border: none;
           top: 6px;
         }

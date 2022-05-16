@@ -254,7 +254,7 @@ export default {
   // }
   // .el-tabs {
   //   height: 100%;
-  //   /deep/.el-tabs__content {
+  //   :deep(.el-tabs__content) {
   //     background-color: #fff;
   //     height: calc(100% - 40px);
   //     .el-tab-pane {

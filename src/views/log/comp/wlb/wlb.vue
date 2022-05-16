@@ -2,16 +2,8 @@
   <div class="wlb">
     <div class="top">
       <div class="setting">
-        <el-button size="medium" type="primary" @click="fetchData()">
-          <i class="el-icon-refresh"></i> 刷新
-        </el-button>
-        <el-select
-          class="ml10"
-          size="medium"
-          style="width: 150px"
-          v-model="searchData.status"
-          placeholder="采集状态"
-        >
+        <el-button size="medium" type="primary" @click="fetchData()"> <i class="el-icon-refresh"></i> 刷新 </el-button>
+        <el-select class="ml10" size="medium" style="width: 150px" v-model="searchData.status" placeholder="采集状态">
           <el-option label="1" value="1"> </el-option>
           <el-option label="2" value="2"> </el-option>
         </el-select>
@@ -39,16 +31,9 @@
         </el-form>
       </div>
     </div>
-    <Table
-      :tableData="tableData"
-      @handleOnEdit="btndetail"
-      @handleDelete="btndelete"
-      @handlepdelete="pdelete"
-    />
+    <Table :tableData="tableData" @handleOnEdit="btndetail" @handleDelete="btndelete" @handlepdelete="pdelete" />
     <div class="bottom">
-      <el-button type="danger" size="medium" @click="clearPd()"
-        >删 除</el-button
-      >
+      <el-button type="danger" size="medium" @click="clearPd()">删 除</el-button>
       <el-pagination
         class="pagination"
         @size-change="handleSizeChange"
@@ -63,13 +48,7 @@
         :total="total"
       ></el-pagination>
     </div>
-    <el-dialog
-      title="频点偏差校准详情"
-      :visible.sync="dialogVisible"
-      center
-      width="30%"
-      :before-close="handleClose"
-    >
+    <el-dialog title="频点偏差校准详情" :visible.sync="dialogVisible" center width="30%" :before-close="handleClose">
       <el-form size="medium" label-width="100px" :model="detailForm">
         <el-form-item label="时间：">
           <p>{{ detailForm.date }}</p>
@@ -364,10 +343,7 @@ export default {
     fetchData() {
       this.tableData = [];
       let start = (this.nowPage - 1) * this.pageSize;
-      let end =
-        this.nowPage * this.pageSize > this.tables.length
-          ? this.tables.length
-          : this.nowPage * this.pageSize;
+      let end = this.nowPage * this.pageSize > this.tables.length ? this.tables.length : this.nowPage * this.pageSize;
       for (let i = start; i < end; i++) {
         this.tableData.push(this.tables[i]);
       }
@@ -492,7 +468,7 @@ export default {
     .search {
       .el-form-item {
         margin-bottom: 0;
-        /deep/.el-form-item__label {
+        :deep(.el-form-item__label) {
           color: #fff;
         }
       }

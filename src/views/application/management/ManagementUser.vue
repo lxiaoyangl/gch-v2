@@ -37,11 +37,11 @@
             <span>全部应用</span>
           </div>
           <div class="main-head-right">
-            <el-select style="width: 160px" v-model="allZT" placeholder="全部状态" size="medium">
+            <el-select style="width: 160px" v-model="allZT" placeholder="全部状态">
               <el-option v-for="item in ZToptions" :key="item.value" :label="item.label" :value="item.value">
               </el-option>
             </el-select>
-            <el-select style="width: 160px" class="mlr10" v-model="allTP" placeholder="全部类型" size="medium">
+            <el-select style="width: 160px" class="mlr10" v-model="allTP" placeholder="全部类型">
               <el-option v-for="item in TPoptions" :key="item.value" :label="item.label" :value="item.value">
               </el-option>
             </el-select>
@@ -49,7 +49,6 @@
               style="width: 250px"
               placeholder="输入应用名称或创建人"
               suffix-icon="el-icon-search"
-              size="medium"
               v-model="search_task"
             >
             </el-input>
@@ -60,7 +59,8 @@
           <div class="main-box" v-for="(item, index) in allmain" :key="index">
             <div class="application" :class="applicationBackGorundClass(item)">
               <div class="applicationDesc">
-                <img class="applicationImage" :src="getStatusImageUrl(item)" />
+                <!-- <img class="applicationImage" :src="getStatusImageUrl(item)" /> -->
+                <component :is="getStatusImageUrl(item)"></component>
                 <div style="margin-left: 30px">
                   <div style="margin-top: 7px">
                     <span
@@ -103,16 +103,22 @@
               </div>
             </div>
             <div class="applicationMaskLayer">
-              <el-button size="mini" type="success" @click="openApplicationData()"
-                ><i class="el-icon-coin"></i>应用数据</el-button
-              >
-              <el-button size="mini" type="warning" @click="applicationRunController()"
-                ><i class="el-icon-guide"></i>运行控制</el-button
-              >
-              <el-button size="mini" type="primary"><i class="el-icon-right"></i>打开应用</el-button>
-              <el-button size="mini" type="primary" @click="openApplicationInstance()"
-                ><i class="el-icon-set-up"></i>运行实例</el-button
-              >
+              <el-button type="success" @click="openApplicationData()">
+                <el-icon><Coin /></el-icon>
+                <span>应用数据</span>
+              </el-button>
+              <el-button type="warning" @click="applicationRunController()">
+                <el-icon><Guide /></el-icon>
+                <span>运行控制</span>
+              </el-button>
+              <el-button type="primary">
+                <el-icon><Right /></el-icon>
+                <span>打开应用</span>
+              </el-button>
+              <el-button type="primary" @click="openApplicationInstance()">
+                <el-icon><SetUp /></el-icon>
+                <span>运行实例</span>
+              </el-button>
             </div>
           </div>
         </div>
@@ -124,7 +130,7 @@
       title="实例详情"
       :close-on-click-modal="false"
       :close-on-press-escape="true"
-      :visible.sync="applicationInstance"
+      v-model="applicationInstance"
       center
       width="80%"
       :before-close="handleClose"
@@ -195,7 +201,7 @@
                   <el-collapse v-model="childrenActiveNames">
                     <el-collapse-item name="1">
                       <template slot="title">
-                        <el-button class="collapseButton" type="primary" size="mini">基本信息</el-button>
+                        <el-button class="collapseButton" type="primary">基本信息</el-button>
                         <i class="el-icon-minus"></i>
                         <i class="el-icon-minus"></i>
                         <span>收起</span>
@@ -213,7 +219,7 @@
                     </el-collapse-item>
                     <el-collapse-item name="2">
                       <template slot="title">
-                        <el-button class="collapseButton" type="primary" size="mini">运行参数</el-button>
+                        <el-button class="collapseButton" type="primary">运行参数</el-button>
                         <i class="el-icon-minus"></i>
                         <i class="el-icon-minus"></i>
                         <span>收起</span>
@@ -230,7 +236,7 @@
                     </el-collapse-item>
                     <el-collapse-item name="3">
                       <template slot="title">
-                        <span><el-button class="collapseButton" type="primary" size="mini">接口说明</el-button> </span>
+                        <span><el-button class="collapseButton" type="primary">接口说明</el-button> </span>
                         <i class="el-icon-minus"></i>
                         <i class="el-icon-minus"></i>
                         <span> 收起 </span>
@@ -263,7 +269,7 @@
       title="xxx-wx信号网路处理 - 应用数据"
       :close-on-click-modal="false"
       :close-on-press-escape="true"
-      :visible.sync="applicationData"
+      v-model="applicationData"
       center
       width="70%"
       :before-close="handleClose"
@@ -276,35 +282,39 @@
             @mouseleave="downloadButtonType = 'text'"
             @mouseover="downloadButtonType = 'success'"
             :type="downloadButtonType"
-            icon="el-icon-download"
-            >下载</el-button
+          >
+            <el-icon><Download /></el-icon>
+            下载</el-button
           >
           <el-button
             class="mgL20 operationToolbarTextClass"
             @mouseleave="deleteButtonType = 'text'"
             @mouseover="deleteButtonType = 'danger'"
             :type="deleteButtonType"
-            icon="el-icon-delete"
-            >删除</el-button
+          >
+            <el-icon><Delete /></el-icon>
+            删除</el-button
           >
           <span style="float: right; margin-right: 20px">应用数据总量：123（GB）</span>
         </div>
         <div class="searchToolbar">
           <el-row>
-            <el-col :span="8">
-              <i class="el-icon-arrow-left mgL20"></i>
+            <el-col :span="10">
+              <!-- <i class="el-icon-arrow-left mgL20"></i>
               <i class="el-icon-arrow-right mgL20"></i>
-              <i class="el-icon-refresh-right mgL20"></i>
-              <el-divider class="mgL20" direction="vertical"></el-divider>
+              <i class="el-icon-refresh-right mgL20"></i> -->
+              <el-icon class="mgL20"><ArrowLeft /> </el-icon>
+              <el-icon class="mgL20"><ArrowRight /> </el-icon>
+              <el-icon class="mgL20"><RefreshRight /> </el-icon>
               <span class="mgL20">全部数据</span>
-              <i class="el-icon-arrow-right mgL20"></i>
+              <el-icon class="mgL20"><ArrowRight /> </el-icon>
+              <!-- <i class="el-icon-arrow-right mgL20"></i> -->
             </el-col>
-            <el-col :span="16">
-              <el-select style="width: 160px" v-model="allZT" placeholder="全部类型" size="medium">
+            <el-col :span="14">
+              <el-select style="width: 160px" v-model="allZT" placeholder="全部类型">
                 <el-option v-for="item in ZToptions" :key="item.value" :label="item.label" :value="item.value">
                 </el-option>
               </el-select>
-              <el-divider direction="vertical"></el-divider>
               <el-date-picker
                 v-model="searchData.time"
                 type="daterange"
@@ -313,12 +323,10 @@
                 end-placeholder="结束日期"
               >
               </el-date-picker>
-              <el-divider direction="vertical"></el-divider>
               <el-input
                 style="width: 250px"
                 placeholder="输入关键词搜索"
                 suffix-icon="el-icon-search"
-                size="medium"
                 v-model="search_task"
               >
               </el-input>
@@ -326,8 +334,52 @@
           </el-row>
         </div>
         <div class="applicationDataTable">
-          <Table :tableData="tableData"></Table>
-          <Pagination></Pagination>
+          <Table :tableData="tableData">
+            <template #="{ row }">
+              <el-popover class="item" placement="bottom" width="400" trigger="click">
+                <template #reference>
+                  <el-icon><Tickets @click="handleDetail(row)" /></el-icon>
+                </template>
+                <div class="dataInfoClass">
+                  <div class="dataTitle">数据详情</div>
+                  <el-divider></el-divider>
+                  <div class="dataContent">
+                    <div>
+                      <span class="dataKeyName">应用名称：</span><span>{{ row.instance }}</span>
+                    </div>
+                    <div><span class="dataKeyName">应用类型：</span><span>信号处理</span></div>
+                    <div>
+                      <span class="dataKeyName">数据类型：</span><span>{{ row.dataType }}</span>
+                    </div>
+                    <div><span class="dataKeyName">数据来源：</span><span>xxx流程实例</span></div>
+                    <div><span class="dataKeyName">产生时间：</span><span>2021/27/07 18:45:27</span></div>
+                    <div>
+                      <span class="dataKeyName">数据类型：</span><span>{{ row.kind }}</span>
+                    </div>
+                    <div><span class="dataKeyName">协议类型：</span><span>HTTP</span></div>
+                    <div>
+                      <span class="dataKeyName">IP地址：</span><span>{{ row.ip }}</span>
+                    </div>
+                    <div>
+                      <span class="dataKeyName">端口：</span><span>{{ row.port }}</span>
+                    </div>
+                    <div>
+                      <span class="dataKeyName">坐标信息：</span><span>{{ row.coordinate }}</span>
+                    </div>
+                  </div>
+                </div>
+              </el-popover>
+              <el-tooltip class="item" effect="dark" content="下载" placement="bottom">
+                <el-icon style="margin-left: 20px"><Download /></el-icon>
+              </el-tooltip>
+              <el-tooltip class="item" effect="dark" content="删除" placement="bottom">
+                <el-icon style="margin-left: 20px"><Delete @click="handleDelete(row)" /></el-icon>
+              </el-tooltip>
+            </template>
+          </Table>
+          <div style="margin: 20px 10px">
+            <Pagination></Pagination>
+          </div>
         </div>
       </div>
     </el-dialog>
@@ -336,7 +388,7 @@
       title="运行控制"
       :close-on-click-modal="false"
       :close-on-press-escape="true"
-      :visible.sync="applicationRunConttl"
+      v-model="applicationRunConttl"
       center
       width="40%"
       :before-close="handleClose"
@@ -346,11 +398,12 @@
         <div class="applicationRunControllerItem">
           <span class="applicationRunContrllerItemTitle">生产信息 </span>
           <div class="productionInfo">
-            <el-form ref="form" :model="form" label-width="80px">
+            <el-form ref="form" :model="form" label-width="100px">
               <el-form-item label="存储路径：">
-                <el-input placeholder="请输入内容" class="storePath" v-model="input2">
-                  <template slot="append">
+                <el-input placeholder="请输入内容" class="storePath" v-model="form.value1">
+                  <template #suffix>
                     <el-upload
+                      v-model="form.value1"
                       class="fileChoose"
                       action="https://jsonplaceholder.typicode.com/posts/"
                       :on-preview="handlePreview"
@@ -367,7 +420,7 @@
                 </el-input>
               </el-form-item>
               <el-form-item label="存储大小：">
-                <el-input placeholder="数据存储数据大小" v-model="input2" class="storeSize"></el-input>
+                <el-input placeholder="数据存储数据大小" v-model="form.value1" class="storeSize"></el-input>
               </el-form-item>
             </el-form>
           </div>
@@ -375,22 +428,24 @@
         <div class="applicationRunControllerItem applicationRunControllerItemMarginTop">
           <span class="applicationRunContrllerItemTitle">调制参数 </span>
           <div class="modulationParam" style="padding: 0 30px 20px 30px">
-            <el-form :inline="true" ref="form" :model="form" label-width="80px">
+            <el-form :inline="true" ref="form" :model="form" label-width="100px">
               <el-form-item label="中频选择：">
-                <el-select placeholder="中频选择">
-                  <el-option>地方</el-option>
+                <el-select placeholder="中频选择" v-model="form.value1">
+                  <el-option label="1" value="1"></el-option>
+                  <el-option label="2" value="2"></el-option>
                 </el-select>
               </el-form-item>
               <el-form-item label="调制方式：">
-                <el-select placeholder="中频选择">
-                  <el-option>地方</el-option>
+                <el-select placeholder="中频选择" v-model="form.value1">
+                  <el-option label="1" value="1"></el-option>
+                  <el-option label="2" value="2"></el-option>
                 </el-select>
               </el-form-item>
               <el-form-item class="modulationParamMarginTop" label="载波频率：">
-                <el-input placeholder="输入载波频率"></el-input>
+                <el-input placeholder="输入载波频率" v-model="form.value1"></el-input>
               </el-form-item>
               <el-form-item class="modulationParamMarginTop" label="符号速率：">
-                <el-input placeholder="输入符号速率"></el-input>
+                <el-input placeholder="输入符号速率" v-model="form.value1"></el-input>
               </el-form-item>
             </el-form>
           </div>
@@ -398,1195 +453,672 @@
         <div class="applicationRunControllerItem applicationRunControllerItemMarginTop">
           <span class="applicationRunContrllerItemTitle">译码参数 </span>
           <div class="decodingParams">
-            <el-form :inline="true" ref="form" :model="form" label-width="80px">
+            <el-form :inline="true" ref="form" :model="form" label-width="100px">
               <el-form-item class="decodingParamsMarginTop" label="调制方式：">
-                <el-select placeholder="调制方式">
-                  <el-option>地方</el-option>
+                <el-select placeholder="调制方式" v-model="form.value1">
+                  <el-option label="1" value="1"></el-option>
+                  <el-option label="2" value="2"></el-option>
                 </el-select>
               </el-form-item>
               <el-form-item class="decodingParamsMarginTop" label="码率：">
-                <el-input placeholder="输入码率"></el-input>
+                <el-input placeholder="输入码率" v-model="form.value1"></el-input>
               </el-form-item>
               <el-form-item class="decodingParamsMarginTop" label="扰码：">
-                <el-input placeholder="输入扰码"></el-input>
+                <el-input placeholder="输入扰码" v-model="form.value1"></el-input>
               </el-form-item>
               <el-form-item class="decodingParamsMarginTop" label="差分">
-                <el-input placeholder="输入差分"></el-input>
+                <el-input placeholder="输入差分" v-model="form.value1"></el-input>
               </el-form-item>
               <el-form-item class="decodingParamsMarginTop" label="RS码率：">
-                <el-input placeholder="输入RS码率"></el-input>
+                <el-input placeholder="输入RS码率" v-model="form.value1"></el-input>
               </el-form-item>
               <el-form-item class="decodingParamsMarginTop" label="RS扰码：">
-                <el-input placeholder="输入RS扰码"></el-input>
+                <el-input placeholder="输入RS扰码" v-model="form.value1"></el-input>
               </el-form-item>
               <el-form-item class="decodingParamsMarginTop" label="帧结构：">
-                <el-input placeholder="输入帧结构"></el-input>
+                <el-input placeholder="输入帧结构" v-model="form.value1"></el-input>
               </el-form-item>
             </el-form>
           </div>
         </div>
       </div>
-      <div slot="footer">
-        <el-button size="mini" @click="closeApplicationRunController()">取消</el-button>
-        <el-button size="mini" type="primary" @click="closeApplicationRunController()">确定</el-button>
-      </div>
+      <template #footer>
+        <el-button @click="closeApplicationRunController()">取消</el-button>
+        <el-button type="primary" @click="closeApplicationRunController()">确定</el-button>
+      </template>
     </el-dialog>
   </div>
 </template>
 
-<script>
+<script lang="tsx" setup>
+import ysj from "../../../assets/img/已上架.png";
+import xj from "../../../assets/img/下架.png";
+import dsp from "../../../assets/img/待审批.png";
+import wtg from "../../../assets/img/未通过.png";
+import ysjyc from "../../../assets/img/已上架异常.png";
+
 import Table from "./comp/Table.vue";
 import Pagination from "../../../components/Pagination.vue";
-import { Graph, Shape, Addon, NodeView } from "@antv/x6";
-export default {
-  components: {
-    Table,
-    Pagination,
+// import { Graph, Shape, Addon, NodeView } from "@antv/x6";
+import { onMounted, reactive, ref } from "vue";
+import { useRouter } from "vue-router";
+import {
+  Download,
+  Delete,
+  ArrowLeft,
+  ArrowRight,
+  RefreshRight,
+  Tickets,
+  Right,
+  SetUp,
+  Guide,
+  Coin,
+} from "@element-plus/icons-vue";
+import { AllMain, TableData, OptionType } from "./types";
+
+// 搜索框
+let search_task = ref("");
+let applicationRunConttl = ref(false);
+let applicationData = ref(false);
+let applicationInstance = ref(false);
+let downloadButtonType = "text";
+let deleteButtonType = "text";
+let form = reactive({ value1: "" });
+let fileList = ref([]);
+let input2 = ref("");
+
+let searchData = reactive({
+  time: "",
+  type: "",
+  name: "",
+});
+// let ip = [
+//   {
+//     name: "李琦",
+//     desc: "（组件：8，应用：1）",
+//   },
+//   {
+//     name: "张晓月",
+//     desc: "（组件：8，应用：1）",
+//   },
+//   {
+//     name: "李琦",
+//     desc: "（组件：8，应用：1）",
+//   },
+//   {
+//     name: "张晓月",
+//     desc: "（组件：8，应用：1）",
+//   },
+//   {
+//     name: "李琦",
+//     desc: "（组件：8，应用：1）",
+//   },
+//   {
+//     name: "张晓月",
+//     desc: "（组件：8，应用：1）",
+//   },
+//   {
+//     name: "李琦",
+//     desc: "（组件：8，应用：1）",
+//   },
+//   {
+//     name: "张晓月",
+//     desc: "（组件：8，应用：1）",
+//   },
+// ];
+// // 资源总量
+// let allList = [
+//   {
+//     name: "调器",
+//     num: 16,
+//     all: 20,
+//     color: "#4898fc",
+//   },
+//   {
+//     name: "译码",
+//     num: 4,
+//     all: 20,
+//     color: "#23d037",
+//   },
+//   {
+//     name: "帧解析",
+//     num: 12,
+//     all: 20,
+//     color: "#00ceeb",
+//   },
+//   {
+//     name: "规格",
+//     num: 4,
+//     all: 20,
+//     color: "#fd9f6c",
+//   },
+//   {
+//     name: "数据转换",
+//     num: 4,
+//     all: 20,
+//     color: "#fd9f6c",
+//   },
+// ];
+let gaugeChartData = [
+  {
+    val: 17,
+    sColor: "#54B6FF",
+    eColor: "#138FFF",
+    title: "待审批",
+    all: 20,
   },
-  data() {
+  {
+    val: 3,
+    sColor: "#FF8C8D",
+    eColor: "#FF5D5B",
+    title: "未审批",
+    all: 20,
+  },
+  {
+    val: 8,
+    sColor: "#FF8C8D",
+    eColor: "#FF5D5B",
+    title: "草稿箱",
+    all: 20,
+  },
+];
+// 下拉选项
+let ZToptions: OptionType[] = reactive([
+  {
+    value: "选项1",
+    label: "上架",
+  },
+  {
+    value: "选项2",
+    label: "下架",
+  },
+  {
+    value: "选项2",
+    label: "异常",
+  },
+  {
+    value: "选项2",
+    label: "未通过",
+  },
+]);
+let TPoptions: OptionType[] = reactive([
+  {
+    value: "选项1",
+    label: "侦察",
+  },
+  {
+    value: "选项2",
+    label: "侦守",
+  },
+  {
+    value: "选项2",
+    label: "控守",
+  },
+]);
+let allZT = ref("");
+let allTP = ref("");
+//内容
+let allmain: AllMain[] = reactive([
+  {
+    name: "南海巡航",
+    status: "1-1",
+    type: "侦察",
+    startTime: "2021-03-12",
+    time: "2021-01-01",
+    desc: "应用的一段描述",
+    totalData: "3GB",
+    flowNum: 50,
+  },
+  {
+    name: "广西边防",
+    status: "2-1",
+    type: "侦守",
+    startTime: "2021-03-12",
+    time: "2021-01-01",
+    desc: "应用的一段描述",
+    totalData: "3GB",
+    flowNum: 50,
+  },
+  {
+    name: "西沙航巡",
+    status: "1-2",
+    type: "侦察",
+    startTime: "2021-03-12",
+    time: "",
+    desc: "应用的一段描述",
+    totalData: "3GB",
+    flowNum: 20,
+  },
+  {
+    name: "新疆边防",
+    status: "1-3",
+    type: "侦守",
+    startTime: "2021-03-12",
+    time: "2021-01-01",
+    desc: "应用的一段描述",
+    totalData: "3GB",
+    flowNum: 30,
+  },
+  {
+    name: "西藏边防",
+    status: "1-4",
+    type: "侦守",
+    startTime: "2021-03-12",
+    time: "2021-01-01",
+    desc: "应用的一段描述",
+    totalData: "3GB",
+    flowNum: 40,
+  },
+  {
+    name: "广西巡航",
+    status: "2-1",
+    type: "侦察",
+    startTime: "2021-03-12",
+    time: "2021-01-01",
+    desc: "应用的一段描述",
+    totalData: "3GB",
+    flowNum: 60,
+  },
+  {
+    name: "云南边防",
+    status: "1-3",
+    type: "控守",
+    startTime: "2021-03-12",
+    time: "2021-01-01",
+    desc: "应用的一段描述",
+    totalData: "3GB",
+    flowNum: 80,
+  },
+  {
+    name: "黑龙江边防",
+    status: "1-4",
+    type: "控守",
+    startTime: "2021-03-12",
+    time: "2021-01-01",
+    desc: "应用的一段描述",
+    totalData: "3GB",
+    flowNum: 90,
+  },
+]);
+// let num = 9999;
+// let applicationClass = {};
+let tableData: TableData[] = reactive([
+  {
+    instance: "实例名称一",
+    dataType: "成果数据",
+    specificType: "目标数据",
+    kind: "民用",
+    ip: "192.168.3.59",
+    port: "8080",
+    coordinate: "北纬30.56，东经120.03",
+  },
+  {
+    instance: "实例名称一",
+    dataType: "成果数据",
+    specificType: "目标数据",
+    kind: "民用",
+    ip: "192.168.3.59",
+    port: "8080",
+    coordinate: "北纬30.56，东经120.03",
+  },
+  {
+    instance: "实例名称一",
+    dataType: "成果数据",
+    specificType: "目标数据",
+    kind: "民用",
+    ip: "192.168.3.59",
+    port: "8080",
+    coordinate: "北纬30.56，东经120.03",
+  },
+  {
+    instance: "实例名称一",
+    dataType: "成果数据",
+    specificType: "目标数据",
+    kind: "民用",
+    ip: "192.168.3.59",
+    port: "8080",
+    coordinate: "北纬30.56，东经120.03",
+  },
+  {
+    instance: "实例名称一",
+    dataType: "成果数据",
+    specificType: "目标数据",
+    kind: "民用",
+    ip: "192.168.3.59",
+    port: "8080",
+    coordinate: "北纬30.56，东经120.03",
+  },
+]);
+let instanceData = [
+  {
+    name: "流程实例一",
+    time: "08/29 12:32:40",
+    status: 2,
+    active: false,
+  },
+  {
+    name: "流程实例一",
+    time: "08/29 12:32:40",
+    status: 2,
+    active: false,
+  },
+  {
+    name: "流程实例一",
+    time: "08/29 12:32:40",
+    status: 1,
+    active: false,
+  },
+  {
+    name: "流程实例一",
+    time: "08/29 12:32:40",
+    status: 1,
+    active: false,
+  },
+];
+let componentLog = [
+  {
+    name: "组件名称",
+    log: "射点发射点啊手动阀手动阀啊手动阀手动阀点发射点阿斯顿发射点阿斯顿发射点阿斯顿发射点阿阿斯蒂芬",
+    status: 1,
+  },
+  {
+    name: "组件名称",
+    log: "阀手动阀啊手动阀手动阀点阿斯顿发射点发射点啊手动阀手动阀啊手动阀手动阀点发射点阿斯顿发射点阿斯顿发射点阿斯顿发射点阿阿斯蒂芬",
+    status: 2,
+  },
+  {
+    name: "组件名称",
+    log: "射点发射点啊手动阀手动阀啊手动阀手动阀点阿斯顿发射点发射点啊手动阀手动阀啊手动阀手动阿斯蒂芬",
+    status: 2,
+  },
+  {
+    name: "组件名称",
+    log: "动阀点阿斯顿发射点发射点啊手动阀手动阀啊手动阀手动阀点发射点阿斯顿发射点阿斯顿发射点阿斯顿发射点阿阿斯蒂芬",
+    status: 1,
+  },
+  {
+    name: "组件名称",
+    log: "点发射点啊手动阀手动阀啊手动阀手动阀点发射点阿斯顿发射点阿斯顿发射点阿斯顿发射点阿阿斯蒂芬",
+    status: 1,
+  },
+];
+let graph = "";
+//节点配置
+// let nodeConfig = {
+//   portMarkup: [
+//     {
+//       tagName: "circle",
+//       selector: "portBody",
+//     },
+//   ],
+// };
+// let connectEdgeType = {
+//   //连线方式
+//   connector: "normal",
+//   router: {
+//     name: "",
+//   },
+// };
+// let magnetAvailabilityHighlighter = {
+//   name: "stroke",
+//   args: {
+//     attrs: {
+//       fill: "#fff",
+//       stroke: "#47C769",
+//     },
+//   },
+// };
+let childrenActiveNames = ["1"];
+let formInline = {};
+
+const router = useRouter();
+
+// const displ = (data) => {
+//   num = data;
+// };
+// const handleChange = (status) => {
+//   console.log(status);
+// };
+// const handleAdd = () => {
+//   let routeData = router.resolve({
+//     path: "/application/management/black",
+//   });
+//   window.open(routeData.href, "_blank");
+// };
+// const handleEdit = (item) => {
+//   let routeData = router.resolve({
+//     path: "/application/management/applicationManagement",
+//   });
+//   window.open(routeData.href, "_blank");
+// };
+// const gaugeChartFunc = (index, chartsData) => {
+//   let val = 17;
+//   const gaugeChart = $echarts.init($refs["gaugeChart" + index]);
+//   let options = {
+//     title: {
+//       text: chartsData.title,
+//       bottom: "10",
+//       x: "center",
+//       borderColor: "#000",
+//       textStyle: {
+//         fontWeight: "normal",
+//         fontSize: 12,
+//         color: "#000",
+//       },
+//     },
+
+//     angleAxis: {
+//       show: false,
+//       max: (100 * 360) / 270, //-45度到225度，二者偏移值是270度除360度
+//       type: "value",
+//       startAngle: 225, //极坐标初始角度
+//       splitLine: {
+//         show: false,
+//       },
+//     },
+//     barMaxWidth: 14, //圆环宽度
+//     radiusAxis: {
+//       show: false,
+//       type: "category",
+//     },
+//     //圆环位置和大小
+//     polar: {
+//       center: ["50%", "50%"],
+//       radius: "110",
+//     },
+//     series: [
+//       {
+//         type: "bar",
+//         data: [
+//           {
+//             //上层圆环，显示数据
+//             value: (chartsData.val / chartsData.all) * 100,
+//             itemStyle: {
+//               color: {
+//                 //图形渐变颜色方法，四个数字分别代表，右，下，左，上，offset表示0%到100%
+//                 type: "linear",
+//                 x: 0,
+//                 y: 0,
+//                 x2: 1, //从左到右 0-1
+//                 y2: 0,
+//                 colorStops: [
+//                   {
+//                     offset: 0,
+//                     color: chartsData.sColor,
+//                   },
+//                   {
+//                     offset: 1,
+//                     color: chartsData.eColor,
+//                   },
+//                 ],
+//               },
+//             },
+//           },
+//         ],
+//         barGap: "-100%", //柱间距离,上下两层圆环重合
+//         coordinateSystem: "polar",
+//         roundCap: true, //顶端圆角从 v4.5.0 开始支持
+//         z: 2, //圆环层级，同zindex
+//       },
+//       {
+//         //下层圆环，显示最大值
+//         type: "bar",
+//         data: [
+//           {
+//             value: 100,
+//             itemStyle: {
+//               color: "#E0E3E8",
+//             },
+//           },
+//         ],
+//         barGap: "-100%",
+//         coordinateSystem: "polar",
+//         roundCap: true,
+//         z: 1,
+//       },
+//       //仪表盘
+//       {
+//         // name: "AQI",
+//         type: "gauge",
+//         startAngle: 225, //起始角度，同极坐标
+//         endAngle: -45, //终止角度，同极坐标
+//         axisLine: {
+//           show: false,
+//         },
+//         splitLine: {
+//           show: false,
+//         },
+//         axisTick: {
+//           show: false,
+//         },
+//         axisLabel: {
+//           show: false,
+//         },
+//         splitLabel: {
+//           show: false,
+//         },
+//         pointer: {
+//           show: false,
+//         },
+//         title: {
+//           offsetCenter: [0, 0],
+//           color: "#0080FF",
+//           fontSize: 35,
+//           fontWeight: 500,
+//         },
+//         detail: {
+//           formatter: " ",
+//         },
+//         data: [
+//           {
+//             name: chartsData.val,
+//           },
+//         ],
+//       },
+//     ],
+//   };
+//   gaugeChart.setOption(options);
+//   window.addEventListener("resize", function () {
+//     gaugeChart.resize();
+//   });
+// };
+
+//应用背景图片样式
+const applicationBackGorundClass = (item: AllMain) => {
+  if (item.status.indexOf("1-") >= 0) {
     return {
-      // 搜索框
-      search_task: "",
-      applicationRunConttl: false,
-      applicationData: false,
-      applicationInstance: false,
-      downloadButtonType: "text",
-      deleteButtonType: "text",
-      searchData: {
-        time: "",
-        type: "",
-        name: "",
-      },
-      ip: [
-        {
-          name: "李琦",
-          desc: "（组件：8，应用：1）",
-        },
-        {
-          name: "张晓月",
-          desc: "（组件：8，应用：1）",
-        },
-        {
-          name: "李琦",
-          desc: "（组件：8，应用：1）",
-        },
-        {
-          name: "张晓月",
-          desc: "（组件：8，应用：1）",
-        },
-        {
-          name: "李琦",
-          desc: "（组件：8，应用：1）",
-        },
-        {
-          name: "张晓月",
-          desc: "（组件：8，应用：1）",
-        },
-        {
-          name: "李琦",
-          desc: "（组件：8，应用：1）",
-        },
-        {
-          name: "张晓月",
-          desc: "（组件：8，应用：1）",
-        },
-      ],
-      // 资源总量
-      allList: [
-        {
-          name: "调器",
-          num: 16,
-          all: 20,
-          color: "#4898fc",
-        },
-        {
-          name: "译码",
-          num: 4,
-          all: 20,
-          color: "#23d037",
-        },
-        {
-          name: "帧解析",
-          num: 12,
-          all: 20,
-          color: "#00ceeb",
-        },
-        {
-          name: "规格",
-          num: 4,
-          all: 20,
-          color: "#fd9f6c",
-        },
-        {
-          name: "数据转换",
-          num: 4,
-          all: 20,
-          color: "#fd9f6c",
-        },
-      ],
-      gaugeChartData: [
-        {
-          val: 17,
-          sColor: "#54B6FF",
-          eColor: "#138FFF",
-          title: "待审批",
-          all: 20,
-        },
-        {
-          val: 3,
-          sColor: "#FF8C8D",
-          eColor: "#FF5D5B",
-          title: "未审批",
-          all: 20,
-        },
-        {
-          val: 8,
-          sColor: "#FF8C8D",
-          eColor: "#FF5D5B",
-          title: "草稿箱",
-          all: 20,
-        },
-      ],
-      // 下拉选项
-      ZToptions: [
-        {
-          value: "选项1",
-          label: "上架",
-        },
-        {
-          value: "选项2",
-          label: "下架",
-        },
-        {
-          value: "选项2",
-          label: "异常",
-        },
-        {
-          value: "选项2",
-          label: "未通过",
-        },
-      ],
-      TPoptions: [
-        {
-          value: "选项1",
-          label: "侦察",
-        },
-        {
-          value: "选项2",
-          label: "侦守",
-        },
-        {
-          value: "选项2",
-          label: "控守",
-        },
-      ],
-      allZT: "",
-      allTP: "",
-      //内容
-      allmain: [
-        {
-          name: "南海巡航",
-          status: "1-1",
-          type: "侦察",
-          startTime: "2021-03-12",
-          time: "2021-01-01",
-          desc: "应用的一段描述",
-          totalData: "3GB",
-          flowNum: 50,
-        },
-        {
-          name: "广西边防",
-          status: "2-1",
-          type: "侦守",
-          startTime: "2021-03-12",
-          time: "2021-01-01",
-          desc: "应用的一段描述",
-          totalData: "3GB",
-          flowNum: 50,
-        },
-        {
-          name: "西沙航巡",
-          status: "1-2",
-          type: "侦察",
-          startTime: "2021-03-12",
-          time: "",
-          desc: "应用的一段描述",
-          totalData: "3GB",
-          flowNum: 20,
-        },
-        {
-          name: "新疆边防",
-          status: "1-3",
-          type: "侦守",
-          startTime: "2021-03-12",
-          time: "2021-01-01",
-          desc: "应用的一段描述",
-          totalData: "3GB",
-          flowNum: 30,
-        },
-        {
-          name: "西藏边防",
-          status: "1-4",
-          type: "侦守",
-          startTime: "2021-03-12",
-          time: "2021-01-01",
-          desc: "应用的一段描述",
-          totalData: "3GB",
-          flowNum: 40,
-        },
-        {
-          name: "广西巡航",
-          status: "2-1",
-          type: "侦察",
-          startTime: "2021-03-12",
-          time: "2021-01-01",
-          desc: "应用的一段描述",
-          totalData: "3GB",
-          flowNum: 60,
-        },
-        {
-          name: "云南边防",
-          status: "1-3",
-          type: "控守",
-          startTime: "2021-03-12",
-          time: "2021-01-01",
-          desc: "应用的一段描述",
-          totalData: "3GB",
-          flowNum: 80,
-        },
-        {
-          name: "黑龙江边防",
-          status: "1-4",
-          type: "控守",
-          startTime: "2021-03-12",
-          time: "2021-01-01",
-          desc: "应用的一段描述",
-          totalData: "3GB",
-          flowNum: 90,
-        },
-      ],
-      num: 9999,
-      applicationClass: {},
-      tableData: [
-        {
-          instance: "实例名称一",
-          dataType: "成果数据",
-          specificType: "目标数据",
-          kind: "民用",
-          ip: "192.168.3.59",
-          port: "8080",
-          coordinate: "北纬30.56，东经120.03",
-        },
-        {
-          instance: "实例名称一",
-          dataType: "成果数据",
-          specificType: "目标数据",
-          kind: "民用",
-          ip: "192.168.3.59",
-          port: "8080",
-          coordinate: "北纬30.56，东经120.03",
-        },
-        {
-          instance: "实例名称一",
-          dataType: "成果数据",
-          specificType: "目标数据",
-          kind: "民用",
-          ip: "192.168.3.59",
-          port: "8080",
-          coordinate: "北纬30.56，东经120.03",
-        },
-        {
-          instance: "实例名称一",
-          dataType: "成果数据",
-          specificType: "目标数据",
-          kind: "民用",
-          ip: "192.168.3.59",
-          port: "8080",
-          coordinate: "北纬30.56，东经120.03",
-        },
-        {
-          instance: "实例名称一",
-          dataType: "成果数据",
-          specificType: "目标数据",
-          kind: "民用",
-          ip: "192.168.3.59",
-          port: "8080",
-          coordinate: "北纬30.56，东经120.03",
-        },
-      ],
-      instanceData: [
-        {
-          name: "流程实例一",
-          time: "08/29 12:32:40",
-          status: 2,
-          active: false,
-        },
-        {
-          name: "流程实例一",
-          time: "08/29 12:32:40",
-          status: 2,
-          active: false,
-        },
-        {
-          name: "流程实例一",
-          time: "08/29 12:32:40",
-          status: 1,
-          active: false,
-        },
-        {
-          name: "流程实例一",
-          time: "08/29 12:32:40",
-          status: 1,
-          active: false,
-        },
-      ],
-      componentLog: [
-        {
-          name: "组件名称",
-          log: "射点发射点啊手动阀手动阀啊手动阀手动阀点发射点阿斯顿发射点阿斯顿发射点阿斯顿发射点阿阿斯蒂芬",
-          status: 1,
-        },
-        {
-          name: "组件名称",
-          log: "阀手动阀啊手动阀手动阀点阿斯顿发射点发射点啊手动阀手动阀啊手动阀手动阀点发射点阿斯顿发射点阿斯顿发射点阿斯顿发射点阿阿斯蒂芬",
-          status: 2,
-        },
-        {
-          name: "组件名称",
-          log: "射点发射点啊手动阀手动阀啊手动阀手动阀点阿斯顿发射点发射点啊手动阀手动阀啊手动阀手动阿斯蒂芬",
-          status: 2,
-        },
-        {
-          name: "组件名称",
-          log: "动阀点阿斯顿发射点发射点啊手动阀手动阀啊手动阀手动阀点发射点阿斯顿发射点阿斯顿发射点阿斯顿发射点阿阿斯蒂芬",
-          status: 1,
-        },
-        {
-          name: "组件名称",
-          log: "点发射点啊手动阀手动阀啊手动阀手动阀点发射点阿斯顿发射点阿斯顿发射点阿斯顿发射点阿阿斯蒂芬",
-          status: 1,
-        },
-      ],
-      graph: "",
-      //节点配置
-      nodeConfig: {
-        portMarkup: [
-          {
-            tagName: "circle",
-            selector: "portBody",
-          },
-        ],
-      },
-      connectEdgeType: {
-        //连线方式
-        connector: "normal",
-        router: {
-          name: "",
-        },
-      },
-      magnetAvailabilityHighlighter: {
-        name: "stroke",
-        args: {
-          attrs: {
-            fill: "#fff",
-            stroke: "#47C769",
-          },
-        },
-      },
-      childrenActiveNames: ["1"],
-      formInline: {},
+      applicationUp: true,
     };
-  },
-  methods: {
-    displ(data) {
-      this.num = data;
-    },
-    handleChange(status) {
-      console.log(status);
-    },
-    handleAdd() {
-      let routeData = this.$router.resolve({
-        path: "/application/management/black",
-      });
-      window.open(routeData.href, "_blank");
-    },
-    handleEdit(item) {
-      let routeData = this.$router.resolve({
-        path: "/application/management/applicationManagement",
-      });
-      window.open(routeData.href, "_blank");
-    },
-    gaugeChartFunc(index, chartsData) {
-      let val = 17;
-      const gaugeChart = this.$echarts.init(this.$refs["gaugeChart" + index]);
-      let options = {
-        title: {
-          text: chartsData.title,
-          bottom: "10",
-          x: "center",
-          borderColor: "#000",
-          textStyle: {
-            fontWeight: "normal",
-            fontSize: 12,
-            color: "#000",
-          },
-        },
-
-        angleAxis: {
-          show: false,
-          max: (100 * 360) / 270, //-45度到225度，二者偏移值是270度除360度
-          type: "value",
-          startAngle: 225, //极坐标初始角度
-          splitLine: {
-            show: false,
-          },
-        },
-        barMaxWidth: 14, //圆环宽度
-        radiusAxis: {
-          show: false,
-          type: "category",
-        },
-        //圆环位置和大小
-        polar: {
-          center: ["50%", "50%"],
-          radius: "110",
-        },
-        series: [
-          {
-            type: "bar",
-            data: [
-              {
-                //上层圆环，显示数据
-                value: (chartsData.val / chartsData.all) * 100,
-                itemStyle: {
-                  color: {
-                    //图形渐变颜色方法，四个数字分别代表，右，下，左，上，offset表示0%到100%
-                    type: "linear",
-                    x: 0,
-                    y: 0,
-                    x2: 1, //从左到右 0-1
-                    y2: 0,
-                    colorStops: [
-                      {
-                        offset: 0,
-                        color: chartsData.sColor,
-                      },
-                      {
-                        offset: 1,
-                        color: chartsData.eColor,
-                      },
-                    ],
-                  },
-                },
-              },
-            ],
-            barGap: "-100%", //柱间距离,上下两层圆环重合
-            coordinateSystem: "polar",
-            roundCap: true, //顶端圆角从 v4.5.0 开始支持
-            z: 2, //圆环层级，同zindex
-          },
-          {
-            //下层圆环，显示最大值
-            type: "bar",
-            data: [
-              {
-                value: 100,
-                itemStyle: {
-                  color: "#E0E3E8",
-                },
-              },
-            ],
-            barGap: "-100%",
-            coordinateSystem: "polar",
-            roundCap: true,
-            z: 1,
-          },
-          //仪表盘
-          {
-            // name: "AQI",
-            type: "gauge",
-            startAngle: 225, //起始角度，同极坐标
-            endAngle: -45, //终止角度，同极坐标
-            axisLine: {
-              show: false,
-            },
-            splitLine: {
-              show: false,
-            },
-            axisTick: {
-              show: false,
-            },
-            axisLabel: {
-              show: false,
-            },
-            splitLabel: {
-              show: false,
-            },
-            pointer: {
-              show: false,
-            },
-            title: {
-              offsetCenter: [0, 0],
-              color: "#0080FF",
-              fontSize: 35,
-              fontWeight: 500,
-            },
-            detail: {
-              formatter: " ",
-            },
-            data: [
-              {
-                name: chartsData.val,
-              },
-            ],
-          },
-        ],
-      };
-      gaugeChart.setOption(options);
-      window.addEventListener("resize", function () {
-        gaugeChart.resize();
-      });
-    },
-
-    //应用背景图片样式
-    applicationBackGorundClass(item) {
-      if (item.status.indexOf("1-") >= 0) {
-        return {
-          applicationUp: true,
-        };
-      }
-      if (item.status.indexOf("2-") >= 0) {
-        return {
-          applicationDown: true,
-        };
-      }
-    },
-    getStatusImageUrl(item) {
-      //上架
-      if (item.status == "1-1") {
-        return require("../../../assets/img/已上架.png");
-      }
-      //下架
-      if (item.status == "2-1") {
-        return require("../../../assets/img/下架.png");
-      }
-      //待审批
-      if (item.status == "1-2") {
-        return require("../../../assets/img/待审批.png");
-      }
-      //未通过
-      if (item.status == "1-3") {
-        return require("../../../assets/img/未通过.png");
-      }
-      //已上架异常
-      if (item.status == "1-4") {
-        return require("../../../assets/img/已上架异常.png");
-      }
-    },
-    applicationClassMouseOver($event, item) {
-      if (item.status.indexOf("1-") >= 0) {
-        $event.currentTarget.className = "application applicationUpMouse";
-      }
-      if (item.status.indexOf("2-") >= 0) {
-        $event.currentTarget.className = "application applicationDownMouse";
-      }
-    },
-    applicationClassMouseLeave($event, item) {
-      if (item.status.indexOf("1-") >= 0) {
-        $event.currentTarget.className = "application applicationUp";
-      }
-      if (item.status.indexOf("2-") >= 0) {
-        $event.currentTarget.className = "application applicationDown";
-      }
-    },
-    //运行控制
-    applicationRunController(row) {
-      this.applicationRunConttl = true;
-    },
-    closeApplicationRunController() {
-      this.applicationRunConttl = false;
-    },
-    openApplicationData() {
-      this.applicationData = true;
-    },
-    openApplicationInstance() {
-      this.applicationInstance = true;
-      this.$nextTick(() => {
-        if (!this.graph) {
-          this.initAntvX6();
-        }
-        this.reloadData();
-      });
-    },
-    checkInfo() {
-      this.$router.push("/fidlddata");
-    },
-    //初始化画布
-    initAntvX6() {
-      let that_ = this;
-      this.graph = new Graph({
-        history: {
-          enabled: true, //历史记录
-          ignoreChange: true, //ignoreChange 是否忽略属性变化
-        },
-        clipboard: {
-          enabled: true,
-          useLocalStorage: true,
-        },
-        selecting: true,
-        panning: true, //支持平移拖拽
-        snapline: true, //对齐线
-        resizing: {
-          //调整节点宽高
-          enabled: true, //历史记录
-          orthogonal: false,
-        },
-        autoResize: true, //自动画布大小
-        mousewheel: true, //鼠标轮滚缩放
-        grid: that_.grid,
-        container: document.getElementById("containerChart"),
-        highlighting: {
-          magnetAvailable: that_.magnetAvailabilityHighlighter,
-          magnetAdsorbed: {
-            name: "stroke",
-            args: {
-              attrs: {
-                fill: "#fff",
-                stroke: "#31d0c6",
-              },
-            },
-          },
-        },
-        connecting: {
-          snap: true, //自动吸附
-          allowBlank: false,
-          allowLoop: false,
-          highlight: true,
-          connector: "rounded",
-          connectionPoint: "boundary",
-          router: {
-            name: "er",
-            args: {
-              direction: "V",
-            },
-          },
-          createEdge() {
-            return new Shape.Edge({
-              router: {
-                name: "manhattan",
-                args: {
-                  startDirections: ["bottom"],
-                  endDirections: ["top"],
-                },
-              },
-              attrs: {
-                line: {
-                  stroke: "#267FF7",
-                  strokeWidth: 4,
-                  targetMarker: {
-                    name: "classic",
-                    size: 12,
-                  },
-                },
-              },
-            });
-          },
-          validateConnection({ sourceView, targetView, targetMagnet }) {
-            if (!targetMagnet) {
-              return false;
-            }
-            if (targetMagnet.getAttribute("port-group") !== "in") {
-              return false;
-            }
-
-            if (targetView) {
-              const node = targetView.cell;
-              const portId = targetMagnet.getAttribute("port");
-              const usedInPorts = node.getUsedInPorts(that_.graph);
-              if (usedInPorts.find((port) => port && port.id === portId)) {
-                return false;
-              }
-            }
-            return true;
-          },
-        },
-      });
-
-      this.graph.centerContent(); //画布居中
-      this.graph.on("edge:connected", ({ previousView, currentView }) => {
-        if (previousView) {
-          that_.update(previousView);
-        }
-        if (currentView) {
-          that_.update(currentView);
-        }
-      });
-
-      this.graph.on("edge:removed", ({ edge, options }) => {
-        if (!options.ui) {
-          return;
-        }
-
-        const target = edge.getTargetCell();
-        target.updateInPorts(graph);
-      });
-
-      this.graph.on("edge:mouseenter", ({ edge }) => {
-        edge.addTools([
-          "source-arrowhead",
-          "target-arrowhead",
-          {
-            name: "button-remove",
-            args: {
-              distance: -30,
-            },
-          },
-        ]);
-      });
-
-      this.graph.on("edge:mouseleave", ({ edge }) => {
-        edge.removeTools();
-      });
-
-      // this.graph.on('node:click', ({ e, x, y, node, view }) => {
-      //   node.attr({
-      //     body:{
-      //       stroke:"#1E9AFF"
-      //     }
-      //   });
-      //  });
-
-      this.graph.on("node:mouseenter", ({ e, x, y, node, view }) => {
-        node.attr({
-          body: {
-            fill: "#9ECDF3",
-            stroke: "#267FF7",
-            strokeWidth: 2,
-          },
-        });
-      });
-
-      this.graph.on("node:mouseleave", ({ e, x, y, node, view }) => {
-        node.attr({
-          body: {
-            fill: "#ECF4FB",
-            stroke: "#ABD0FB",
-            strokeWidth: 2,
-          },
-        });
-      });
-    },
-    reloadData() {
-      this.graph.paste({ useLocalStorage: true });
-    },
-    /**
-     * 拖拽节点，并添加到画布中
-     */
-    dragNode(type, e) {
-      let that_ = this;
-      let nodeName = e.target.innerText;
-      let node;
-      if (type == "rect") {
-        node = this.createRectNode(nodeName).updateInPorts(this.graph);
-      }
-      if (type == "circle") {
-        node = this.createCircleNode(nodeName);
-      }
-      if (type == "polygon") {
-        node = this.createPolygonNode(nodeName);
-      }
-      const dnd = new Addon.Dnd({ target: that_.graph });
-      dnd.start(node, e);
-    },
-
-    /**
-     * 创建画布节点
-     * @param nodeType 创建画布节点的类型，rect、ellipse、polygon
-     * @returns node 画布节点
-     */
-    createCircleNode(nodeName) {
-      let that_ = this;
-      let node = this.graph.createNode({
-        shape: "circle",
-        width: 100,
-        height: 100,
-        attrs: {
-          label: {
-            text: nodeName,
-            fill: "#000000",
-            fontSize: 14,
-            textWrap: {
-              width: -20,
-              height: -10,
-              ellipsis: true,
-            },
-          },
-          body: {
-            fill: "#ffffff",
-            stroke: "#d9d9d9",
-            strokeWidth: 1,
-          },
-        },
-        ports: {
-          items: [
-            {
-              group: "out",
-            },
-          ],
-          groups: {
-            in: {
-              position: {
-                name: "top",
-              },
-              attrs: {
-                portBody: {
-                  magnet: "passive",
-                  r: 6,
-                  stroke: "#ffa940",
-                  fill: "#fff",
-                  strokeWidth: 2,
-                },
-              },
-            },
-            out: {
-              position: {
-                name: "bottom",
-              },
-              attrs: {
-                portBody: {
-                  magnet: true,
-                  r: 6,
-                  fill: "#fff",
-                  stroke: "#3199FF",
-                  strokeWidth: 2,
-                },
-              },
-            },
-          },
-        },
-        portMarkup: that_.nodeConfig.portMarkup,
-      });
-      return node;
-    },
-
-    /**
-     * 创建多边形节点
-     */
-    createPolygonNode(nodeName) {
-      let that_ = this;
-      let node = this.graph.createNode({
-        shape: "polygon",
-        x: 40,
-        y: 40,
-        width: 120,
-        height: 120,
-        attrs: {
-          label: {
-            text: nodeName,
-            fill: "#000000",
-            fontSize: 14,
-            textWrap: {
-              width: -10,
-              height: -10,
-              ellipsis: true,
-            },
-          },
-          body: {
-            fill: "#ffffff",
-            stroke: "#000000",
-            refPoints: "0,10 10,0 20,10 10,20",
-            strokeWidth: 1,
-          },
-        },
-        ports: {
-          items: [
-            {
-              id: "out1",
-              group: "out1",
-            },
-            {
-              id: "out2",
-              group: "out2",
-            },
-            {
-              id: "out3",
-              group: "out3",
-            },
-            {
-              id: "out4",
-              group: "out4",
-            },
-          ],
-          groups: {
-            in: {
-              position: {
-                name: "top",
-              },
-              attrs: {
-                portBody: {
-                  magnet: "passive",
-                  r: 6,
-                  stroke: "#ffa940",
-                  fill: "#fff",
-                  strokeWidth: 2,
-                },
-              },
-            },
-            out1: {
-              position: {
-                name: "top",
-              },
-              attrs: {
-                portBody: {
-                  magnet: true,
-                  r: 6,
-                  fill: "#fff",
-                  stroke: "#3199FF",
-                  strokeWidth: 2,
-                },
-              },
-            },
-            out2: {
-              position: {
-                name: "right",
-              },
-              attrs: {
-                portBody: {
-                  magnet: true,
-                  r: 6,
-                  fill: "#fff",
-                  stroke: "#3199FF",
-                  strokeWidth: 2,
-                },
-              },
-            },
-            out3: {
-              position: {
-                name: "left",
-              },
-              attrs: {
-                portBody: {
-                  magnet: true,
-                  r: 6,
-                  fill: "#fff",
-                  stroke: "#3199FF",
-                  strokeWidth: 2,
-                },
-              },
-            },
-            out4: {
-              position: {
-                name: "bottom",
-              },
-              attrs: {
-                portBody: {
-                  magnet: true,
-                  r: 6,
-                  fill: "#fff",
-                  stroke: "#3199FF",
-                  strokeWidth: 2,
-                },
-              },
-            },
-          },
-        },
-        portMarkup: that_.nodeConfig.portMarkup,
-      });
-      return node;
-    },
-
-    /**
-     * 创建矩形节点
-     */
-    createRectNode(nodeName) {
-      // 定义节点
-      class MyShape extends Shape.Rect {
-        getInPorts() {
-          return this.getPortsByGroup("in");
-        }
-
-        getOutPorts() {
-          return this.getPortsByGroup("out");
-        }
-
-        getUsedInPorts(graph) {
-          const incomingEdges = graph.getIncomingEdges(this) || [];
-          return incomingEdges.map((edge) => {
-            const portId = edge.getTargetPortId();
-            return this.getPort(portId);
-          });
-        }
-
-        getNewInPorts(length) {
-          return Array.from(
-            {
-              length,
-            },
-            () => {
-              return {
-                group: "in",
-              };
-            }
-          );
-        }
-
-        updateInPorts(graph) {
-          const minNumberOfPorts = 2;
-          const ports = this.getInPorts();
-          const usedPorts = this.getUsedInPorts(graph);
-          const newPorts = this.getNewInPorts(Math.max(minNumberOfPorts - usedPorts.length, 1));
-
-          if (ports.length === minNumberOfPorts && ports.length - usedPorts.length > 0) {
-            // noop
-          } else if (ports.length === usedPorts.length) {
-            this.addPorts(newPorts);
-          } else if (ports.length + 1 > usedPorts.length) {
-            this.prop(["ports", "items"], this.getOutPorts().concat(usedPorts).concat(newPorts), {
-              rewrite: true,
-            });
-          }
-          return this;
-        }
-      }
-
-      Shape.Rect.prototype.getInPorts = function () {
-        return this.getPortsByGroup("in");
-      };
-
-      Shape.Rect.prototype.getOutPorts = function () {
-        return this.getPortsByGroup("out");
-      };
-
-      Shape.Rect.prototype.getUsedInPorts = function (graph) {
-        const incomingEdges = graph.getIncomingEdges(this) || [];
-        return incomingEdges.map((edge) => {
-          const portId = edge.getTargetPortId();
-          return this.getPort(portId);
-        });
-      };
-
-      Shape.Rect.prototype.getNewInPorts = function (length) {
-        return Array.from(
-          {
-            length,
-          },
-          () => {
-            return {
-              group: "in",
-            };
-          }
-        );
-      };
-
-      Shape.Rect.prototype.updateInPorts = function (graph) {
-        const minNumberOfPorts = 2;
-        const ports = this.getInPorts();
-        const usedPorts = this.getUsedInPorts(graph);
-        const newPorts = this.getNewInPorts(Math.max(minNumberOfPorts - usedPorts.length, 1));
-
-        if (ports.length === minNumberOfPorts && ports.length - usedPorts.length > 0) {
-          // noop
-        } else if (ports.length === usedPorts.length) {
-          this.addPorts(newPorts);
-        } else if (ports.length + 1 > usedPorts.length) {
-          this.prop(["ports", "items"], this.getOutPorts().concat(usedPorts).concat(newPorts), {
-            rewrite: true,
-          });
-        }
-        return this;
-      };
-
-      let type = {
-        attrs: {
-          label: {
-            text: nodeName,
-            fill: "#333333",
-            fontSize: 14,
-            textWrap: {
-              width: -10,
-              height: -10,
-              ellipsis: true,
-            },
-          },
-          root: {
-            magnet: false,
-          },
-          body: {
-            fill: "#ECF4FB",
-            stroke: "#ABD0FB",
-            strokeWidth: 2,
-            rx: 4,
-            ry: 4,
-          },
-        },
-        ports: {
-          items: [
-            {
-              group: "out",
-            },
-          ],
-          groups: {
-            in: {
-              position: {
-                name: "top",
-              },
-              attrs: {
-                portBody: {
-                  magnet: "passive",
-                  r: 6,
-                  stroke: "#ffa940",
-                  fill: "#fff",
-                  strokeWidth: 4,
-                },
-              },
-            },
-            out: {
-              position: {
-                name: "bottom",
-              },
-              attrs: {
-                portBody: {
-                  magnet: true,
-                  r: 6,
-                  fill: "#fff",
-                  stroke: "#3199FF",
-                  strokeWidth: 4,
-                },
-              },
-            },
-          },
-        },
-        portMarkup: [
-          {
-            tagName: "circle",
-            selector: "portBody",
-          },
-        ],
-      };
-      return new MyShape(type).resize(200, 80);
-    },
-
-    /**
-     * 更新视图层
-     */
-    update(view) {
-      const node = view.cell;
-      node.getInPorts().forEach((port) => {
-        const portNode = view.findPortElem(port.id, "portBody");
-        view.unhighlight(portNode, {
-          highlighter: this.magnetAvailabilityHighlighter,
-        });
-      });
-      node.updateInPorts(this.graph);
-    },
-  },
-  created() {},
-  mounted() {
-    for (let i = 0; i < this.gaugeChartData.length; i++) {
-      this.gaugeChartFunc(i + 1, this.gaugeChartData[i]);
-    }
-  },
+  }
+  if (item.status.indexOf("2-") >= 0) {
+    return {
+      applicationDown: true,
+    };
+  }
 };
+const getStatusImageUrl = (item: AllMain) => {
+  //上架
+  if (item.status == "1-1") {
+    return <img src={ysj} />;
+  }
+  //下架
+  if (item.status == "2-1") {
+    return <img src={xj} />;
+  }
+  //待审批
+  if (item.status == "1-2") {
+    return <img src={dsp} />;
+  }
+  //未通过
+  if (item.status == "1-3") {
+    return <img src={wtg} />;
+  }
+  //已上架异常
+  if (item.status == "1-4") {
+    return <img src={ysjyc} />;
+  }
+};
+// const applicationClassMouseOver = ($event, item) => {
+//   if (item.status.indexOf("1-") >= 0) {
+//     $event.currentTarget.className = "application applicationUpMouse";
+//   }
+//   if (item.status.indexOf("2-") >= 0) {
+//     $event.currentTarget.className = "application applicationDownMouse";
+//   }
+// };
+// const applicationClassMouseLeave = ($event, item) => {
+//   if (item.status.indexOf("1-") >= 0) {
+//     $event.currentTarget.className = "application applicationUp";
+//   }
+//   if (item.status.indexOf("2-") >= 0) {
+//     $event.currentTarget.className = "application applicationDown";
+//   }
+// };
+//运行控制
+const applicationRunController = () => {
+  applicationRunConttl.value = true;
+};
+const closeApplicationRunController = () => {
+  applicationRunConttl.value = false;
+};
+const openApplicationData = () => {
+  applicationData.value = true;
+};
+const openApplicationInstance = () => {
+  // applicationInstance.value = true;
+  // $nextTick(() => {
+  //   if (!graph) {
+  //     initAntvX6();
+  //   }
+  //   reloadData();
+  // });
+};
+// const checkInfo = () => {
+//   router.push("/fidlddata");
+// };
+const handleDetail = (row: TableData) => {};
+const handleDelete = (row: TableData) => {
+  console.log("删除", row);
+};
+
+const handleOpen = () => {};
+const handleCloseMenu = () => {};
+const handleClose = () => {
+  applicationRunConttl.value = false;
+  applicationData.value = false;
+  applicationInstance.value = false;
+};
+const handlePreview = () => {};
+const handleRemove = () => {};
+const beforeRemove = () => {};
+const handleExceed = () => {};
+// const handlePreview = () => {};
+
+onMounted(() => {
+  // for (let i = 0; i < gaugeChartData.length; i++) {
+  //   gaugeChartFunc(i + 1, gaugeChartData[i]);
+  // }
+});
 </script>
 
 <style lang="less" scoped>
@@ -1753,9 +1285,8 @@ export default {
             border-radius: 8px;
             background: rgba(0, 0, 0, 0.4);
             text-align: center;
-            padding: 36px 80px;
-            :deep(.el-button--mini),
-            .el-button--mini.is-round {
+            padding: 28px 80px;
+            :deep(.el-button, .el-button.is-round) {
               margin: 8px;
             }
           }
@@ -1959,7 +1490,7 @@ export default {
         }
         .storePath {
           :deep(.el-input__inner) {
-            width: 400px;
+            // width: 400px;
           }
         }
         .storeSize {
@@ -1994,8 +1525,8 @@ export default {
 
   .applicationDataClass {
     .operationToolbar {
-      height: 80px;
-      line-height: 80px;
+      height: 40px;
+      line-height: 40px;
       background-color: #eae7e7;
     }
     .operationToolbarTextClass {

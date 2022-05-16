@@ -1,20 +1,20 @@
 <template>
   <el-container>
     <el-aside width="80px" default-active="1">
-      <div v-if="checkUserInfo(1)" :class="changenum==1 ?'ui backgr' :'ui'" @click="todevpent">
-        <img src="../../assets/img/基本信息节点.png">
+      <div v-if="checkUserInfo(1)" :class="changenum == 1 ? 'ui backgr' : 'ui'" @click="todevpent">
+        <img src="../../assets/img/基本信息节点.png" />
         <span>开发模板</span>
       </div>
-      <div v-if="checkUserInfo(1)" :class="changenum==2 ?'ui backgr' :'ui'"  @click="tozjzc">
-        <img src="../../assets/img/发布部署节点.png">
+      <div v-if="checkUserInfo(1)" :class="changenum == 2 ? 'ui backgr' : 'ui'" @click="tozjzc">
+        <img src="../../assets/img/发布部署节点.png" />
         <span>组件注册</span>
       </div>
-      <div v-if="checkUserInfo(1)" :class="changenum==3 ?'ui backgr' :'ui'" @click="tozjgl">
-        <img src="../../assets/img/应用数据节点.png">
+      <div v-if="checkUserInfo(1)" :class="changenum == 3 ? 'ui backgr' : 'ui'" @click="tozjgl">
+        <img src="../../assets/img/应用数据节点.png" />
         <span>组件管理</span>
       </div>
-      <div v-if="checkUserInfo(4)" :class="changenum==3 ?'ui backgr' :'ui'" @click="tozjgl">
-        <img src="../../assets/img/应用数据节点.png">
+      <div v-if="checkUserInfo(4)" :class="changenum == 3 ? 'ui backgr' : 'ui'" @click="tozjgl">
+        <img src="../../assets/img/应用数据节点.png" />
         <span>组件管理</span>
       </div>
     </el-aside>
@@ -45,68 +45,68 @@ export default {
   data() {
     return {
       dis: false,
-      changenum:"1"
+      changenum: "1",
     };
   },
   methods: {
     look() {
       this.dis = !this.dis;
     },
-    todevpent(){
-      this.changenum=1
-      this.$router.push('/componentFactory/ComponentModes')
+    todevpent() {
+      this.changenum = 1;
+      this.$router.push("/componentFactory/ComponentModes");
     },
-    tozjzc(){
-      this.changenum=2
-      this.$router.push('/componentFactory/compoentmangement')
+    tozjzc() {
+      this.changenum = 2;
+      this.$router.push("/componentFactory/compoentmangement");
     },
-    tozjgl(){
-      this.changenum=3
-      if(window.userId == 4){
-        this.$router.push('/componentFactory/componentDevOps')
-      }else{
-        this.$router.push('/componentFactory/component')
+    tozjgl() {
+      this.changenum = 3;
+      if (window.userId == 4) {
+        this.$router.push("/componentFactory/componentDevOps");
+      } else {
+        this.$router.push("/componentFactory/component");
       }
     },
-    checkUserInfo(userId){
-      if(window.userId == userId){
+    checkUserInfo(userId) {
+      if (window.userId == userId) {
         return true;
       }
       return false;
+    },
+  },
+  created() {
+    if (window.userId == 1) {
+      this.changenum = 1;
+      this.$router.push("/componentFactory/componentModes");
+    }
+    if (window.userId == 4) {
+      this.changenum = 4;
+      this.$router.push("/componentFactory/componentDevOps");
     }
   },
-  created(){
-    if(window.userId == 1){
-      this.changenum=1
-      this.$router.push('/componentFactory/componentModes')
-    }
-    if(window.userId == 4){
-      this.changenum=4
-      this.$router.push('/componentFactory/componentDevOps')
-    }
-  }
 };
 </script>
 
 <style lang="less" scoped>
-.backgr{
-  background: #BAD7FF;
+.backgr {
+  background: #bad7ff;
 }
-.ui{
-  display:flex;
-  flex-direction:column;
+.ui {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
   padding: 10px;
   height: 90px;
   cursor: pointer;
-  img{
+  img {
     width: 25px;
   }
-  span{
+  span {
     font-size: 14px;
-    margin-top:10px;
+    margin-top: 10px;
   }
 }
 .displayin {
@@ -137,12 +137,12 @@ export default {
   background: white;
   height: calc(100vh - 52px);
 }
-/deep/.el-step.is-vertical{
+:deep(.el-step.is-vertical) {
   justify-content: center;
   flex-wrap: wrap;
 }
-/deep/.el-step.is-vertical .el-step__title{
+:deep(.el-step.is-vertical .el-step__title) {
   font-size: 14px;
 }
-</style>>
-
+</style>
+>

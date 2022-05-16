@@ -93,20 +93,20 @@
                 <div class="left" id="pie-chart">1</div>
                 <div class="right">
                   <div class="data">
-                    <span class="circle" style="background: #2276fe">.</span><span class="name">业务数据</span>
+                    <span class="circle" style="background: #2276fe"></span><span class="name">业务数据</span>
                   </div>
                   <div class="data">
-                    <span class="circle" style="background: #63f6eb">.</span><span class="name">过程数据</span>
+                    <span class="circle" style="background: #63f6eb"></span><span class="name">过程数据</span>
                   </div>
                   <div class="data">
-                    <span class="circle" style="background: #fecc62">.</span><span class="name">成果数据</span>
+                    <span class="circle" style="background: #fecc62"></span><span class="name">成果数据</span>
                   </div>
                 </div>
               </div>
 
               <div class="bar-chart">
                 <div class="title">
-                  <span class="circle" style="background: #fecc62">.</span><span class="name">成果数据</span>
+                  <span class="circle" style="background: #fecc62"></span><span class="name">成果数据</span>
                 </div>
                 <div id="bar-chart"></div>
               </div>
@@ -122,7 +122,7 @@
               <el-carousel-item v-for="item in 4" :key="item">
                 <div class="applicationRunningInfo">
                   <div class="applicationRunningInfoTop">
-                    <el-image style="margin: 20px" src="../../assets/img/已上架.png"></el-image>
+                    <img style="margin: 20px" src="../../assets/img/已上架.png" />
                     <div style="color: #ffffff">
                       <ul>
                         <li>
@@ -188,17 +188,17 @@
               </div>
               <div class="nearestDataStatusContent">
                 <div class="businessData common">
-                  <el-image src="../../assets/img/用户-业务数据.png"></el-image>
+                  <img src="../../assets/img/用户-业务数据.png" />
                   <span class="commonDataName">业务数据</span>
                   <span class="commonDataNum">05</span>
                 </div>
                 <div class="processData common">
-                  <el-image src="../../assets/img/用户-过程数据.png"></el-image>
+                  <img src="../../assets/img/用户-过程数据.png" />
                   <span class="commonDataName">过程数据</span>
                   <span class="commonDataNum">05</span>
                 </div>
                 <div class="achievementData common">
-                  <el-image src="../../assets/img/用户-成果数据.png"></el-image>
+                  <img src="../../assets/img/用户-成果数据.png" />
                   <span class="commonDataName">成果数据</span>
                   <span class="commonDataNum">05</span>
                 </div>
@@ -213,7 +213,8 @@
                 @mouseenter="appDataMouseenter(ind)"
               >
                 <div class="dataContentItemTop">
-                  <el-image src="../../assets/img/用户-成果数png"></el-image>
+                  <!-- <img src="../../assets/img/用" alt=""> -->
+                  <img src="../../assets/img/用户-成果数据.png" />
                   <span style="margin-left: 10px; font-size: 12px; font-family: Microsoft YaHei; font-weight: bold">{{
                     item.appName
                   }}</span>
@@ -429,23 +430,21 @@ const initDataPieChart = () => {
         radius: ["0%", "60%"],
         startAngle: [90],
         label: {
-          normal: {
-            position: "center",
-            fontSize: 30,
-            color: "#000000",
-            lineHeight: 30,
-            formatter: "{c}",
-            show: true,
-          },
-          emphasis: {
-            //中间文字显示
+          position: "center",
+          fontSize: 30,
+          color: "#000000",
+          lineHeight: 30,
+          formatter: "{c}",
+          show: true,
+        },
+        emphasis: {
+          //中间文字显示
+          label: {
             show: true,
           },
         },
         lableLine: {
-          normal: {
-            show: true,
-          },
+          show: true,
           emphasis: {
             show: false,
           },
@@ -458,25 +457,23 @@ const initDataPieChart = () => {
             value: 256,
             name: "数据总量",
             itemStyle: {
-              normal: {
-                color: {
-                  x: 0,
-                  y: 0,
-                  x2: 1,
-                  y2: 0,
-                  type: "linear",
-                  global: false,
-                  colorStops: [
-                    {
-                      offset: 0,
-                      color: "#E4E8EB",
-                    },
-                    {
-                      offset: 1,
-                      color: "#E4E8EB",
-                    },
-                  ],
-                },
+              color: {
+                x: 0,
+                y: 0,
+                x2: 1,
+                y2: 0,
+                type: "linear",
+                global: false,
+                colorStops: [
+                  {
+                    offset: 0,
+                    color: "#E4E8EB",
+                  },
+                  {
+                    offset: 1,
+                    color: "#E4E8EB",
+                  },
+                ],
               },
             },
           },
@@ -487,42 +484,38 @@ const initDataPieChart = () => {
         radius: ["60%", "80%"],
         startAngle: [224],
         label: {
-          normal: {
-            position: "inner",
-            show: false,
-          },
+          position: "inner",
+          show: false,
         },
         labelLine: {
-          normal: {
-            show: false,
-          },
+          show: false,
         },
         data: [
           {
             value: 12314,
             name: "业务数据",
             itemStyle: {
-              normal: {
-                color: "#2377FE",
-              },
+              // normal: {
+              color: "#2377FE",
+              // },
             },
           },
           {
             value: 6412,
             name: "过程数据",
             itemStyle: {
-              normal: {
-                color: "#63F6EE",
-              },
+              // normal: {
+              color: "#63F6EE",
+              // },
             },
           },
           {
             value: 6412,
             name: "成果数据",
             itemStyle: {
-              normal: {
-                color: "#FDCB65",
-              },
+              // normal: {
+              color: "#FDCB65",
+              // },
             },
           },
         ],
@@ -559,24 +552,22 @@ const initDataBarChart = () => {
         type: "value",
       },
     ],
+    emphasis: {
+      borderRadius: [10, 10, 0, 0],
+    },
+    normal: {
+      borderRadius: [10, 10, 0, 0],
+      color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [
+        { offset: 0, color: "#0177FF" },
+        { offset: 1, color: "#00AAFF" },
+      ]),
+    },
     series: [
       {
         name: "直接访问",
         type: "bar",
         data: [150, 52, 200],
         barWidth: 24,
-        itemStyle: {
-          emphasis: {
-            barBorderRadius: [10, 10, 0, 0],
-          },
-          normal: {
-            barBorderRadius: [10, 10, 0, 0],
-            color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [
-              { offset: 0, color: "#0177FF" },
-              { offset: 1, color: "#00AAFF" },
-            ]),
-          },
-        },
       },
     ],
   });
@@ -1000,15 +991,15 @@ const initDataBarChart = () => {
       padding: 0px 20px 20px 20px;
       height: calc(25%);
       width: calc(100%);
-      /deep/.el-carousel--horizontal {
+      :deep(.el-carousel--horizontal) {
         width: calc(100%);
         height: calc(100%) !important;
       }
-      /deep/.el-carousel__container {
+      :deep(.el-carousel__container) {
         width: calc(100%);
         height: calc(85%) !important;
       }
-      /deep/.el-carousel__indicator--horizontal {
+      :deep(.el-carousel__indicator--horizontal) {
         padding: 25px 4px 0px 4px;
       }
       .applicationRunningInfo {
@@ -1028,7 +1019,7 @@ const initDataBarChart = () => {
           display: flex;
           align-items: center;
           justify-content: space-evenly;
-          /deep/.el-divider--vertical {
+          :deep(.el-divider--vertical) {
             background-color: #7dabff;
             height: 26px;
             width: 1px;
@@ -1104,12 +1095,12 @@ const initDataBarChart = () => {
               margin-left: 15px;
             }
           }
-          .businessData {
-          }
-          .processData {
-          }
-          .achievementData {
-          }
+          // .businessData {
+          // }
+          // .processData {
+          // }
+          // .achievementData {
+          // }
         }
       }
       .dataContent {
@@ -1128,7 +1119,7 @@ const initDataBarChart = () => {
             height: calc(50%);
             align-items: center;
           }
-          /deep/.el-divider--horizontal {
+          :deep(.el-divider--horizontal) {
             margin: 0px;
           }
           .dataContentItemBottom {

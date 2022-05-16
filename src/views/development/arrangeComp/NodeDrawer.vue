@@ -375,10 +375,10 @@ watch(nodeDrawerData, (val) => {
       overflow-y: auto;
       position: relative;
       background: #fff;
-      /deep/.el-collapse-item__header {
+      :deep(.el-collapse-item__header) {
         padding-left: 20px;
       }
-      /deep/.el-collapse-item__arrow {
+      :deep(.el-collapse-item__arrow) {
         margin-left: 30px;
       }
       .r-bottom {
@@ -401,7 +401,7 @@ watch(nodeDrawerData, (val) => {
   width: 40%;
   position: absolute;
 }
-/deep/.el-form-item {
+:deep(.el-form-item) {
   width: 100%;
   margin-bottom: 20px !important;
   display: flex;

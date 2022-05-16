@@ -154,7 +154,7 @@ const compNum = computed(() => {
     }
   }
 }
-// /deep/.el-form-item__content {
+// :deep(.el-form-item__content {
 //   line-height: 20px;
 // }
 

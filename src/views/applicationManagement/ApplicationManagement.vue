@@ -225,7 +225,7 @@ export default {
         font-size: 24px;
         margin: 0 20px;
         margin-right: 30px;
-        /deep/.el-badge__content {
+        :deep(.el-badge__content) {
           border: none;
           top: 6px;
         }
@@ -320,7 +320,7 @@ export default {
           }
         }
         .el-submenu {
-          /deep/.el-submenu__title {
+          :deep(.el-submenu__title ){
             height: 87px;
             justify-content: center;
             position: relative;
@@ -344,7 +344,7 @@ export default {
           }
           &.is-opened,
           &:hover {
-            /deep/.el-submenu__title {
+            :deep(.el-submenu__title) {
               color: #ffffff;
               background-color: #0085f1;
               i {

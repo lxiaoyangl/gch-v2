@@ -1,32 +1,14 @@
 <template>
   <div class="processChoreographer">
-    <div
-      class="addbtn"
-      :style="{ left: editableTabs.length * 115 + 20 + 'px' }"
-    >
-      <el-button
-        size="small"
-        type="primary"
-        round
-        @click="addTab(editableTabsValue)"
-      >
+    <div class="addbtn" :style="{ left: editableTabs.length * 115 + 20 + 'px' }">
+      <el-button size="small" type="primary" round @click="addTab(editableTabsValue)">
         <i class="el-icon-plus"></i>
         新 建
       </el-button>
     </div>
-    <el-tabs
-      v-model="editableTabsValue"
-      type="card"
-      closable
-      @tab-remove="removeTab"
-    >
+    <el-tabs v-model="editableTabsValue" type="card" closable @tab-remove="removeTab">
       <template v-for="(item, i) in editableTabs">
-        <el-tab-pane
-          v-if="i == 0"
-          :key="item.name"
-          :label="item.title"
-          :name="item.name"
-        >
+        <el-tab-pane v-if="i == 0" :key="item.name" :label="item.title" :name="item.name">
           <Table :tableData="tableData" />
           <div class="btm-box">
             <el-button size="small" type="danger">删除</el-button>
@@ -34,12 +16,7 @@
           </div>
         </el-tab-pane>
 
-        <el-tab-pane
-          v-else
-          :key="item.name"
-          :label="item.title"
-          :name="item.name"
-        >
+        <el-tab-pane v-else :key="item.name" :label="item.title" :name="item.name">
           <!-- <Vfd /> -->
         </el-tab-pane>
       </template>
@@ -224,7 +201,7 @@ export default {
   }
   .el-tabs {
     height: 100%;
-    /deep/.el-tabs__content {
+    :deep(.el-tabs__content) {
       background-color: #fff;
       height: calc(100% - 40px);
       .el-tab-pane {

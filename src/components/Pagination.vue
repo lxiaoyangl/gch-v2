@@ -11,22 +11,15 @@
   </el-pagination>
 </template>
 
-<script>
-export default {
-  methods: {
-    handleSizeChange(val) {
-      console.log(`每页 ${val} 条`);
-    },
-    handleCurrentChange(val) {
-      console.log(`当前页: ${val}`);
-    },
-  },
-  data() {
-    return {
-      currentPage: 5,
-    };
-  },
+<script lang="ts" setup>
+let currentPage = 5;
+const handleSizeChange = (val: number) => {
+  console.log(`每页 ${val} 条`);
 };
+const handleCurrentChange = (val: number) => {
+  console.log(`当前页: ${val}`);
+};
+
 </script>
 
 <style lang="less" scoped>

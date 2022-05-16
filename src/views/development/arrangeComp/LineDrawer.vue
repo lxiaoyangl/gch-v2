@@ -162,10 +162,10 @@ export default {
       overflow-y: auto;
       position: relative;
       background: #fff;
-      /deep/.el-collapse-item__header {
+      :deep(.el-collapse-item__header) {
         padding-left: 20px;
       }
-      /deep/.el-collapse-item__arrow {
+      :deep(.el-collapse-item__arrow) {
         margin-left: 30px;
       }
       .r-bottom {
@@ -184,7 +184,7 @@ export default {
       }
     }
   }
-  /deep/.el-form-item {
+  :deep(.el-form-item) {
     // padding: 8px 0;
     // margin: 5px 0;
     border-radius: 2px;
@@ -250,14 +250,14 @@ export default {
   position: absolute;
 }
 .el-descriptions {
-  /deep/.el-descriptions-item__cell {
+  :deep(.el-descriptions-item__cell) {
     padding: 0 !important;
     .el-select {
       width: 100%;
       margin: 0;
     }
   }
-  /deep/.el-descriptions-item__label {
+  :deep(.el-descriptions-item__label) {
     width: 80px;
     text-align: center;
   }

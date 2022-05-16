@@ -46,10 +46,10 @@ export default defineComponent({
   .errorNum {
     width: calc(100%);
     margin-top: calc(55%);
-    /deep/.el-progress-bar__outer {
+    :deep(.el-progress-bar__outer) {
       background: #e3e7eb;
     }
-    /deep/.el-progress-bar__inner {
+    :deep(.el-progress-bar__inner) {
       background: linear-gradient(0deg, #ff6767 0%, #ff8f5d 100%);
       box-shadow: 0px 0px 5px 0px rgba(255, 142, 93, 0.23);
     }

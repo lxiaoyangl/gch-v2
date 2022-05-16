@@ -13,47 +13,34 @@
               type="text"
               maxlength="20"
               v-model="searchKeyword"
-              suffix-icon="el-icon-search"
+              suffix-icon="Search"
             />
           </div>
           <div style="width: 100%">
-            <el-tree
-              style="width: 100%"
-              :data="treeData"
-              :props="defaultProps"
-              default-expand-all
-            >
-              <div class="my-tree-node" slot-scope="{ data }">
-                <img
-                  class="icon"
-                  src="../../../assets/img/dict/文件夹.png"
-                /><span class="text">{{ data.label }}</span>
-                <span class="right-add">
-                  <img src="../../../assets/img/dict/新建1.png" />
-                </span>
-              </div>
+            <el-tree style="width: 100%" :data="treeData" :props="defaultProps" default-expand-all>
+              <template #="{ data }">
+                <div class="my-tree-node">
+                  <img class="icon" src="../../../assets/img/dict/文件夹.png" /><span class="text">{{
+                    data.label
+                  }}</span>
+                  <span class="right-add">
+                    <img src="../../../assets/img/dict/新建1.png" />
+                  </span>
+                </div>
+              </template>
             </el-tree>
           </div>
         </div>
       </el-col>
       <el-col :span="20" class="content">
         <div class="btn-group">
-          <el-button
-            type="primary"
-            icon="el-icon-folder-add"
-            size="small"
-            @click="dialogVisible = true"
-            >新建字典</el-button
-          >
-          <el-button type="text" icon="el-icon-delete" size="small"
-            >删除</el-button
-          ><el-button icon="el-icon-copy-document" size="small">移动</el-button>
+          <el-button type="primary" icon="FolderAdd" @click="dialogVisible = true">新建字典</el-button>
+          <el-button type="text" icon="Delete">删除</el-button><el-button icon="CopyDocument">移动</el-button>
         </div>
         <div class="nav">
-          <i class="el-icon-arrow-left"></i> <i class="el-icon-arrow-right"></i
-          ><i class="el-icon-refresh-right"></i>
+          <i class="ArrowLeft"></i> <i class="ArrowRight"></i><i class="RefreshRight"></i>
           <span class="line"></span>
-          <el-breadcrumb separator-class="el-icon-arrow-right">
+          <el-breadcrumb separator-class="ArrowRight">
             <el-breadcrumb-item>某解调器</el-breadcrumb-item>
             <el-breadcrumb-item>基本信息</el-breadcrumb-item>
             <el-breadcrumb-item>设备类型</el-breadcrumb-item>
@@ -61,12 +48,7 @@
 
           <div class="right">
             <el-select v-model="value" placeholder="请选择">
-              <el-option
-                v-for="item in tableTypeOptions"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              >
+              <el-option v-for="item in tableTypeOptions" :key="item.value" :label="item.label" :value="item.value">
               </el-option>
             </el-select>
 
@@ -76,38 +58,26 @@
               type="text"
               maxlength="20"
               v-model="tableSearchKeyword"
-              suffix-icon="el-icon-search"
+              suffix-icon="Search"
             />
           </div>
         </div>
 
         <div class="table">
-          <el-table
-            :data="tableData"
-            style="width: 100%"
-            @selection-change="handleSelectionChange"
-          >
+          <el-table :data="tableData" style="width: 100%" @selection-change="handleSelectionChange">
             <el-table-column type="selection" width="55"> </el-table-column>
             <el-table-column prop="fileName" label="文件名"> </el-table-column>
-            <el-table-column prop="englishFileName" label="英文名">
-            </el-table-column>
+            <el-table-column prop="englishFileName" label="英文名"> </el-table-column>
             <el-table-column prop="type" label="类型"> </el-table-column>
-            <el-table-column prop="createTime" label="创建时间">
-            </el-table-column>
-            <el-table-column prop="updateTime" label="修改时间">
-            </el-table-column>
+            <el-table-column prop="createTime" label="创建时间"> </el-table-column>
+            <el-table-column prop="updateTime" label="修改时间"> </el-table-column>
           </el-table>
         </div>
       </el-col>
     </el-row>
 
     <!-- 弹出框 查看详情 -->
-    <el-dialog
-      title="提示"
-      :visible.sync="dialogVisible"
-      width="35%"
-      :close-on-press-escape="false"
-    >
+    <el-dialog title="提示" v-model="dialogVisible" width="65%" :close-on-press-escape="false">
       <div class="dict-detail-dialog">
         <div class="header">
           <span class="title">基本信息：</span>
@@ -116,48 +86,25 @@
         <div class="form">
           <el-form :inline="true" :model="form" class="form-inline">
             <el-form-item label="字典名称">
-              <el-input
-                v-model="form.dictName"
-                placeholder="字典名称"
-              ></el-input>
+              <el-input v-model="form.dictName" placeholder="字典名称"></el-input>
             </el-form-item>
             <el-form-item label="字典英文名">
-              <el-input
-                v-model="form.dictEnglishName"
-                placeholder="字典英文名"
-              ></el-input>
+              <el-input v-model="form.dictEnglishName" placeholder="字典英文名"></el-input>
             </el-form-item>
 
             <el-form-item label="字典类型">
-              <el-input
-                v-model="form.dictType"
-                placeholder="字典类型"
-              ></el-input>
+              <el-input v-model="form.dictType" placeholder="字典类型"></el-input>
             </el-form-item>
           </el-form>
           <div class="check-condition"><span>验证条件</span></div>
 
           <el-row class="radio-row" type="flex" align="middle" justify="center">
             <el-col :span="6">
-              <el-radio v-model="form.checkCondtion" label="1"
-                >数值范围</el-radio
-              >
+              <el-radio v-model="form.checkCondtion" label="1">数值范围</el-radio>
             </el-col>
-            <el-col :span="6"
-              ><el-radio v-model="form.checkCondtion" label="2"
-                >枚 举</el-radio
-              ></el-col
-            >
-            <el-col :span="6"
-              ><el-radio v-model="form.checkCondtion" label="3"
-                >Fel算出逻辑</el-radio
-              ></el-col
-            >
-            <el-col :span="6">
-              <el-radio v-model="form.checkCondtion" label="4"
-                >正则逻辑</el-radio
-              ></el-col
-            >
+            <el-col :span="6"><el-radio v-model="form.checkCondtion" label="2">枚 举</el-radio></el-col>
+            <el-col :span="6"><el-radio v-model="form.checkCondtion" label="3">Fel算出逻辑</el-radio></el-col>
+            <el-col :span="6"> <el-radio v-model="form.checkCondtion" label="4">正则逻辑</el-radio></el-col>
           </el-row>
         </div>
 
@@ -166,19 +113,10 @@
             <el-collapse-item title="数值范围" name="1">
               <div class="data">
                 <div class="data-value">
-                  <el-switch
-                    style="width: 40%; margin-top: 10px"
-                    v-model="form.sectionSwitch"
-                    inactive-text="开值闭值"
-                  >
+                  <el-switch style="width: 40%; margin-top: 10px" v-model="form.sectionSwitch" inactive-text="开值闭值">
                   </el-switch>
 
-                  <el-slider
-                    style="width: 40%"
-                    v-model="form.sectionValue"
-                    range
-                    :max="100"
-                  ></el-slider>
+                  <el-slider style="width: 40%" v-model="form.sectionValue" range :max="100"></el-slider>
                 </div>
                 <div>
                   <el-checkbox-group v-model="form.dictSelectedList">
@@ -200,7 +138,7 @@
                         type="text"
                         maxlength="20"
                         v-model="searchKeyword"
-                        suffix-icon="el-icon-search"
+                        suffix-icon="Search"
                       />
                     </div>
                     <div class="left-menu">
@@ -228,8 +166,7 @@
                           <el-checkbox label="全选" name="all"></el-checkbox>
                           <el-checkbox label="已选" name="all"></el-checkbox>
                           <span style="margin-left: 20px; font-size: 14px"
-                            ><i class="el-icon-delete"></i
-                            ><span class="delete">删除</span></span
+                            ><i class="Delete"></i><span class="delete">删除</span></span
                           >
                         </el-col>
                         <el-col :span="4" class="selected-count">
@@ -265,24 +202,18 @@
                         type="text"
                         maxlength="20"
                         v-model="searchKeyword"
-                        suffix-icon="el-icon-search"
+                        suffix-icon="Search"
                       />
                     </div>
                     <div class="create">
                       <el-row>
                         <el-col :span="16">
-                          <el-select
-                            style="width: 90%"
-                            v-model="value"
-                            placeholder="全部类型"
-                          >
+                          <el-select style="width: 90%" v-model="value" placeholder="全部类型">
                             <el-option key="1" label="" value="1"> </el-option>
                           </el-select>
                         </el-col>
                         <el-col :span="8">
-                          <el-button class="btn" type="primary" size="mini"
-                            >创建</el-button
-                          >
+                          <el-button class="btn" type="primary">创建</el-button>
                         </el-col>
                       </el-row>
                     </div>
@@ -340,32 +271,19 @@
                   </el-col>
                   <el-col :span="12">
                     <div class="form">
-                      <el-form
-                        ref="form"
-                        :model="felForm"
-                        label-width="80px"
-                        label-position="top"
-                        size="mini"
-                      >
+                      <el-form ref="form" :model="felForm" label-width="80px" label-position="top">
                         <el-form-item label="公式名称" style="width: 100%">
-                          <el-input
-                            type="text"
-                            v-model="felForm.name"
-                          ></el-input>
+                          <el-input type="text" v-model="felForm.name"></el-input>
                         </el-form-item>
 
                         <el-form-item label="公式预览" style="width: 100%">
-                          <el-input
-                            type="textarea"
-                            :rows="4"
-                            v-model="felForm.preview"
-                          ></el-input>
+                          <el-input type="textarea" :rows="4" v-model="felForm.preview"></el-input>
                         </el-form-item>
 
                         <div class="form-btn">
-                          <el-button type="danger" size="mini">重置</el-button>
-                          <el-button type="info" size="mini">保存</el-button>
-                          <el-button type="primary" size="mini">确认</el-button>
+                          <el-button type="danger">重置</el-button>
+                          <el-button type="info">保存</el-button>
+                          <el-button type="primary">确认</el-button>
                         </div>
                       </el-form>
                     </div>
@@ -380,23 +298,16 @@
                           type="text"
                           maxlength="20"
                           v-model="searchKeyword"
-                          suffix-icon="el-icon-search"
+                          suffix-icon="Search"
                         />
                       </el-col>
                       <el-col :span="12">
-                        <el-select
-                          style="width: 90%"
-                          v-model="value"
-                          placeholder="全部类型"
-                        >
+                        <el-select style="width: 90%" v-model="value" placeholder="全部类型">
                           <el-option key="1" label="" value="1"> </el-option>
                         </el-select>
                       </el-col>
                     </el-row>
-                    <div class="title2">
-                      <span class="symbol"></span
-                      ><span class="text">算法类型</span>
-                    </div>
+                    <div class="title2"><span class="symbol"></span><span class="text">算法类型</span></div>
                     <div class="algo">
                       <span class="algo-item active">左括号</span>
                       <span class="algo-item">右括号</span>
@@ -408,10 +319,7 @@
                       <span class="algo-item">相 除</span>
                     </div>
 
-                    <div class="title2">
-                      <span class="symbol"></span
-                      ><span class="text">算法类型</span>
-                    </div>
+                    <div class="title2"><span class="symbol"></span><span class="text">算法类型</span></div>
                     <div class="algo">
                       <span class="algo-item active">左括号</span>
                       <span class="algo-item">右括号</span>
@@ -428,126 +336,114 @@
             </el-collapse-item>
             <el-collapse-item title="正则逻辑" name="4">
               <div class="regular">
-                <el-input
-                  class="input"
-                  type="textarea"
-                  :rows="10"
-                  placeholder="请输入正则逻辑"
-                  v-model="textarea"
-                >
+                <el-input class="input" type="textarea" :rows="10" placeholder="请输入正则逻辑" v-model="textarea">
                 </el-input>
               </div>
             </el-collapse-item>
           </el-collapse>
         </div>
       </div>
-      <span slot="footer" class="dialog-footer">
+      <template #footer>
         <el-button @click="dialogVisible = false">取 消</el-button>
-        <el-button type="primary" @click="dialogVisible = false"
-          >确 定</el-button
-        >
-      </span>
+        <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+      </template>
     </el-dialog>
   </div>
 </template>
-<script>
-export default {
-  name: "dictionary",
-  data() {
-    return {
-      dialogVisible: false,
-      treeSearchKeyword: "",
-      tableSearchKeyword: "",
-      multipleSelection: [],
-      tableTypeOptions: [
-        {
-          value: "选项1",
-          label: "黄金糕",
-        },
-        {
-          value: "选项2",
-          label: "双皮奶",
-        },
-        {
-          value: "选项3",
-          label: "蚵仔煎",
-        },
-        {
-          value: "选项4",
-          label: "龙须面",
-        },
-        {
-          value: "选项5",
-          label: "北京烤鸭",
-        },
-      ],
-      treeData: [
-        {
-          label: "某解调器",
-          children: [
-            {
-              label: "基本信息",
-              children: [
-                {
-                  label: "设备类型",
-                },
-                {
-                  label: "内部结构",
-                },
-              ],
-            },
-          ],
-        },
-      ],
-      tableData: [
-        {
-          fileName: "设备类型",
-          englishFileName: "Device Type",
-          type: "数字",
-          createTime: "2021/07/01",
-          updateTime: "2021/07/02",
-        },
-        {
-          fileName: "设备类型",
-          englishFileName: "Device Type",
-          type: "数字",
-          createTime: "2021/07/01",
-          updateTime: "2021/07/02",
-        },
-        {
-          fileName: "设备类型",
-          englishFileName: "Device Type",
-          type: "数字",
-          createTime: "2021/07/01",
-          updateTime: "2021/07/02",
-        },
-      ],
-      defaultProps: {
-        children: "children",
-        label: "label",
-      },
-      form: {
-        dictName: "",
-        dictEnglishName: "",
-        type: "",
-        checkCondtion: "",
-        dictSelectedList: "",
-        sectionSwitch: true,
-        sectionValue: [20, 70],
-      },
-      felForm: {
-        name: "",
-        preview: "",
-      },
-    };
+<script lang="ts" setup>
+import { Search, FolderAdd, Delete, CopyDocument, RefreshRight, ArrowLeft, ArrowRight } from "@element-plus/icons-vue";
+import { ref } from "vue";
+
+let dialogVisible = ref(false);
+let treeSearchKeyword = "";
+let tableSearchKeyword = "";
+let multipleSelection = [];
+let value = "";
+let searchKeyword = "";
+let textarea = "";
+let tableTypeOptions = [
+  {
+    value: "选项1",
+    label: "黄金糕",
   },
-  created() {},
-  mounted() {},
-  methods: {
-    handleSelectionChange: function (val) {
-      this.multipleSelection = val;
-    },
+  {
+    value: "选项2",
+    label: "双皮奶",
   },
+  {
+    value: "选项3",
+    label: "蚵仔煎",
+  },
+  {
+    value: "选项4",
+    label: "龙须面",
+  },
+  {
+    value: "选项5",
+    label: "北京烤鸭",
+  },
+];
+let treeData = [
+  {
+    label: "某解调器",
+    children: [
+      {
+        label: "基本信息",
+        children: [
+          {
+            label: "设备类型",
+          },
+          {
+            label: "内部结构",
+          },
+        ],
+      },
+    ],
+  },
+];
+let tableData = [
+  {
+    fileName: "设备类型",
+    englishFileName: "Device Type",
+    type: "数字",
+    createTime: "2021/07/01",
+    updateTime: "2021/07/02",
+  },
+  {
+    fileName: "设备类型",
+    englishFileName: "Device Type",
+    type: "数字",
+    createTime: "2021/07/01",
+    updateTime: "2021/07/02",
+  },
+  {
+    fileName: "设备类型",
+    englishFileName: "Device Type",
+    type: "数字",
+    createTime: "2021/07/01",
+    updateTime: "2021/07/02",
+  },
+];
+let defaultProps = {
+  children: "children",
+  label: "label",
+};
+let form = {
+  dictName: "",
+  dictEnglishName: "",
+  type: "",
+  checkCondtion: "",
+  dictSelectedList: [],
+  sectionSwitch: true,
+  dictType: "",
+  sectionValue: [20, 70],
+};
+let felForm = {
+  name: "",
+  preview: "",
+};
+const handleSelectionChange = (val: any) => {
+  multipleSelection = val;
 };
 </script>
 <style lang="less" scoped>
@@ -566,7 +462,7 @@ export default {
     .search {
       border-bottom: 1px solid #dbdbdb;
 
-      /deep/.el-input__inner {
+      :deep(.el-input__inner) {
         background: #ffffff !important;
         border: none !important;
       }
@@ -640,7 +536,7 @@ export default {
       justify-content: flex-start;
       align-items: center;
 
-      /deep/.el-input__inner {
+      :deep(.el-input__inner) {
         background: #ffffff !important;
         border: none !important;
       }
@@ -684,7 +580,7 @@ export default {
     }
     .form {
       .form-inline {
-        /deep/.el-form-item {
+        :deep(.el-form-item) {
           margin: 10px;
         }
       }
@@ -714,11 +610,11 @@ export default {
     }
 
     .collapse {
-      /deep/.el-collapse-item__header {
+      :deep(.el-collapse-item__header) {
         color: #b4b4b4;
         padding-left: 10px;
       }
-      /deep/.is-active {
+      :deep(.is-active) {
         color: #313131;
       }
 
@@ -731,7 +627,7 @@ export default {
         height: 250px;
         overflow: hidden;
         .search {
-          /deep/.el-input__inner {
+          :deep(.el-input__inner) {
             background: #ffffff !important;
             border: none !important;
           }
@@ -799,7 +695,7 @@ export default {
             padding: 10px;
             height: 100%;
 
-            /deep/.el-checkbox__label {
+            :deep(.el-checkbox__label) {
               font-size: 12px;
               font-family: Microsoft YaHei;
               font-weight: 400;
@@ -824,7 +720,7 @@ export default {
       overflow: hidden;
 
       .search {
-        /deep/.el-input__inner {
+        :deep(.el-input__inner) {
           background: #ffffff !important;
           border: none !important;
         }
@@ -875,7 +771,7 @@ export default {
       }
 
       .create {
-        /deep/.el-input__inner {
+        :deep(.el-input__inner) {
           background: #ffffff !important;
           border: none !important;
         }
@@ -889,7 +785,7 @@ export default {
         height: 250px;
         background: #f6f7f8;
         padding: 10px;
-        /deep/.el-input__inner {
+        :deep(.el-input__inner) {
           background: #ffffff !important;
         }
 
@@ -904,7 +800,7 @@ export default {
         height: 250px;
         overflow: scroll;
 
-        /deep/.el-input__inner {
+        :deep(.el-input__inner) {
           background: #ffffff !important;
           border: none !important;
         }
@@ -969,7 +865,7 @@ export default {
   }
 }
 
-/deep/.el-tree-node__content {
+:deep(.el-tree-node__content) {
   height: 40px;
 }
 </style>

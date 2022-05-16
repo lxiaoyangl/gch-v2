@@ -339,7 +339,7 @@ export default {
         .el-form-item {
           margin-bottom: 20px !important;
           margin-right: 0 !important;
-          /deep/ .el-form-item__content {
+          :deep( .el-form-item__content) {
             width: calc(80% - 130px) !important;
           }
         }

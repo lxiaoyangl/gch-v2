@@ -265,13 +265,13 @@ export default {
       width: 100%;
       background: white;
       height: 55px;
-      /deep/.el-radio-button__inner {
+      :deep(.el-radio-button__inner) {
         line-height: 30px;
         height: 55px;
         border: none;
         border-radius: 0;
       }
-      /deep/.bor {
+      :deep(.bor) {
         border: none;
       }
     }

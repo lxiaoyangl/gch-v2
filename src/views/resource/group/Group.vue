@@ -732,7 +732,7 @@ export default {
         font-weight: 700;
       }
       .groupTable {
-        /deep/.el-table {
+        :deep(.el-table) {
           border-top-left-radius: 10px;
           border-bottom-left-radius: 10px;
         }
@@ -780,11 +780,11 @@ export default {
           display: flex;
           align-items: center;
           color: #868686;
-          /deep/.el-input {
+          :deep(.el-input) {
             width: 65%;
           }
         }
-        /deep/.el-divider--horizontal {
+        :deep(.el-divider--horizontal) {
           margin: 5px 0;
         }
         .serch {
@@ -795,14 +795,14 @@ export default {
             justify-content: space-between;
           }
           .body {
-            /deep/.el-select {
+            :deep(.el-select) {
               margin: 1%;
               width: 30%;
             }
-            /deep/.el-checkbox:not(:first-child) {
+            :deep(.el-checkbox:not(:first-child)) {
               margin-left: 5%;
             }
-            /deep/.el-slider {
+            :deep(.el-slider) {
               width: 50%;
               margin: 0 5%;
             }
@@ -878,7 +878,7 @@ export default {
     }
   }
 
-  // /deep/.el-select{
+  // :deep(.el-select){
   //   margin: 1%;
   // }
 

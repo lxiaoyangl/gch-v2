@@ -8,8 +8,10 @@
       style="width: 100%"
       :height="height"
     >
-      <el-table-column v-if="columnType != 'none'" :type="columnType" width="55"> </el-table-column>
+      <el-table-column show-overflow-tooltip v-if="columnType != 'none'" :type="columnType" width="55">
+      </el-table-column>
       <el-table-column
+        show-overflow-tooltip
         v-for="(item, index) in tableHeader"
         :key="index"
         :prop="item.prop"

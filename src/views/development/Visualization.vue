@@ -234,7 +234,7 @@ export default {
     height: 30px;
     width: 100px;
   }
-  /deep/.el-collapse-item__arrow {
+  :deep(.el-collapse-item__arrow) {
     margin: 0 8px 0 8px;
   }
 }
