@@ -71,33 +71,24 @@
     <div class="cont-bottom">
       <el-button type="primary" @click="finish">完 成</el-button>
       <el-button type="info">上一步</el-button>
-      <el-button type="success"><i class="delete el-icon-document-copy"></i> 保存草稿</el-button>
+      <el-button type="success">
+        <el-icon class="delete"><DocumentCopy /></el-icon>
+        <span>保存草稿</span>
+      </el-button>
     </div>
   </div>
 </template>
 
-<script>
-export default {
-  name: "",
+<script lang="ts" setup>
+import { useRouter } from "vue-router";
+import { DocumentCopy } from "@element-plus/icons-vue";
 
-  components: {},
+let activeNames: ["1", "2"];
+let webdata: "";
 
-  directives: {},
-
-  data() {
-    return {
-      activeNames: ["1", "2"],
-      webdata: "",
-    };
-  },
-
-  mounted() {},
-
-  methods: {
-    finish() {
-      this.$router.push("/fidlddata/appDevlopFinish");
-    },
-  },
+const router = useRouter();
+const finish = () => {
+  router.push("/fidlddata/appDevlopFinish");
 };
 </script>
 

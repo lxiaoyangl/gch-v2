@@ -3,11 +3,11 @@
     <el-drawer
       :with-header="false"
       size="100%"
-      :modal="false"
       :destroy-on-close="true"
       v-model="flowDrawer"
       direction="rtl"
       modal-class="drawer-modal"
+      :modal="false"
     >
       <div class="cont-deploy">
         <div class="right">
@@ -64,10 +64,23 @@
 <script setup lang="ts">
 import { Graph, Shape, Addon, NodeView } from "@antv/x6";
 import { onMounted, ref, computed } from "vue";
-const { flowDrawerData, flowDrawer } = withDefaults(defineProps(), {
-  flowDrawer: false,
-  flowDrawerData: {},
+
+// let { nodeDrawer, nodeDrawerData } = defineProps({
+//   nodeDrawer: {
+//     type: Boolean,
+//     default: false,
+//   },
+const { flowDrawerData, flowDrawer } = defineProps({
+  flowDrawer: {
+    type: Boolean,
+    default: false,
+  },
+  flowDrawerData: {
+    type: Object,
+    default: () => ({}),
+  },
 });
+// console.log(flowDrawer);
 
 let activeNames = ref(["1", "2"]);
 // let childrenActiveNames = ref(["11", "12", "13"]);

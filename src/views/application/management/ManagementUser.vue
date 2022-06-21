@@ -48,7 +48,7 @@
             <el-input
               style="width: 250px"
               placeholder="输入应用名称或创建人"
-              suffix-icon="el-icon-search"
+              suffix-icon="Search"
               v-model="search_task"
             >
             </el-input>
@@ -147,7 +147,7 @@
                     <el-option label="失败" value="2"></el-option>
                     <el-option label="异常" value="3"></el-option>
                   </el-select>
-                  <el-button slot="append" icon="el-icon-search"></el-button>
+                  <el-button slot="append" icon="Search"></el-button>
                 </el-input>
               </div>
               <div>
@@ -183,7 +183,11 @@
                 </div>
                 <div class="flowLog">
                   <div class="flowLogTitle">
-                    <span>流程日志</span><span style="float: right"><i class="el-icon-view"></i>隐藏</span>
+                    <span>流程日志</span>
+                    <span style="float: right">
+                      <el-icon> <View /></el-icon>
+                      <span>隐藏</span>
+                    </span>
                   </div>
                   <div class="flowLogContent">
                     <div class="flowLogContentItem" v-for="(item, index) in componentLog" :key="index">
@@ -202,8 +206,7 @@
                     <el-collapse-item name="1">
                       <template slot="title">
                         <el-button class="collapseButton" type="primary">基本信息</el-button>
-                        <i class="el-icon-minus"></i>
-                        <i class="el-icon-minus"></i>
+                        <el-icon><Minus /><Minus /></el-icon>
                         <span>收起</span>
                       </template>
                       <div>
@@ -220,8 +223,7 @@
                     <el-collapse-item name="2">
                       <template slot="title">
                         <el-button class="collapseButton" type="primary">运行参数</el-button>
-                        <i class="el-icon-minus"></i>
-                        <i class="el-icon-minus"></i>
+                        <el-icon><Minus /><Minus /></el-icon>
                         <span>收起</span>
                       </template>
                       <div>
@@ -237,8 +239,7 @@
                     <el-collapse-item name="3">
                       <template slot="title">
                         <span><el-button class="collapseButton" type="primary">接口说明</el-button> </span>
-                        <i class="el-icon-minus"></i>
-                        <i class="el-icon-minus"></i>
+                        <el-icon><Minus /><Minus /></el-icon>
                         <span> 收起 </span>
                       </template>
                       <div>
@@ -300,15 +301,11 @@
         <div class="searchToolbar">
           <el-row>
             <el-col :span="10">
-              <!-- <i class="el-icon-arrow-left mgL20"></i>
-              <i class="el-icon-arrow-right mgL20"></i>
-              <i class="el-icon-refresh-right mgL20"></i> -->
               <el-icon class="mgL20"><ArrowLeft /> </el-icon>
               <el-icon class="mgL20"><ArrowRight /> </el-icon>
               <el-icon class="mgL20"><RefreshRight /> </el-icon>
               <span class="mgL20">全部数据</span>
               <el-icon class="mgL20"><ArrowRight /> </el-icon>
-              <!-- <i class="el-icon-arrow-right mgL20"></i> -->
             </el-col>
             <el-col :span="14">
               <el-select style="width: 160px" v-model="allZT" placeholder="全部类型">
@@ -323,12 +320,7 @@
                 end-placeholder="结束日期"
               >
               </el-date-picker>
-              <el-input
-                style="width: 250px"
-                placeholder="输入关键词搜索"
-                suffix-icon="el-icon-search"
-                v-model="search_task"
-              >
+              <el-input style="width: 250px" placeholder="输入关键词搜索" suffix-icon="Search" v-model="search_task">
               </el-input>
             </el-col>
           </el-row>
@@ -513,6 +505,8 @@ import {
   SetUp,
   Guide,
   Coin,
+  Search,
+  Minus,
 } from "@element-plus/icons-vue";
 import { AllMain, TableData, OptionType } from "./types";
 

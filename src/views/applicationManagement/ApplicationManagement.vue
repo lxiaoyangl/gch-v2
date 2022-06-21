@@ -5,12 +5,12 @@
       <div class="right">
         <div class="msg">
           <el-badge :value="12" :max="99" class="item">
-            <i class="el-icon-message"></i>
+            <el-icon><Message /></el-icon>
           </el-badge>
         </div>
         <div class="user">
           <div class="avat">
-            <i class="el-icon-user-solid"></i>
+            <el-icon><User /></el-icon>
           </div>
           <span>管理员xxx</span>
         </div>
@@ -21,12 +21,7 @@
         <div class="top">
           <div class="form">
             <el-input v-model="formData.name" size="mini"></el-input>
-            <el-select
-              class="mt10 mr10"
-              v-model="formData.type"
-              size="mini"
-              placeholder="【应用类型】"
-            >
+            <el-select class="mt10 mr10" v-model="formData.type" size="mini" placeholder="【应用类型】">
               <el-option value="1" label="1"></el-option>
               <el-option value="2" label="2"></el-option>
             </el-select>
@@ -43,17 +38,9 @@
             </div>
           </div>
         </div>
-        <el-menu
-          class="title-menu"
-          :default-active="activeIndex"
-          @select="handleSelect"
-        >
+        <el-menu class="title-menu" :default-active="activeIndex" @select="handleSelect">
           <template v-for="(item, i) in routeList">
-            <el-submenu
-              :index="'0' + i"
-              v-if="item.children && item.children.length > 0"
-              :key="i"
-            >
+            <el-submenu :index="'0' + i" v-if="item.children && item.children.length > 0" :key="i">
               <template slot="title">{{ item.name }}</template>
               <el-menu-item
                 class="title-submenu"
@@ -66,7 +53,7 @@
                 </router-link></el-menu-item
               >
             </el-submenu>
-            <el-menu-item v-else :index="'0' + i" :key="i">
+            <el-menu-item v-else :index="'0' + i" :key="'' + i">
               <router-link :to="item.path">{{ item.name }}</router-link>
             </el-menu-item>
           </template>
@@ -82,118 +69,118 @@
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      activeIndex: "",
-      isActive: 0,
-      routeList: [],
-      formData: {
-        name: "应用名称",
-        type: "",
-      },
-      errData: [
-        {
-          name: "名称",
-          msg: "异常信息ssssssssssssssssssssssssssssssssssssssssssssss...",
-          time: "11-20",
-          lv: "lv1",
-        },
-        {
-          name: "名称",
-          msg: "异常信息...",
-          time: "11-20",
-          lv: "lv1",
-        },
-        {
-          name: "名称",
-          msg: "异常信息...",
-          time: "11-20",
-          lv: "lv1",
-        },
-        {
-          name: "名称",
-          msg: "异常信息...",
-          time: "11-20",
-          lv: "lv1",
-        },
-        {
-          name: "名称",
-          msg: "异常信息...",
-          time: "11-20",
-          lv: "lv2",
-        },
-        {
-          name: "名称",
-          msg: "异常信息...",
-          time: "11-20",
-          lv: "lv2",
-        },
-        {
-          name: "名称",
-          msg: "异常信息...",
-          time: "11-20",
-          lv: "lv2",
-        },
-        {
-          name: "名称",
-          msg: "异常信息...",
-          time: "11-20",
-          lv: "lv2",
-        },
-        {
-          name: "名称",
-          msg: "异常信息...",
-          time: "11-20",
-          lv: "lv2",
-        },
-        {
-          name: "名称",
-          msg: "异常信息...",
-          time: "11-20",
-          lv: "lv2",
-        },
-        {
-          name: "名称",
-          msg: "异常信息...",
-          time: "11-20",
-          lv: "lv2",
-        },
-        {
-          name: "名称",
-          msg: "异常信息...",
-          time: "11-20",
-          lv: "lv2",
-        },
-        {
-          name: "名称",
-          msg: "异常信息...",
-          time: "11-20",
-          lv: "lv2",
-        },
-      ],
-    };
-  },
-  created() {
-    this.routeList = this.$router.options.routes[3].children;
+<script lang="ts" setup>
+import { Message, User } from "@element-plus/icons-vue";
+import { reactive } from "vue";
+import { useRouter, RouteRecordRaw } from "vue-router";
 
-    let onNum = localStorage.getItem("activeChildNav");
-    if (onNum) {
-      this.activeIndex = onNum;
-    } else {
-      this.activeIndex = "00";
-      this.$router.push("/applicationManagement/applicationOfMonitoring");
-    }
+let activeIndex = "";
+let isActive = 0;
+let routeList: RouteRecordRaw[] = reactive([]);
+let formData = {
+  name: "应用名称",
+  type: "",
+};
+let errData = [
+  {
+    name: "名称",
+    msg: "异常信息ssssssssssssssssssssssssssssssssssssssssssssss...",
+    time: "11-20",
+    lv: "lv1",
   },
-  methods: {
-    changeNav(num) {
-      this.isActive = num;
-    },
-    handleSelect(key) {
-      localStorage.setItem("activeChildNav", key);
-    },
+  {
+    name: "名称",
+    msg: "异常信息...",
+    time: "11-20",
+    lv: "lv1",
   },
+  {
+    name: "名称",
+    msg: "异常信息...",
+    time: "11-20",
+    lv: "lv1",
+  },
+  {
+    name: "名称",
+    msg: "异常信息...",
+    time: "11-20",
+    lv: "lv1",
+  },
+  {
+    name: "名称",
+    msg: "异常信息...",
+    time: "11-20",
+    lv: "lv2",
+  },
+  {
+    name: "名称",
+    msg: "异常信息...",
+    time: "11-20",
+    lv: "lv2",
+  },
+  {
+    name: "名称",
+    msg: "异常信息...",
+    time: "11-20",
+    lv: "lv2",
+  },
+  {
+    name: "名称",
+    msg: "异常信息...",
+    time: "11-20",
+    lv: "lv2",
+  },
+  {
+    name: "名称",
+    msg: "异常信息...",
+    time: "11-20",
+    lv: "lv2",
+  },
+  {
+    name: "名称",
+    msg: "异常信息...",
+    time: "11-20",
+    lv: "lv2",
+  },
+  {
+    name: "名称",
+    msg: "异常信息...",
+    time: "11-20",
+    lv: "lv2",
+  },
+  {
+    name: "名称",
+    msg: "异常信息...",
+    time: "11-20",
+    lv: "lv2",
+  },
+  {
+    name: "名称",
+    msg: "异常信息...",
+    time: "11-20",
+    lv: "lv2",
+  },
+];
+const router = useRouter();
+
+const created = () => {
+  routeList = router.options.routes[3].children as RouteRecordRaw[];
+
+  let onNum = localStorage.getItem("activeChildNav");
+  if (onNum) {
+    activeIndex = onNum;
+  } else {
+    activeIndex = "00";
+    router.push("/applicationManagement/applicationOfMonitoring");
+  }
+};
+created();
+
+const changeNav = (num: number) => {
+  isActive = num;
+};
+const handleSelect = (key: string) => {
+  localStorage.setItem("activeChildNav", key);
 };
 </script>
 <style lang="less" scoped>
@@ -320,7 +307,7 @@ export default {
           }
         }
         .el-submenu {
-          :deep(.el-submenu__title ){
+          :deep(.el-submenu__title) {
             height: 87px;
             justify-content: center;
             position: relative;

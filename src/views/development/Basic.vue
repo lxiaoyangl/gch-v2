@@ -198,10 +198,8 @@
             <div>
               <div class="tcpTitle pdTop">
                 <el-divider direction="vertical"></el-divider>
-                <span>tcp</span> &nbsp;&nbsp;---&nbsp;&nbsp; <span>收起</span>&nbsp;&nbsp;&nbsp;&nbsp;<i
-                  class="el-icon-arrow-up"
-                >
-                </i>
+                <span>tcp</span> &nbsp;&nbsp;---&nbsp;&nbsp; <span>收起</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                <el-icon><ArrowUp /></el-icon>
               </div>
               <div class="pdTop" style="margin-left: 20px">
                 <span>监听端口：</span>
@@ -214,10 +212,8 @@
             <div>
               <div class="httpTitle pdTop">
                 <el-divider direction="vertical"></el-divider>
-                <span>http</span> &nbsp;&nbsp;---&nbsp;&nbsp; <span>收起</span>&nbsp;&nbsp;&nbsp;&nbsp;<i
-                  class="el-icon-arrow-up"
-                >
-                </i>
+                <span>http</span> &nbsp;&nbsp;---&nbsp;&nbsp; <span>收起</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                <el-icon><ArrowUp /></el-icon>
               </div>
               <div class="pdTop" style="margin-left: 20px">
                 <span>监听端口：</span>
@@ -245,7 +241,10 @@
     <div class="cont-bottom">
       <el-button type="primary" @click="next"> 下一步</el-button>
       <!-- <el-button type="info" @click="up">上一步</el-button> -->
-      <el-button type="success"><i class="delete el-icon-document-copy"></i> 保存草稿</el-button>
+      <el-button type="success">
+        <el-icon><DocumentCopy /></el-icon>
+        <span>保存草稿</span>
+      </el-button>
     </div>
 
     <!-- 资源申请 -->
@@ -264,38 +263,38 @@
           <el-collapse-item name="1">
             <template #title>
               <span style="font-weight: bold; color: #000">资源申请一</span>
-              <span style="margin-left: 10px" @click="addResouceSelect"
-                ><i class="el-icon-circle-plus-outline" style="color: blue"></i
-              ></span>
+              <span style="margin-left: 10px" @click="addResouceSelect">
+                <el-icon style="color: blue"><CirclePlus /></el-icon>
+              </span>
             </template>
-            <el-form :inline="true" :model="ResourceformInline">
-              <el-form-item label="资源类型：" label-width="80px">
+            <el-form :inline="true" :model="ResourceformInline" label-width="100px">
+              <el-form-item label="资源类型：">
                 <el-input class="resourceInput" v-model="ResourceformInline.user" placeholder="资源类型"></el-input>
               </el-form-item>
-              <el-form-item label="资源数量：" label-width="80px" class="resourceRightItem">
+              <el-form-item label="资源数量：" class="resourceRightItem">
                 <el-input class="resourceInput" v-model="ResourceformInline.number" placeholder="资源数量"></el-input>
               </el-form-item>
               <div style="border-top: 1px #e4e4e4 dashed; width: 100%; margin: 10px 0 10px 0"></div>
-              <el-form-item label="操作系统：" label-width="80px">
+              <el-form-item label="操作系统：">
                 <el-select class="resourceInput" v-model="ResourceformInline.os" placeholder="选择操作系统">
                   <el-option label="windows" value="windows"></el-option>
                   <el-option label="linux" value="linux"></el-option>
                 </el-select>
               </el-form-item>
-              <el-form-item label="最小CPU：" label-width="80px" class="resourceRightItem">
+              <el-form-item label="最小CPU：" class="resourceRightItem">
                 <el-input class="resourceInput" v-model="ResourceformInline.minCpu" placeholder="最小CPU"></el-input>
               </el-form-item>
-              <el-form-item label="最小内存：" label-width="80px">
+              <el-form-item label="最小内存：">
                 <el-input
                   class="resourceInput"
                   v-model="ResourceformInline.minMemeroy"
                   placeholder="最小内存"
                 ></el-input>
               </el-form-item>
-              <el-form-item label="最小磁盘：" label-width="80px" class="resourceRightItem">
+              <el-form-item label="最小磁盘：" class="resourceRightItem">
                 <el-input class="resourceInput" v-model="ResourceformInline.minDisk" placeholder="最小磁盘"></el-input>
               </el-form-item>
-              <el-form-item label="处理器：" label-width="80px">
+              <el-form-item label="处理器：">
                 <el-select class="resourceInput" v-model="ResourceformInline.cpuType" placeholder="处 理 器">
                   <el-option label="I5" value="I5"></el-option>
                   <el-option label="I6" value="I6"></el-option>
@@ -308,12 +307,12 @@
           <el-collapse-item :name="index + 1" v-for="(item, index) in addResouceSelectData" :key="index">
             <template #title>
               <span style="font-weight: bold; color: #000">资源申请{{ resourceItemName[index + 1] }}</span>
-              <span style="margin-left: 10px" @click="removeResourceSelect(index)"
-                ><i class="el-icon-remove-outline" style="color: red"></i
-              ></span>
-              <span style="margin-left: 10px" @click="addResouceSelect"
-                ><i class="el-icon-circle-plus-outline" style="color: blue"></i
-              ></span>
+              <span style="margin-left: 10px" @click="removeResourceSelect(index)">
+                <el-icon style="color: red"><Remove /></el-icon>
+              </span>
+              <span style="margin-left: 10px" @click="addResouceSelect">
+                <el-icon style="color: blue"><CirclePlus /></el-icon>
+              </span>
             </template>
             <el-form :inline="true" :model="item">
               <el-form-item label="资源类型：" label-width="80px">
@@ -403,7 +402,7 @@
 <script lang="ts" setup>
 import Table from "./comp/Table.vue";
 import { useRouter } from "vue-router";
-import { UploadFilled } from "@element-plus/icons-vue";
+import { UploadFilled, Remove, CirclePlus, ArrowUp, DocumentCopy } from "@element-plus/icons-vue";
 import { ref } from "vue";
 
 let activeNames = ["1", "2"];
@@ -450,8 +449,8 @@ let ResourceformInline = {
   cpuType: "",
 };
 let labelPosition = "right";
-let resourceApplay = false;
-let resourceGroup = false;
+let resourceApplay = ref(false);
+let resourceGroup = ref(false);
 let addResouceSelectData: {
   user: string;
   number: string;
@@ -633,11 +632,19 @@ let tableData = [
 ];
 let router = useRouter();
 const handleClose = () => {
-  resourceApplay = false;
-  resourceGroup = false;
+  resourceApplay.value = false;
+  resourceGroup.value = false;
 };
 const addResouceSelect = () => {
-  addResouceSelectData.push({});
+  addResouceSelectData.push({
+    user: "string",
+    number: "string",
+    os: "string",
+    minCpu: "string",
+    minMemeroy: "string",
+    minDisk: "string",
+    cpuType: "string",
+  });
   resourceActiveNames[0] = String(addResouceSelectData.length + 1);
 };
 const removeResourceSelect = (index: number) => {

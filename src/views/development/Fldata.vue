@@ -43,8 +43,7 @@
             <el-collapse-item>
               <template #title>
                 <span>应用场景</span>
-                <i class="el-icon-minus"></i>
-                <i class="el-icon-minus"></i>
+                <el-icon><Minus /><Minus /></el-icon>
                 <span>展开</span>
               </template>
               <div class="xz">
@@ -104,8 +103,7 @@
             <el-collapse-item>
               <template #title>
                 <span> 业务数据 </span>
-                <i class="el-icon-minus"></i>
-                <i class="el-icon-minus"></i>
+                <el-icon><Minus /><Minus /></el-icon>
                 <span> 展开 </span>
               </template>
               <div class="xz">
@@ -165,8 +163,7 @@
             <el-collapse-item>
               <template #title>
                 <span> 过程数据 </span>
-                <i class="el-icon-minus"></i>
-                <i class="el-icon-minus"></i>
+                <el-icon><Minus /><Minus /></el-icon>
                 <span> 展开 </span>
               </template>
               <div class="xz">
@@ -226,8 +223,7 @@
             <el-collapse-item name="3">
               <template #title>
                 <span> 成果数据 </span>
-                <i class="el-icon-minus"></i>
-                <i class="el-icon-minus"></i>
+                <el-icon><Minus /><Minus /></el-icon>
                 <span> 展开 </span>
               </template>
               <div class="xz">
@@ -288,13 +284,20 @@
     <div class="cont-bottom">
       <el-button type="primary" @click="next"> 下一步</el-button>
       <el-button type="info" @click="up">上一步</el-button>
-      <el-button type="success"><i class="delete el-icon-document-copy"></i> 保存草稿</el-button>
+      <el-button type="success">
+        <el-icon>
+          <DocumentCopy />
+        </el-icon>
+        <span>保存草稿</span>
+      </el-button>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { useRouter } from "vue-router";
+import { DocumentCopy, Minus } from "@element-plus/icons-vue";
+
 const cityOptions = ["类型", "状态", "轨迹", "通联", "经纬度"];
 let activeNames = ["1", "2", "3"];
 let cclj = "选择存储路径";

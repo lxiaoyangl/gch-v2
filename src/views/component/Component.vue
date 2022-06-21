@@ -57,11 +57,6 @@
             <div class="top">
               <div class="toplf">
                 <span>组件列表</span>
-
-                <!-- 运维人员使用的按钮，操作。 -->
-                <!--                <el-button v-if="userId == 4" class="addZJ" type="primary" icon="el-icon-upload2" @click="appliactionUp">上架</el-button>-->
-                <!--                <el-button v-if="userId == 4" class="addJM" type="primary" icon="el-icon-key" @click="applicationAuth">授权</el-button>-->
-                <!--                <el-button v-if="userId == 4" class="addJM" type="primary" icon="el-icon-download" @click="applicationDown">下架</el-button>-->
               </div>
               <div class="toprg">
                 <el-select class="sel" v-model="value" placeholder="组件状态">
@@ -161,7 +156,7 @@
               action="https://jsonplaceholder.typicode.com/posts/"
               multiple
             >
-              <i class="el-icon-upload"></i>
+              <i class="Upload"></i>
               <div class="el-upload__text wid">将文件拖到此处，或<em>点击上传</em></div>
               <div class="el-upload__tip bc" slot="tip">拖拽或点击选择文件上传</div>
             </el-upload>
@@ -211,12 +206,7 @@
           <div>
             <el-select style="width: 130px; margin-right: 10px" placeholder="服务器状态" v-model="zjSeachData.status">
             </el-select>
-            <el-input
-              style="width: 200px"
-              placeholder="输入服务器"
-              suffix-icon="el-icon-search"
-              v-model="zjSeachData.name"
-            >
+            <el-input style="width: 200px" placeholder="输入服务器" suffix-icon="Search" v-model="zjSeachData.name">
             </el-input>
           </div>
         </div>
@@ -320,12 +310,7 @@
         <div class="moder">
           <el-select style="width: 130px; margin-right: 10px" placeholder="类型" v-model="sjmxSearchData.type">
           </el-select>
-          <el-input
-            style="width: 200px"
-            placeholder="搜索内容"
-            suffix-icon="el-icon-search"
-            v-model="sjmxSearchData.name"
-          >
+          <el-input style="width: 200px" placeholder="搜索内容" suffix-icon="Search" v-model="sjmxSearchData.name">
           </el-input>
         </div>
         <div class="tab">
@@ -387,9 +372,7 @@
       <!-- 授权表头 -->
       <div style="width: 100%; height: 40px; background-color: #f3f0f0; position: relative">
         <span style="width: 110px; height: 100%; display: inline-block; background-color: blue"></span>
-        <el-button style="position: absolute; right: 10px; top: 5px" type="primary" icon="el-icon-upload2"
-          >授权</el-button
-        >
+        <el-button style="position: absolute; right: 10px; top: 5px" type="primary" icon="Upload2">授权</el-button>
       </div>
       <!-- 授权列表 -->
       <div class="deploy-main">
@@ -405,7 +388,7 @@
               </div>
             </div>
             <div class="bs-l-main">
-              <el-input suffix-icon="el-icon-search" placeholder="搜索人员" :data="fw"></el-input>
+              <el-input suffix-icon="Search" placeholder="搜索人员" :data="fw"></el-input>
               <div class="list-box">
                 <ul>
                   <li v-for="(item, index) in ip" :key="index" class="line-h">
@@ -437,7 +420,7 @@
               </div>
             </div>
             <div class="bs-l-main">
-              <el-input suffix-icon="el-icon-search" placeholder="搜索已人员" :data="fw"></el-input>
+              <el-input suffix-icon="Search" placeholder="搜索已人员" :data="fw"></el-input>
               <div class="list-box">
                 <ul>
                   <li v-for="(item, index) in ip" :key="index" class="line-h" @mouseenter="xs(index)">
@@ -471,7 +454,7 @@ import { Test, Zjdata, AddForm, AllList, GaugeChartData } from "./types";
 import { TableData, TableHeader } from "../../components/types";
 import { useRouter } from "vue-router";
 import { ElMessage, ElMessageBox } from "element-plus";
-import { Tickets, Delete } from "@element-plus/icons-vue";
+import { Tickets, Delete, Search, Upload, UploadFilled } from "@element-plus/icons-vue";
 
 import * as echarts from "echarts";
 
@@ -652,7 +635,7 @@ const tableHeader: TableHeader[] = reactive([
   {
     prop: "time",
     name: "创建时间",
-    button: true,
+    // button: true,
   },
 ]);
 const tableData: TableData[] = reactive([

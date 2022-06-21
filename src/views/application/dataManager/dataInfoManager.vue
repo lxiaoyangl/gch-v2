@@ -62,13 +62,13 @@
       <div class="top">
         <div>
           <span class="mr10">成果数据</span>
-          <el-button type="success" size="small" icon="el-icon-download">下载</el-button>
-          <el-button type="danger" size="small" icon="el-icon-delete">删除</el-button>
+          <el-button type="success" icon="Download">下载</el-button>
+          <el-button type="danger" icon="Delete">删除</el-button>
         </div>
         <div class="dfc">
-          <span> <el-select placeholder="成果数据" size="small" style="width: 100px" class="mr10"></el-select></span>
-          <span><el-select placeholder="目标数据" size="small" style="width: 100px" class="mr10"></el-select></span>
-          <span><el-select placeholder="状态" size="small" style="width: 100px" class="mr10"></el-select></span>
+          <span> <el-select placeholder="成果数据" style="width: 100px" class="mr10"></el-select></span>
+          <span><el-select placeholder="目标数据" style="width: 100px" class="mr10"></el-select></span>
+          <span><el-select placeholder="状态" style="width: 100px" class="mr10"></el-select></span>
           <span class="mr10">
             <el-date-picker
               v-model="value1"
@@ -76,33 +76,40 @@
               range-separator="至"
               start-placeholder="开始日期"
               end-placeholder="结束日期"
-              size="small"
               style="width: 300px"
             >
             </el-date-picker>
           </span>
-          <span
-            ><el-input
-              suffix-icon="el-icon-search"
-              size="small"
-              v-model="topinput"
-              placeholder="输入流程名称"
-            ></el-input
-          ></span>
+          <span><el-input suffix-icon="Search" v-model="topinput" placeholder="输入流程名称"></el-input></span>
         </div>
       </div>
-      <Table :table-header="tableHeader" :tableData="tableData" :pg-total-num="50" height="calc(100vh - 180px)">
-        <div slot="operation" slot-scope="row">
+      <Table
+        :tableHeader="tableHeader"
+        @handleSizeChange="handleSizeChange"
+        @handleCurrentChange="handleCurrentChange"
+        @cellMouseEnter="cellMouseEnter"
+        @cellMouseLeave="cellMouseLeave"
+        :tableData="tableData"
+        :pg-total-num="50"
+        height="calc(100vh - 180px)"
+      >
+        <template #="{ data }">
           <el-tooltip class="item" effect="dark" content="删除" placement="bottom">
-            <i class="el-icon-delete op" @click=""></i>
-          </el-tooltip>
-          <el-tooltip class="item" effect="dark" content="查看详情" placement="bottom">
-            <i class="el-icon-tickets op"></i>
+            <el-icon class="op">
+              <Delete @click="handleDel(data)" />
+            </el-icon>
           </el-tooltip>
           <el-tooltip class="item" effect="dark" content="下载" placement="bottom">
-            <i class="el-icon-download op" @click=""></i>
+            <el-icon class="op">
+              <Download @click="handleDownload(data)" />
+            </el-icon>
           </el-tooltip>
-        </div>
+          <el-tooltip class="item" effect="dark" content="查看详情" placement="bottom">
+            <el-icon class="op">
+              <Tickets @click="handleDetail(data)" />
+            </el-icon>
+          </el-tooltip>
+        </template>
       </Table>
     </div>
   </div>
@@ -110,7 +117,21 @@
 
 <script lang="ts" setup>
 import Table from "../../../components/Table.vue";
+import { Search, Delete, Tickets, Download } from "@element-plus/icons-vue";
 import { ref, reactive } from "vue";
+import { ElMessageBox } from "element-plus";
+interface TableData {
+  id: string;
+  appName: string;
+  dataType: string;
+  targetType: string;
+  protocolType: string;
+  IP: string;
+  port: string;
+  GPS: string;
+  state: string;
+  isHover: boolean;
+}
 let topinput = ref("");
 let value1 = ref("");
 let tableHeader = reactive([
@@ -154,8 +175,9 @@ let tableHeader = reactive([
     button: true,
   },
 ]);
-let tableData = reactive([
+let tableData: TableData[] = reactive([
   {
+    id: "1",
     appName: "南海侦察",
     dataType: "目标",
     targetType: "民用",
@@ -167,6 +189,7 @@ let tableData = reactive([
     isHover: false,
   },
   {
+    id: "2",
     appName: "南海侦察",
     dataType: "目标",
     targetType: "民用",
@@ -178,6 +201,7 @@ let tableData = reactive([
     isHover: false,
   },
   {
+    id: "3",
     appName: "南海侦察",
     dataType: "目标",
     targetType: "民用",
@@ -189,6 +213,7 @@ let tableData = reactive([
     isHover: false,
   },
   {
+    id: "4",
     appName: "南海侦察",
     dataType: "目标",
     targetType: "民用",
@@ -200,6 +225,7 @@ let tableData = reactive([
     isHover: false,
   },
   {
+    id: "5",
     appName: "南海侦察",
     dataType: "目标",
     targetType: "民用",
@@ -211,6 +237,7 @@ let tableData = reactive([
     isHover: false,
   },
   {
+    id: "6",
     appName: "南海侦察",
     dataType: "目标",
     targetType: "民用",
@@ -229,6 +256,49 @@ const handleOpen = () => {
 };
 const handleCloseMenu = () => {
   console.log("关闭");
+};
+const handleSizeChange = () => {};
+const handleCurrentChange = () => {};
+const cellMouseEnter = (row: TableData) => {
+  tableData = tableData.map((item) => {
+    if (item.id === row.id) {
+      item.isHover = true;
+    }
+    return item;
+  });
+  // row.isHover = true;
+  // console.log("enter", row);
+};
+const cellMouseLeave = (row: TableData) => {
+  tableData = tableData.map((item) => {
+    if (item.id === row.id) {
+      item.isHover = false;
+    }
+    return item;
+  });
+  // row.isHover = false;
+  // console.log("leave", row);
+};
+const handleDel = (data: TableData) => {
+  ElMessageBox.confirm("是否删除当前信息？", "提示", {
+    distinguishCancelAndClose: true,
+    confirmButtonText: "确定",
+    cancelButtonText: "取消",
+  })
+    .then(() => {
+      tableData = tableData.filter((item) => item.id !== data.id);
+    })
+    .catch(() => {
+      // catch error
+    });
+};
+const handleDownload = (data: TableData) => {
+  console.log(data);
+};
+const handleDetail = (data: TableData) => {
+  // zjxxDialogVisible.value = true;
+  // rows = data;
+  // console.log(rows);
 };
 </script>
 

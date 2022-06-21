@@ -18,20 +18,20 @@
       <el-table-column show-overflow-tooltip prop="spsj" label="审批时间"> </el-table-column>
       <el-table-column show-overflow-tooltip label="操作" width="150">
         <template #default="{ row }">
-          <el-button size="mini" :type="row.isHover ? 'primary' : 'text'" @click="handleDetail(row)">查看</el-button>
+          <el-button :type="row.isHover ? 'primary' : 'text'" @click="handleDetail(row)">查看</el-button>
           <!-- <el-button
-            size="mini"
+            
             :type="row.isHover ? 'primary' : 'text'"
             @click="handleBs(row)"
             >部署</el-button
           > -->
           <!-- <el-button
-            size="mini"
+            
             :type="row.isHover ? 'primary' : 'text'"
             @click="handleDataMX(row)"
             >数据模型</el-button
           > -->
-          <el-button size="mini" :type="row.isHover ? 'danger' : 'text'" @click="handleDelete(row)">删除</el-button>
+          <el-button :type="row.isHover ? 'danger' : 'text'" @click="handleDelete(row)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>

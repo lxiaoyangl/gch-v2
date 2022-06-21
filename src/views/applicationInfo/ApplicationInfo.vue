@@ -5,12 +5,12 @@
       <div class="right">
         <div class="msg">
           <el-badge :value="12" :max="99" class="item">
-            <i class="el-icon-message"></i>
+            <el-icon><Message /></el-icon>
           </el-badge>
         </div>
         <div class="user">
           <div class="avat">
-            <i class="el-icon-user-solid"></i>
+            <el-icon><User /></el-icon>
           </div>
           <span>管理员xxx</span>
         </div>
@@ -22,12 +22,7 @@
           <div class="title">新建应用</div>
           <div class="form">
             <el-input v-model="formData.name" size="mini"></el-input>
-            <el-select
-              class="mt10 mr10"
-              v-model="formData.type"
-              size="mini"
-              placeholder="【应用类型】"
-            >
+            <el-select class="mt10 mr10" v-model="formData.type" size="mini" placeholder="【应用类型】">
               <el-option value="1" label="1"></el-option>
               <el-option value="2" label="2"></el-option>
             </el-select>
@@ -45,12 +40,7 @@
           </div> -->
         </div>
         <ul class="list">
-          <li
-            @click="changeNav(i)"
-            v-for="(item, i) in list"
-            :key="i"
-            :class="isActive == i ? 'is-active' : ''"
-          >
+          <li @click="changeNav(i)" v-for="(item, i) in list" :key="i" :class="isActive == i ? 'is-active' : ''">
             <router-link :to="item.path">
               <span class="flow">{{ i + 1 }}</span>
               <span>{{ item.name }}</span>
@@ -69,120 +59,114 @@
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      isActive: 0,
-      list: [
-        {
-          name: "基本信息",
-          path: "/application/basicInfo",
-        },
-        {
-          name: "流程编排",
-          path: "/application/process",
-        },
-        {
-          name: "可视化设计",
-          path: "/application/visualDesign",
-        },
-        {
-          name: "应用发布",
-          path: "/application/isolateTheGrouping",
-        },
-      ],
-      formData: {
-        name: "应用名称",
-        type: "",
-      },
-      errData: [
-        {
-          name: "名称",
-          msg: "异常信息ssssssssssssssssssssssssssssssssssssssssssssss...",
-          time: "11-20",
-          lv: "lv1",
-        },
-        {
-          name: "名称",
-          msg: "异常信息...",
-          time: "11-20",
-          lv: "lv1",
-        },
-        {
-          name: "名称",
-          msg: "异常信息...",
-          time: "11-20",
-          lv: "lv1",
-        },
-        {
-          name: "名称",
-          msg: "异常信息...",
-          time: "11-20",
-          lv: "lv1",
-        },
-        {
-          name: "名称",
-          msg: "异常信息...",
-          time: "11-20",
-          lv: "lv2",
-        },
-        {
-          name: "名称",
-          msg: "异常信息...",
-          time: "11-20",
-          lv: "lv2",
-        },
-        {
-          name: "名称",
-          msg: "异常信息...",
-          time: "11-20",
-          lv: "lv2",
-        },
-        {
-          name: "名称",
-          msg: "异常信息...",
-          time: "11-20",
-          lv: "lv2",
-        },
-        {
-          name: "名称",
-          msg: "异常信息...",
-          time: "11-20",
-          lv: "lv2",
-        },
-        {
-          name: "名称",
-          msg: "异常信息...",
-          time: "11-20",
-          lv: "lv2",
-        },
-        {
-          name: "名称",
-          msg: "异常信息...",
-          time: "11-20",
-          lv: "lv2",
-        },
-        {
-          name: "名称",
-          msg: "异常信息...",
-          time: "11-20",
-          lv: "lv2",
-        },
-        {
-          name: "名称",
-          msg: "异常信息...",
-          time: "11-20",
-          lv: "lv2",
-        },
-      ],
-    };
+<script lang="ts" setup>
+import { Message, User } from "@element-plus/icons-vue";
+import { ref } from "vue";
+let isActive = ref(0);
+let list = [
+  {
+    name: "基本信息",
+    path: "/application/basicInfo",
   },
-  methods: {
-    changeNav(num) {
-      this.isActive = num;
-    },
+  {
+    name: "流程编排",
+    path: "/application/process",
   },
+  {
+    name: "可视化设计",
+    path: "/application/visualDesign",
+  },
+  {
+    name: "应用发布",
+    path: "/application/isolateTheGrouping",
+  },
+];
+let formData = {
+  name: "应用名称",
+  type: "",
+};
+let errData = [
+  {
+    name: "名称",
+    msg: "异常信息ssssssssssssssssssssssssssssssssssssssssssssss...",
+    time: "11-20",
+    lv: "lv1",
+  },
+  {
+    name: "名称",
+    msg: "异常信息...",
+    time: "11-20",
+    lv: "lv1",
+  },
+  {
+    name: "名称",
+    msg: "异常信息...",
+    time: "11-20",
+    lv: "lv1",
+  },
+  {
+    name: "名称",
+    msg: "异常信息...",
+    time: "11-20",
+    lv: "lv1",
+  },
+  {
+    name: "名称",
+    msg: "异常信息...",
+    time: "11-20",
+    lv: "lv2",
+  },
+  {
+    name: "名称",
+    msg: "异常信息...",
+    time: "11-20",
+    lv: "lv2",
+  },
+  {
+    name: "名称",
+    msg: "异常信息...",
+    time: "11-20",
+    lv: "lv2",
+  },
+  {
+    name: "名称",
+    msg: "异常信息...",
+    time: "11-20",
+    lv: "lv2",
+  },
+  {
+    name: "名称",
+    msg: "异常信息...",
+    time: "11-20",
+    lv: "lv2",
+  },
+  {
+    name: "名称",
+    msg: "异常信息...",
+    time: "11-20",
+    lv: "lv2",
+  },
+  {
+    name: "名称",
+    msg: "异常信息...",
+    time: "11-20",
+    lv: "lv2",
+  },
+  {
+    name: "名称",
+    msg: "异常信息...",
+    time: "11-20",
+    lv: "lv2",
+  },
+  {
+    name: "名称",
+    msg: "异常信息...",
+    time: "11-20",
+    lv: "lv2",
+  },
+];
+const changeNav = (num: number) => {
+  isActive.value = num;
 };
 </script>
 <style lang="less" scoped>

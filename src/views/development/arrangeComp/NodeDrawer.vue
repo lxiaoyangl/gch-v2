@@ -252,7 +252,7 @@
             </el-tab-pane>
           </el-tabs>
           <div class="r-bottom">
-            <el-button type="primary" @click="handleSave(formDataRef)">确 定</el-button>
+            <el-button type="primary" @click="handleSave(formDataRef as FormInstance)">确 定</el-button>
           </div>
         </div>
       </div>

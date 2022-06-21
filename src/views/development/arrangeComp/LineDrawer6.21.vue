@@ -28,123 +28,120 @@
   </div>
 </template>
 
-<script lang="ts" setup>
+<script>
 import LineComp from "./LineComp.vue";
-import { watch, reactive, ref, Ref } from "vue";
+export default {
+  components: { LineComp },
+  props: ["lineDrawer"],
+  data() {
+    return {
+      activeNames: ["1", "2"],
+      childrenActiveNames: ["11", "12", "13"],
+      activeName: "dataLine",
+      dataLineDatas: [
+        {
+          tabLabel: "数据线",
+          tabName: "dataLine",
+          data: { title: "数据线设置", dataMappingList: [] },
+        },
+        {
+          tabLabel: "控制线",
+          tabName: "controlLine",
+          data: { title: "控制线设置", dataMappingList: [] },
+        },
+        {
+          tabLabel: "状态线",
+          tabName: "statusLine",
+          data: { title: "状态线设置", dataMappingList: [] },
+        },
+      ],
+      controlLineDatas: {},
+      statusLineDatas: {},
+      formData: {},
+    };
+  },
+  methods: {
+    addDataMapping() {
+      let obj = {
+        compName: "组件3",
+        compIn: "",
+        compOut: "",
+        children: [
+          {
+            interfaceName: "接口1",
+            interfaceIn: "",
+            interfaceOut: "",
+            children: [
+              {
+                argumentName: "参数1",
+                argumentIn: "",
+                argumentOut: "",
+              },
+            ],
+          },
+        ],
+      };
+      this.dataMappingList.push(obj);
+    },
+    handleAddItem(type, item) {
+      let obj = {};
+      for (const v of this.dataMappingList) {
+        for (const cv of v.children) {
+          if (type == "intf") {
+            obj = {
+              interfaceIn: "",
+              interfaceName: "接口" + (v.children.length + 1),
+              interfaceOut: "",
+              children: [
+                {
+                  argumentIn: "",
+                  argumentName: "参数1",
+                  argumentOut: "",
+                },
+              ],
+            };
+            v.children.push(obj);
+            break;
+          } else if (type == "arg") {
+            obj = {
+              argumentIn: "",
+              argumentName: "参数" + (cv.children.length + 1),
+              argumentOut: "",
+            };
+            cv.children.push(obj);
+            break;
+          }
+        }
+      }
+    },
+    handleDelItem(type, item) {
+      for (let i = 0; i < this.dataMappingList.length; i++) {
+        const v = this.dataMappingList[i];
 
-let activeNames = ref(["1", "2"]);
-let childrenActiveNames = ref(["11", "12", "13"]);
-let activeName: Ref<string> = ref("dataLine");
-let dataLineDatas = reactive([
-  {
-    tabLabel: "数据线",
-    tabName: "dataLine",
-    data: { title: "数据线设置", dataMappingList: [] },
+        for (let ci = 0; ci < v.children.length; ci++) {
+          const cv = v.children[ci];
+          if (type == "intf" && cv.argumentName == item.argumentName) {
+            v.children.splice(ci, 1);
+            // if (v.children.length <= 0) {
+            //   v.children.splice(i, 1);
+            // }
+            break;
+          } else if (type == "arg") {
+            cv.children.forEach((vv, vi) => {
+              if (item.argumentName == vv.argumentName) {
+                cv.children.splice(vi, 1);
+              }
+            });
+            // if (cv.children.length <= 0) {
+            //   v.children.splice(i, 1);
+            // }
+            break;
+          }
+        }
+      }
+    },
   },
-  {
-    tabLabel: "控制线",
-    tabName: "controlLine",
-    data: { title: "控制线设置", dataMappingList: [] },
-  },
-  {
-    tabLabel: "状态线",
-    tabName: "statusLine",
-    data: { title: "状态线设置", dataMappingList: [] },
-  },
-]);
-let controlLineDatas = reactive({});
-let statusLineDatas = reactive({});
-let formData = reactive({});
-
-const { lineDrawerData, lineDrawer } = defineProps({
-  lineDrawer: {
-    type: Boolean,
-    default: false,
-  },
-  lineDrawerData: {
-    type: Object,
-    default: () => ({}),
-  },
-});
-// const addDataMapping = () => {
-//   let obj = {
-//     compName: "组件3",
-//     compIn: "",
-//     compOut: "",
-//     children: [
-//       {
-//         interfaceName: "接口1",
-//         interfaceIn: "",
-//         interfaceOut: "",
-//         children: [
-//           {
-//             argumentName: "参数1",
-//             argumentIn: "",
-//             argumentOut: "",
-//           },
-//         ],
-//       },
-//     ],
-//   };
-//   dataMappingList.push(obj);
-// };
-// const handleAddItem = (type, item) => {
-//   let obj = {};
-//   for (const v of dataMappingList) {
-//     for (const cv of v.children) {
-//       if (type == "intf") {
-//         obj = {
-//           interfaceIn: "",
-//           interfaceName: "接口" + (v.children.length + 1),
-//           interfaceOut: "",
-//           children: [
-//             {
-//               argumentIn: "",
-//               argumentName: "参数1",
-//               argumentOut: "",
-//             },
-//           ],
-//         };
-//         v.children.push(obj);
-//         break;
-//       } else if (type == "arg") {
-//         obj = {
-//           argumentIn: "",
-//           argumentName: "参数" + (cv.children.length + 1),
-//           argumentOut: "",
-//         };
-//         cv.children.push(obj);
-//         break;
-//       }
-//     }
-//   }
-// };
-// const handleDelItem = (type, item) => {
-//   for (let i = 0; i < dataMappingList.length; i++) {
-//     const v = dataMappingList[i];
-
-//     for (let ci = 0; ci < v.children.length; ci++) {
-//       const cv = v.children[ci];
-//       if (type == "intf" && cv.argumentName == item.argumentName) {
-//         v.children.splice(ci, 1);
-//         // if (v.children.length <= 0) {
-//         //   v.children.splice(i, 1);
-//         // }
-//         break;
-//       } else if (type == "arg") {
-//         cv.children.forEach((vv, vi) => {
-//           if (item.argumentName == vv.argumentName) {
-//             cv.children.splice(vi, 1);
-//           }
-//         });
-//         // if (cv.children.length <= 0) {
-//         //   v.children.splice(i, 1);
-//         // }
-//         break;
-//       }
-//     }
-//   }
-// };
+};
 </script>
 <style lang="less" scoped>
 .drawer {

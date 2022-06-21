@@ -29,7 +29,7 @@
               v-model="searchData.searchName"
               style="width: 240px"
               placeholder="搜索目标ID"
-              suffix-icon="el-icon-search"
+              suffix-icon="Search"
             ></el-input>
           </el-form-item>
         </el-form>
@@ -44,10 +44,10 @@
     >
       <div slot="operation" slot-scope="row">
         <el-tooltip class="item" effect="dark" content="删除" placement="bottom">
-          <i class="el-icon-delete op" @click=""></i>
+          <i class="Delete op" @click=""></i>
         </el-tooltip>
         <el-tooltip class="item" effect="dark" content="查看详情" placement="bottom">
-          <i class="el-icon-tickets op"></i>
+          <i class="Tickets op"></i>
         </el-tooltip>
       </div>
     </Table>
@@ -79,6 +79,7 @@
 <script lang="ts" setup>
 import Table from "./Table.vue";
 import { ref, reactive } from "vue";
+import { Search, Delete, Tickets } from "@element-plus/icons-vue";
 import { ElMessage, ElMessageBox } from "element-plus";
 
 let searchData = reactive({

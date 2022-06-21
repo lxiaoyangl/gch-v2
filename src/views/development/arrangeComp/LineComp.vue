@@ -120,9 +120,13 @@
 import { CirclePlus, Download, Upload } from "@element-plus/icons-vue";
 import { reactive } from "vue";
 
-let { dataLineDatas } = withDefaults(defineProps(), {
-  dataLineDatas: reactive({}),
+let { dataLineDatas } = defineProps({
+  dataLineDatas: {
+    type: Object,
+    default: () => {},
+  },
 });
+
 let dataMappingList = reactive([
   {
     compName: "组件1",
@@ -164,7 +168,7 @@ const handleAddItem = (type: string, item?: any) => {
     ],
   };
   let enmp = {
-    // id: ++dataMappingList.length,
+    compName: "组件2",
     id: 1,
     compIn: "",
     compOut: "",

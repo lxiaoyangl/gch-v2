@@ -350,6 +350,7 @@ const handleClose = (done: () => void) => {
 };
 const handleSizeChange = () => {};
 const handleCurrentChange = () => {};
+
 const cellMouseEnter = (row: TableData) => {
   tableData = tableData.map((item) => {
     if (item.id === row.id) {
@@ -357,8 +358,6 @@ const cellMouseEnter = (row: TableData) => {
     }
     return item;
   });
-  // row.isHover = true;
-  // console.log("enter", row);
 };
 const cellMouseLeave = (row: TableData) => {
   tableData = tableData.map((item) => {
@@ -367,8 +366,6 @@ const cellMouseLeave = (row: TableData) => {
     }
     return item;
   });
-  // row.isHover = false;
-  // console.log("leave", row);
 };
 const handleDel = (data: TableData) => {
   ElMessageBox.confirm("是否删除当前信息？", "提示", {

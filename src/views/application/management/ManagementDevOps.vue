@@ -93,8 +93,9 @@
         <div class="main-head">
           <div class="main-head-left">
             <span>应用中心</span>
-            <!-- <el-button type="primary" @click="handleAdd(item)" size="medium">
-              <i class="el-icon-plus"></i>应用开发
+            <!-- <el-button type="primary" @click="handleAdd(item)" >
+              <el-icon> <Plus/></el-icon>
+              <span>应用开发</span>
             </el-button> -->
           </div>
           <div class="main-head-right">
@@ -102,7 +103,7 @@
               style="width: 160px"
               v-model="allZT"
               placeholder="全部状态"
-              size="medium"
+              
             >
               <el-option
                 v-for="item in ZToptions"
@@ -117,7 +118,7 @@
               class="mlr10"
               v-model="allTP"
               placeholder="全部类型"
-              size="medium"
+              
             >
               <el-option
                 v-for="item in TPoptions"
@@ -130,8 +131,8 @@
             <el-input
               style="width: 250px"
               placeholder="输入应用名称或创建人"
-              suffix-icon="el-icon-search"
-              size="medium"
+              suffix-icon="Search"
+              
               v-model="search_task"
             >
             </el-input>
@@ -237,7 +238,7 @@
       <!-- 授权表头 -->
       <div style="width:100%;height:40px;background-color: #f3f0f0;position: relative;">
         <span style="width:110px;height:100%;display: inline-block;background-color:blue;"></span>
-        <el-button style="position: absolute;right: 10px;top: 5px;" size="small" type="primary" icon="el-icon-upload2" >授权</el-button>
+        <el-button style="position: absolute;right: 10px;top: 5px;"  type="primary" icon="Upload2" >授权</el-button>
       </div>
       <!-- 授权列表 -->
       <div class="deploy-main">
@@ -254,8 +255,8 @@
             </div>
             <div class="bs-l-main">
               <el-input
-                suffix-icon="el-icon-search"
-                size="small"
+                suffix-icon="Search"
+                
                 placeholder="搜索人员"
                 :data="fw"
               ></el-input>
@@ -294,8 +295,8 @@
             </div>
             <div class="bs-l-main">
               <el-input
-                suffix-icon="el-icon-search"
-                size="small"
+                suffix-icon="Search"
+                
                 placeholder="搜索已人员"
                 :data="fw"
               ></el-input>
@@ -333,6 +334,7 @@
 
 <script>
 import Pagination from "../../../components/Pagination.vue";
+import {Plus,Search} from '@element-plus/icons-vue'
 export default {
   components: {
     Pagination,

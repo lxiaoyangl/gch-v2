@@ -32,7 +32,10 @@
       </div>
 
       <div class="btn-group">
-        <el-popover placement="bottom" width="480" trigger="click">
+        <el-popover placement="top" width="480" trigger="click">
+          <template #reference>
+            <el-button>立即打包</el-button>
+          </template>
           <el-form
             class="form"
             ref="formRef"
@@ -70,7 +73,6 @@
               <el-button type="primary" @click="submitPackage(formRef)">确 定</el-button>
             </div>
           </el-form>
-          <el-button slot="reference">立即打包</el-button>
         </el-popover>
         <el-button type="primary" @click="confirmFinish">确认完成</el-button>
       </div>

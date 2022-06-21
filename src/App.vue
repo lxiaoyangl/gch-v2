@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div class="app">
     <el-config-provider :locale="zhCn">
       <router-view />
     </el-config-provider>
@@ -12,6 +12,10 @@ import zhCn from "element-plus/lib/locale/lang/zh-cn";
 
 <style lang="less">
 #app {
+  height: 100%;
+  width: 100%;
+}
+.app {
   height: 100%;
   width: 100%;
 }

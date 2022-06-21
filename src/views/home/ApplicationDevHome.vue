@@ -25,7 +25,7 @@
                     </div>
                     <div class="applicationBoxBottom">
                       <span>07</span>
-                      <img width="18px" src="../../assets/img/开发-正在审批.png" />
+                      <img width="18" src="../../assets/img/开发-正在审批.png" />
                     </div>
                   </div>
                   <div class="applicationBox">
@@ -35,7 +35,7 @@
                     </div>
                     <div class="applicationBoxBottom">
                       <span>07</span>
-                      <img width="18px" src="../../assets/img/开发-最近失败.png" />
+                      <img width="18" src="../../assets/img/开发-最近失败.png" />
                     </div>
                   </div>
                   <div class="applicationBox">
@@ -45,7 +45,7 @@
                     </div>
                     <div class="applicationBoxBottom">
                       <span>07</span>
-                      <img width="18px" src="../../assets/img/开发-最近成功.png" />
+                      <img width="18" src="../../assets/img/开发-最近成功.png" />
                     </div>
                   </div>
                 </div>
@@ -102,7 +102,7 @@
                     </div>
                     <div class="applicationBoxBottom">
                       <span>07</span>
-                      <img width="18px" src="../../assets/img/开发-正在审批.png" />
+                      <img width="18" src="../../assets/img/开发-正在审批.png" />
                     </div>
                   </div>
                   <div class="applicationBox">
@@ -112,7 +112,7 @@
                     </div>
                     <div class="applicationBoxBottom">
                       <span>07</span>
-                      <img width="18px" src="../../assets/img/开发-最近失败.png" />
+                      <img width="18" src="../../assets/img/开发-最近失败.png" />
                     </div>
                   </div>
                   <div class="applicationBox">
@@ -122,7 +122,7 @@
                     </div>
                     <div class="applicationBoxBottom">
                       <span>07</span>
-                      <img width="18px" src="../../assets/img/开发-最近成功.png" />
+                      <img width="18" src="../../assets/img/开发-最近成功.png" />
                     </div>
                   </div>
                 </div>

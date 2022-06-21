@@ -3,8 +3,11 @@
     <div class="main-head">
       <div class="main-head-left">
         <span>应用管理</span>
-        <el-button type="primary" @click="handleAdd(item)" size="medium">
-          <i class="el-icon-plus"></i>新建应用
+        <el-button type="primary" @click="handleAdd">
+        <el-icon>
+          <Plus/>
+        </el-icon>
+        <span>新建应用</span>
         </el-button>
       </div>
       <div class="main-head-right">
@@ -12,7 +15,6 @@
           style="width: 160px"
           v-model="allZT"
           placeholder="全部状态"
-          size="medium"
         >
           <el-option
             v-for="item in ZToptions"
@@ -27,7 +29,7 @@
           class="mlr10"
           v-model="allTP"
           placeholder="全部类型"
-          size="medium"
+         
         >
           <el-option
             v-for="item in TPoptions"
@@ -40,8 +42,8 @@
         <el-input
           style="width: 250px"
           placeholder="输入应用名称或创建人"
-          suffix-icon="el-icon-search"
-          size="medium"
+          suffix-icon="Search"
+         
           v-model="search_task"
         >
         </el-input>
@@ -53,7 +55,7 @@
           <div>
             <el-button
               @click="handleChange(item.status)"
-              size="medium"
+             
               class="starbtn"
               type="warning"
               >{{ item.status == 1 ? "停止应用" : "启动应用" }}</el-button
@@ -68,13 +70,13 @@
           </div>
         </div>
         <div class="box_head">
-          <img
+          <!-- <img
             :src="
               item.status == 1
-                ? require('../../../assets/img/app-usable.png')
-                : require('../../../assets/img/app-disabled.png')
+                ? import('../../../assets/img/app-usable.png')
+                : import('../../../assets/img/app-disabled.png')
             "
-          />
+          /> -->
           <div>
             <p>
               <span class="name">{{ item.name }}</span>
@@ -128,18 +130,14 @@
   </div>
 </template>
 
-<script>
+<script lang="ts" setup>
 import Pagination from "../../../components/Pagination.vue";
-export default {
-  components: {
-    Pagination,
-  },
-  data() {
-    return {
+import { Search,Plus} from "@element-plus/icons-vue";
+import { useRouter } from "vue-router";
       // 搜索框
-      search_task: "",
+      let search_task= ""
       // 下拉选项
-      ZToptions: [
+      let ZToptions= [
         {
           value: "选项1",
           label: "1",
@@ -148,8 +146,8 @@ export default {
           value: "选项2",
           label: "2",
         },
-      ],
-      TPoptions: [
+      ]
+      let TPoptions= [
         {
           value: "选项1",
           label: "1",
@@ -158,11 +156,11 @@ export default {
           value: "选项2",
           label: "2",
         },
-      ],
-      allZT: "",
-      allTP: "",
+      ]
+      let allZT= ""
+      let allTP= ""
       //内容
-      allmain: [
+      let allmain= [
         {
           name: "应用名称",
           status: 1,
@@ -403,31 +401,27 @@ export default {
         //   instance: 50,
         //   data: 50,
         // },
-      ],
-      num: 9999,
-    };
-  },
-  methods: {
-    displ(data) {
-      this.num = data;
-    },
-    handleChange(status) {
+      ]
+      let num= 9999
+      const router=useRouter()
+    const displ=(data:any)=> {
+      num = data;
+    }
+    const handleChange=(status:any)=> {
       console.log(status);
-    },
-    handleAdd() {
-      let routeData = this.$router.resolve({
+    }
+    const handleAdd=() =>{
+      let routeData = router.resolve({
         path: "/application/management/black",
       });
       window.open(routeData.href, "_blank");
-    },
-    handleEdit(item) {
-      let routeData = this.$router.resolve({
+    }
+    const handleEdit=(item:any) =>{
+      let routeData = router.resolve({
         path: "/application/management/applicationManagement",
       });
       window.open(routeData.href, "_blank");
-    },
-  },
-};
+    }
 </script>
 
 <style lang="less" scoped>

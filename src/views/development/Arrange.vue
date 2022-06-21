@@ -11,7 +11,7 @@
             <span class="custom">自定义编排 <i></i> </span>
             <el-link :underline="false" type="primary ">
               <span class="pl30">流程模板 </span>
-              <i class="el-icon-d-arrow-right"></i>
+              <el-icon><DArrowRight /></el-icon>
             </el-link>
           </div>
           <div
@@ -63,7 +63,7 @@
           </div>
           <div class="add">
             <el-button type="primary" v-if="!isFlow" @click="isFlow = !0">
-              <i class="el-icon-circle-plus-outline"></i>
+              <el-icon><CirclePlus /></el-icon>
               <span>新建流程组件</span>
             </el-button>
           </div>
@@ -241,11 +241,12 @@ import NodeDrawer from "./arrangeComp/NodeDrawer.vue";
 import LineDrawer from "./arrangeComp/LineDrawer.vue";
 // import RectNode from "./arrangeComp/RectNode.vue";
 import DebugDialog from "./comp/DebugDialog.vue";
-import { onMounted, onUnmounted, computed, ref, reactive, Ref } from "vue";
+import { onMounted, onUnmounted, computed, ref, reactive, Ref, unref } from "vue";
 import { compClassList, flowList } from "./data";
 import type { ListDataChildren } from "./data";
 import { ElMessage } from "element-plus";
 import { useRouter } from "vue-router";
+import { CirclePlus, DArrowRight } from "@element-plus/icons-vue";
 
 let search: Ref<string> = ref("");
 let active: Ref<number> = ref(0);
@@ -257,7 +258,7 @@ let isDebug: Ref<boolean> = ref(false);
 let flowData = reactive({ data: {} });
 let nodeData = reactive({ data: {} });
 let lineColor = ref(null);
-let debugData = reactive({ data: [] });
+let debugData = reactive({ data: <Cell.Properties[]>[] });
 let flowTopForm = reactive({
   name: "",
   type: "",
@@ -529,7 +530,7 @@ const initAntvX6 = () => {
     edge.removeTools();
   });
 
-  graph.on("edge:dblclick", ({ e, x, y, edge, view }) => {
+  graph.on("edge:dblclick", ({ e, edge, view }) => {
     // console.log(e);
     // console.log(x, y);
     console.log(edge);
@@ -554,7 +555,7 @@ const initAntvX6 = () => {
     });
   });
 
-  graph.on("node:dblclick", ({ e, x, y, node, view }) => {
+  graph.on("node:dblclick", ({ e, node, view }) => {
     console.log(node);
     lineDrawer.value = !1;
     if (node.data?.datas?.type == "1") {
@@ -573,7 +574,7 @@ const initAntvX6 = () => {
     // });
   });
 
-  graph.on("node:mouseenter", ({ e, x, y, node, view }) => {
+  graph.on("node:mouseenter", ({ e, node, view }) => {
     let flag = node.data?.datas?.type == "1";
     node.attr({
       label: {
@@ -613,7 +614,7 @@ const initAntvX6 = () => {
     );
   });
 
-  graph.on("node:mouseleave", ({ e, x, y, node, view }) => {
+  graph.on("node:mouseleave", ({ e, node, view }) => {
     let flag = node.data?.datas?.type == "1";
     node.attr({
       label: {
@@ -667,7 +668,7 @@ const dragNode = (item: ListDataChildren, e: Event) => {
   dnd.start(node, e);
 };
 // 显示连线节点
-const showPorts = (ports: Element, show: boolean) => {
+const showPorts = (ports: NodeListOf<HTMLElement>, show: boolean) => {
   for (let i = 0, len = ports.length; i < len; i = i + 1) {
     ports[i].style.visibility = show ? "visible" : "hidden";
   }
@@ -1057,7 +1058,7 @@ const update = (view: View) => {
   node.getInPorts().forEach((port: { id: any }) => {
     const portNode = view.findPortElem(port.id, "portBody");
     view.unhighlight(portNode, {
-      highlighter: magnetAvailabilityHighlighter,
+      // highlighter: magnetAvailabilityHighlighter,
     });
   });
   node.updateInPorts(graph);
